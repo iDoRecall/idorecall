@@ -26,4 +26,4 @@ export const markIconSet: Record<string, string> = {
     <line x1="4" y1="12.25" x2="9" y2="12.25" stroke="currentColor" stroke-width="1.5"/>
     <line x1="15" y1="12.25" x2="20" y2="12.25" stroke="currentColor" stroke-width="1.5"/>
     </svg>`,
-};
+}

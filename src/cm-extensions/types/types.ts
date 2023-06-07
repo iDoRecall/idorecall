@@ -1,4 +1,4 @@
 export type TransactionRange = {
-    from: number;
-    to: number;
-};
+    from: number
+    to: number
+}

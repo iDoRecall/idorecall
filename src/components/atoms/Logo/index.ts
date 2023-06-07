@@ -1,2 +1,2 @@
-import {Logo} from './component';
-export {Logo};
+import { Logo } from './component'
+export { Logo }

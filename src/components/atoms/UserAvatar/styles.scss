@@ -1,23 +1,23 @@
 .avatar-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  // TODO: Color-variable
-  box-shadow: #00000029 0 3px 10px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    // TODO: Color-variable
+    box-shadow: #00000029 0 3px 10px;
 }
 
 .username {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 14px;
-  padding-top: 5px;
-  width: 85px;
-  text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    padding-top: 5px;
+    width: 85px;
+    text-align: center;
 }

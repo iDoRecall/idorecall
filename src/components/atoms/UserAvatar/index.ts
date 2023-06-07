@@ -1,5 +1,3 @@
-import {UserAvatar} from './component';
+import { UserAvatar } from './component'
 
- export {
-    UserAvatar
-}
+export { UserAvatar }
