@@ -19,7 +19,11 @@
     "rules": {
         "react/react-in-jsx-scope": "off",
         "@typescript-eslint/consistent-type-imports": "off",
-        "@typescript-eslint/explicit-function-return-type": "off"
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/strict-boolean-expressions": "off",
+        "@typescript-eslint/restrict-template-expressions": "off",
+        "no-new": "off",
+        "no-void": "off"
     },
     "settings": {
         "react": {
