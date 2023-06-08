@@ -1,4 +1,4 @@
-:root div.view-content {
+:root .view-content#idr-app {
   --idr-text-color: #010101;
   --idr-contrast-bg: #ffffff;
   --idr-medium-bg: #f9f9f9;
@@ -6,7 +6,7 @@
   --idr-card-bg: #ffffff;
 }
 
-:root div.view-content.dark {
+:root .view-content#idr-app.dark {
   --idr-text-color: #f9f9f9;
   --idr-contrast-bg: #222222;
   --idr-medium-bg: #303136;

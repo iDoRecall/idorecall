@@ -1,0 +1,9 @@
+// app settings (for dark theme)
+.view-content#idr-app * {
+  color: var(--idr-text-color);
+}
+
+// The initial content have a paddings there
+.workspace-leaf-content .view-content#idr-app {
+  padding: 0;
+}

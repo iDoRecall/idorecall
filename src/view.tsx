@@ -1,10 +1,16 @@
-import { ItemView } from 'obsidian';
+import { ItemView, WorkspaceLeaf } from 'obsidian';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './App';
 
 export default class IDRView extends ItemView {
     root = createRoot(this.containerEl.children[1]);
+
+    constructor(leaf: WorkspaceLeaf) {
+        super(leaf);
+        // for styles separation form another leafs
+        this.containerEl.children[1].id = 'idr-app';
+    }
 
     getDisplayText() {
         return 'IDoRecall';
