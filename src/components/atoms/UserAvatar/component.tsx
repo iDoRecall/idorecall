@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles.scss';
+import './styles.css';
 import { UserAvatarProps } from './UserAvatarProps.interface';
 
 export const UserAvatar: React.FC<UserAvatarProps> = ({ user }) => {
