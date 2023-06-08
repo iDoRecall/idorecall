@@ -8,8 +8,7 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    // TODO: Color-variable
-    box-shadow: #00000029 0 3px 10px;
+    box-shadow: var(--idr-box-shadow-color) 0 3px 10px;
 }
 
 .username {

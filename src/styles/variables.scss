@@ -1,7 +1,20 @@
 :root div.view-content {
-  --idr-text-color: #000
+  --idr-text-color: #010101;
+  --idr-contrast-bg: #ffffff;
+  --idr-medium-bg: #f9f9f9;
+  --idr-item-bg: #eeeeee;
+  --idr-card-bg: #ffffff;
 }
 
 :root div.view-content.dark {
-  --idr-text-color: red
+  --idr-text-color: #f9f9f9;
+  --idr-contrast-bg: #222222;
+  --idr-medium-bg: #303136;
+  --idr-item-bg: #4f5054;
+  --idr-card-bg: #4f5054;
+}
+
+:root {
+  --idr-accent-color: #9ec6b4;
+  --idr-box-shadow-color: #00000029;
 }
