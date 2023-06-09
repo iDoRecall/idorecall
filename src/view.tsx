@@ -26,6 +26,7 @@ export default class IDRView extends ItemView {
 
     async onOpen() {
         console.log('onOpen');
+
         this.root.render(
             <React.StrictMode>
                 <App />
