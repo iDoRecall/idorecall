@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.scss';
-import { HeaderProps } from './HeaderProps.interface';
+import { HeaderProps } from './HeaderProps';
 import { Logo } from '../../atoms/Logo';
 import { UserAvatar } from '../../atoms/UserAvatar';
 

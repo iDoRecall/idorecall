@@ -1,6 +1,6 @@
 import React, { ReactElement, ReactNode } from 'react';
 import './styles.scss';
-import { MainContentTemplateProps } from './MainContentTemplateProps.interface';
+import { MainContentTemplateProps } from './MainContentTemplateProps';
 
 export const MainContentTemplate: React.FC<MainContentTemplateProps> = ({
     children,
