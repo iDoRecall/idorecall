@@ -7,7 +7,7 @@ export const UserAvatar: React.FC<UserAvatarProps> = ({ user }) => {
         <div className='avatar-wrapper'>
             <img alt='avatar' className='avatar' src={user.avatarUrl} />
             <span
-                className='username'
+                className='avatar-username'
                 title={`${user.firstName} ${user.lastName}`}
             >
                 {user.firstName}

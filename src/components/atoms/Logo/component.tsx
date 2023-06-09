@@ -3,10 +3,10 @@ import './styles.scss';
 
 export const Logo = () => {
     return (
-        <div className='logoContent'>
-            <div className='wrapImg'>
+        <div className='logo-content'>
+            <div className='logo-wrap-img'>
                 <svg
-                    className='image'
+                    className='logo-image'
                     xmlns='http://www.w3.org/2000/svg'
                     viewBox='0 0 86.23 86.26'
                 >
@@ -53,7 +53,7 @@ export const Logo = () => {
                     </g>
                 </svg>
             </div>
-            <div className='wrapTitle'>
+            <div className='logo-wrap-title'>
                 <strong>iDoRecall</strong>
                 <div>obsidian</div>
             </div>
