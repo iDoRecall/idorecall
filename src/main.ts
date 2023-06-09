@@ -14,6 +14,7 @@ import {
     WorkspaceLeaf,
 } from 'obsidian';
 import IDRView from './view';
+import { setDarkTheme } from './utils/setDarkTheme';
 
 interface IDRPluginSettings {
     apiKey: string;
@@ -53,7 +54,7 @@ export default class IDRPlugin extends Plugin {
 
         this.registerView(
             'idr-view',
-            (leaf: WorkspaceLeaf) => (this.view = new IDRView(leaf)),
+            (leaf: WorkspaceLeaf) => (this.view = new IDRView(leaf, this)),
         );
 
         this.addCommand({
@@ -335,10 +336,13 @@ class IDRSettingTab extends PluginSettingTab {
             .setName('IDR dark theme')
             .setDesc('Use dark theme if you prefer')
             .addToggle((toggle) =>
-                toggle.setValue(true).onChange(async () => {
-                    this.plugin.settings.isDarkTheme = true;
-                    await this.plugin.saveSettings();
-                }),
+                toggle
+                    .setValue(this.plugin.settings.isDarkTheme)
+                    .onChange(async (checked) => {
+                        this.plugin.settings.isDarkTheme = checked;
+                        setDarkTheme(checked);
+                        await this.plugin.saveSettings();
+                    }),
             );
     }
 }

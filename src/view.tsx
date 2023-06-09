@@ -2,14 +2,19 @@ import { ItemView, WorkspaceLeaf } from 'obsidian';
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './App';
+import IDRPlugin from './main';
+import { setDarkTheme } from './utils/setDarkTheme';
 
 export default class IDRView extends ItemView {
     root = createRoot(this.containerEl.children[1]);
 
-    constructor(leaf: WorkspaceLeaf) {
+    constructor(leaf: WorkspaceLeaf, plugin: IDRPlugin) {
         super(leaf);
         // for styles separation form another leafs
         this.containerEl.children[1].id = 'idr-app';
+        setTimeout(() => {
+            setDarkTheme(plugin.settings.isDarkTheme);
+        });
     }
 
     getDisplayText() {
@@ -25,8 +30,6 @@ export default class IDRView extends ItemView {
     }
 
     async onOpen() {
-        console.log('onOpen');
-
         this.root.render(
             <React.StrictMode>
                 <App />
