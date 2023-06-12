@@ -1,7 +1,7 @@
 .recalls-list-container {
-  display: flex;
+  display: grid;
+  gap: 20px;
   background-color: var(--idr-medium-bg);
-  justify-content: center;
-  padding: 20px 0 20px 0;
+  padding: 20px;
   height: 100%;
 }
