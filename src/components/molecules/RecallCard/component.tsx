@@ -2,6 +2,7 @@ import * as React from 'react';
 import './styles.scss';
 import { RecallCardProps } from './RecallCardProps';
 import { MouseEventHandler, useRef, useState } from 'react';
+import { useNavigate } from 'react-router';
 
 export const RecallCard: React.FC<RecallCardProps> = ({
     activeCard,
@@ -11,7 +12,7 @@ export const RecallCard: React.FC<RecallCardProps> = ({
 }) => {
     const [isActionsDisabled, setIsActionsDisabled] = useState<boolean>(false);
     const cardRef = useRef<HTMLDivElement>(null);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleDelete: MouseEventHandler<HTMLDivElement> = (event) => {
         if (!activeCard) {
@@ -66,7 +67,7 @@ export const RecallCard: React.FC<RecallCardProps> = ({
                     <div
                         onClick={(event) => {
                             event.stopPropagation();
-                            // navigate('/');
+                            navigate(`/edit/${recall.id}`);
                         }}
                     >
                         <div className='clipperCard__wrapAction__wrap'>
