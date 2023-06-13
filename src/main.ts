@@ -151,8 +151,13 @@ export default class IDRPlugin extends Plugin {
                     'content-type': 'application/json',
                 },
             })
-                .then(() => {
-                    new Notice(`Recall created successfully`);
+                .then((res) => {
+                    console.log(res);
+                    if (res.status === 201 || res.status === 200) {
+                        new Notice(`Recall created successfully`);
+                    } else {
+                        new Notice(`Something went wrong. Code: ${res.status}`);
+                    }
                 })
                 .catch((e) => {
                     console.log(e);
