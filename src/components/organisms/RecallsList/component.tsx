@@ -27,11 +27,12 @@ export const RecallsList: React.FC<RecallsListProps> = () => {
 
     const deleteRecall = (recall: Recall) => {
         console.log(recall);
+        // emit to the smart parent;
     };
 
     return (
         <div className='recalls-list-container'>
-            {fakeRecalls.map((recall: Recall, index) => (
+            {fakeRecalls.map((recall: Recall) => (
                 <RecallCard
                     key={recall.id}
                     activeCard={activeCard === recall.id}
