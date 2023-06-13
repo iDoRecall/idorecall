@@ -49,6 +49,7 @@ export default class IDRPlugin extends Plugin {
         );
 
         this.addRibbonIcon('idr-icon', 'IDoRecall Plugin', () => {
+            // TODO: maybe trigger react view by press idr-icon
             this.handleIDRModal();
         });
 
@@ -100,20 +101,27 @@ export default class IDRPlugin extends Plugin {
             }),
         );
 
-        if (this.app.workspace.layoutReady) {
-            this.initLeaf();
-        }
+        this.registerEvent(
+            this.app.workspace.on('file-open', async (file) => {
+                // Close and open view on file-open trigger
+                await this.activateView();
+            }),
+        );
 
         this.registerEditorExtension(cmExtensions(this));
     }
 
-    initLeaf(): void {
-        if (this.app.workspace.getLeavesOfType('idr-view').length) {
-            return;
-        }
-        void this.app.workspace.getRightLeaf(false).setViewState({
+    async activateView() {
+        this.app.workspace.detachLeavesOfType('idr-view');
+
+        await this.app.workspace.getRightLeaf(false).setViewState({
             type: 'idr-view',
+            active: true,
         });
+
+        this.app.workspace.revealLeaf(
+            this.app.workspace.getLeavesOfType('idr-view')[0],
+        );
     }
 
     async loadSettings() {
@@ -154,6 +162,7 @@ export default class IDRPlugin extends Plugin {
     }
 
     onunload() {
+        this.app.workspace.detachLeavesOfType('idr-view');
         console.log('Unloading plugin');
     }
 }
