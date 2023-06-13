@@ -6,6 +6,7 @@
   --idr-card-bg: #ffffff;
   --idr-card-separator: var(--idr-color-medium--2);
   --idr-card-icon: var(--idr-color-medium--4);
+  --idr-card-actions: var(--idr-text-color);
 
 }
 
@@ -17,6 +18,7 @@
   --idr-card-bg: #4f5054;
   --idr-card-separator: var(--idr-dark--2);
   --idr-card-icon: var(--idr-accent-color);
+  --idr-card-actions: var(--idr-text-color);
 }
 
 :root {

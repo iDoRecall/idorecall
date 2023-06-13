@@ -1,7 +1,7 @@
-.recall-card {
+.clipperCard_wrap {
     box-sizing: border-box;
     background-color: var(--idr-card-bg);
-    box-shadow: 0 3px 11px 0 #000;
+    box-shadow: 0 3px 11px 0 var(--idr-box-shadow-color);
     border-radius: 10px;
     padding: 28px 16px;
     cursor: pointer;
@@ -106,6 +106,7 @@
         top: 0;
         width: 8px;
         border-radius: 4px;
+        transition: 0.6s;
     }
 }
 
@@ -128,6 +129,8 @@
     height: 35px;
     align-items: center;
     cursor: pointer;
+    color: var(--idr-card-actions);
+    fill: var(--idr-card-actions);
 
     &.disabled {
         pointer-events: none;
