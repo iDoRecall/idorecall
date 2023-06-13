@@ -161,7 +161,7 @@ export default class IDRPlugin extends Plugin {
                 })
                 .catch((e) => {
                     console.log(e);
-                    new Notice(`Something went wrong.`);
+                    new Notice(`Something went wrong. -> ${e}`);
                 });
         }).open();
     }
