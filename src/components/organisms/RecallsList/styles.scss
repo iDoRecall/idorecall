@@ -1,5 +1,6 @@
 .recalls-list-container {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 20px;
   background-color: var(--idr-medium-bg);
   padding: 20px;

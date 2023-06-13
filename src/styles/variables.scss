@@ -4,6 +4,7 @@
   --idr-medium-bg: #f9f9f9;
   --idr-item-bg: #eeeeee;
   --idr-card-bg: #ffffff;
+  --idr-card-separator: var(--idr-color-medium--2)
 }
 
 :root .view-content#idr-app.dark {
@@ -12,14 +13,20 @@
   --idr-medium-bg: #303136;
   --idr-item-bg: #4f5054;
   --idr-card-bg: #4f5054;
+  --idr-card-separator: var(--idr-color-medium--4)
 }
 
 :root {
   --idr-accent-color: #9ec6b4;
   --idr-box-shadow-color: #00000029;
   //$medium--1: #d1d3d4; // light icons
-  //$medium--2: #eee;
+  --idr-color-medium--2: #eee;
   --idr-color-medium--3: #b3b3b3; // captions
-  //$medium--4: #8f8f8f;
-  //$medium--5: #f9f9f9; // lightgray background
+  --idr-color-medium--4: #8f8f8f;
+  //$medium--5: #f9f9f9; // lightgray backgroundt
+  --idr-secondary--1: #95c8b1;
+  --idr-dark--2: #769d8b;
+
+  --idr-light--1: #FFFFFFFF;
+  --idr-light--2: #daece4;
 }

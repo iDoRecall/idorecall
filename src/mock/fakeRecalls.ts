@@ -8,7 +8,7 @@ export const fakeRecalls: Recall[] = [
         reversible: false,
         question: 'gggg?',
         answer: 'DDDD',
-        id: 'e52b7e81-eb4e-4071-94b7-03142df4f289',
+        id: 'e52b7e81-eb4e-4071-94b7-03142df4f289-1',
         tags: [
             {
                 blackList: false,
@@ -32,7 +32,7 @@ export const fakeRecalls: Recall[] = [
         reversible: false,
         question: 'gggg?',
         answer: 'DDDD',
-        id: 'e52b7e81-eb4e-4071-94b7-03142df4f289',
+        id: 'e52b7e81-eb4e-4071-94b7-03142df4f289-2',
         tags: [
             {
                 blackList: false,
@@ -56,7 +56,7 @@ export const fakeRecalls: Recall[] = [
         reversible: false,
         question: 'gggg?',
         answer: 'DDDD',
-        id: 'e52b7e81-eb4e-4071-94b7-03142df4f289',
+        id: 'e52b7e81-eb4e-4071-94b7-03142df4f289-3',
         tags: [
             {
                 blackList: false,
