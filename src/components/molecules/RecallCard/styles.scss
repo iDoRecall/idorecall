@@ -1,43 +1,62 @@
 .recall-card {
-  box-sizing: border-box;
-  background-color: var(--idr-card-bg);
-  box-shadow: 0 3px 11px 0 rgb(0 0 0 / 16%);
-  border-radius: 10px;
-  padding: 28px 16px;
-  cursor: pointer;
-  font-size: 18px;
-  font-family: "Calibri Regular", sans-serif;
+    box-sizing: border-box;
+    background-color: var(--idr-card-bg);
+    box-shadow: 0 3px 11px 0 #000;
+    border-radius: 10px;
+    padding: 28px 16px;
+    cursor: pointer;
+    font-size: 18px;
+    font-family: 'Calibri Regular', sans-serif;
 
-  .clipperCard__wrapInfo__content {
+    &:hover {
+        .clipperCard__wrapInfo__img {
+            opacity: 0.5;
+        }
+
+        .clipperCard__wrapInfo__content__effect::after {
+            background-color: var(--idr-secondary--1);
+        }
+    }
+
+    &.activeCard {
+        .clipperCard__wrapInfo__content__effect::after {
+            background-color: var(--idr-light--2);
+        }
+
+        .clipperCard__wrapInfo__img {
+            opacity: 1;
+        }
+
+        .clipperCard__wrapAction {
+            display: flex;
+        }
+
+        .clipperCard__wrapAction__wrap__img {
+            opacity: 1;
+        }
+
+        &:hover {
+            .clipperCard__wrapInfo__img {
+                opacity: 0.7;
+            }
+
+            .clipperCard__wrapInfo__content__effect::after {
+                background-color: var(--idr-dark--2);
+            }
+        }
+    }
+}
+
+.clipperCard__wrapInfo__content {
     overflow: hidden;
     svg {
-      width: 100%;
-      max-height: 200px;
-      object-fit: cover;
+        width: 100%;
+        max-height: 200px;
+        object-fit: cover;
     }
-  }
+}
 
-  &:hover {
-    .clipperCard__wrapInfo__img {
-      opacity: 0.5;
-    }
-
-    .clipperCard__wrapInfo__content__effect::after {
-      background-color: var(--idr-secondary--1);
-    }
-  }
-
-  &.activeCard:hover {
-    .clipperCard__wrapInfo__img {
-      opacity: 0.7;
-    }
-
-    .clipperCard__wrapInfo__content__effect::after {
-      background-color: var(--idr-dark--2);
-    }
-  }
-
-  .clipperCard {
+.clipperCard {
     width: 417px;
     box-sizing: border-box;
     background-color: var(--idr-light--1);
@@ -45,102 +64,87 @@
     border-radius: 10px;
     padding: 28px 16px;
     cursor: pointer;
+}
 
-    &__wrapInfo {
-      display: grid;
-      grid-template-columns: 24px auto;
-      grid-gap: 40px;
-      line-height: 22px;
-      max-width: 100%;
+.clipperCard__wrapInfo {
+    display: grid;
+    grid-template-columns: 24px auto;
+    grid-gap: 40px;
+    line-height: 22px;
+    max-width: 100%;
+}
 
-      &__img {
-        transition: 0.6s;
-        width: 24px;
-        height: 24px;
-        opacity: 0.3;
-      }
-      &__content {
-        position: relative;
-        font-size: 17px;
-        word-wrap: break-word;
+.clipperCard__wrapInfo__img {
+    transition: 0.6s;
+    width: 24px;
+    height: 24px;
+    opacity: 0.3;
+    fill: var(--idr-card-icon);
+}
 
-        &__img {
-          width: 100%;
-        }
-      }
+.clipperCard__wrapInfo__content {
+    position: relative;
+    font-size: 17px;
+    word-wrap: break-word;
+}
 
-      &__content__effect {
-        display: grid;
-        position: relative;
-        max-width: 100%;
+.clipperCard__wrapInfo__content__img {
+    width: 100%;
+}
 
-        &::after {
-          position: absolute;
-          content: '';
-          background-color: var(--idr-card-separator);
-          right: calc(100% + 17px);
-          height: 100%;
-          top: 0;
-          width: 8px;
-          border-radius: 4px;
-        }
-      }
+.clipperCard__wrapInfo__content__effect {
+    display: grid;
+    position: relative;
+    max-width: 100%;
+
+    &::after {
+        position: absolute;
+        content: '';
+        background-color: var(--idr-card-separator);
+        right: calc(100% + 17px);
+        height: 100%;
+        top: 0;
+        width: 8px;
+        border-radius: 4px;
     }
-    &__wrapAction {
-      display: none;
-      font-size: 11px;
-      margin-top: 20px;
-      padding-left: 50px;
+}
 
-      &.disabled {
+.clipperCard__wrapAction {
+    display: none;
+    font-size: 11px;
+    margin-top: 20px;
+    padding-left: 50px;
+
+    &.disabled {
         pointer-events: none;
-      }
-
-      &__wrap {
-        display: flex;
-        flex-direction: column;
-        margin-right: 35px;
-        width: 35px;
-        height: 35px;
-        align-items: center;
-        cursor: pointer;
-
-        &.disabled {
-          pointer-events: none;
-        }
-
-        &__img {
-          width: 16px;
-          height: 16px;
-          margin-bottom: 7px;
-          opacity: 0.3;
-          transition: 0.6s;
-          &.big {
-            margin-top: -3px;
-            width: 21px;
-            height: 21px;
-            margin-bottom: 5px;
-          }
-        }
-      }
     }
-  }
-  &.activeCard .clipperCard {
-    &__wrapInfo {
-      &__img {
-        opacity: 1;
-      }
-      &__content__effect::after {
-        background-color: var(--idr-light--2);
-      }
-    }
+}
 
-    &__wrapAction {
-      display: flex;
-    }
+.clipperCard__wrapAction__wrap {
+    display: flex;
+    flex-direction: column;
+    margin-right: 35px;
+    width: 35px;
+    height: 35px;
+    align-items: center;
+    cursor: pointer;
 
-    &__wrapAction__wrap__img {
-      opacity: 1;
+    &.disabled {
+        pointer-events: none;
     }
-  }
+}
+
+.clipperCard__wrapAction__wrap__img {
+    width: 16px;
+    height: 16px;
+    margin-bottom: 7px;
+    opacity: 0.3;
+    transition: 0.6s;
+
+    &.big {
+        margin-top: -3px;
+        width: 21px;
+        height: 21px;
+        margin-bottom: 5px;
+    }
 }

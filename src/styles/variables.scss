@@ -4,7 +4,9 @@
   --idr-medium-bg: #f9f9f9;
   --idr-item-bg: #eeeeee;
   --idr-card-bg: #ffffff;
-  --idr-card-separator: var(--idr-color-medium--2)
+  --idr-card-separator: var(--idr-color-medium--2);
+  --idr-card-icon: var(--idr-color-medium--4);
+
 }
 
 :root .view-content#idr-app.dark {
@@ -13,7 +15,8 @@
   --idr-medium-bg: #303136;
   --idr-item-bg: #4f5054;
   --idr-card-bg: #4f5054;
-  --idr-card-separator: var(--idr-color-medium--4)
+  --idr-card-separator: var(--idr-dark--2);
+  --idr-card-icon: var(--idr-accent-color);
 }
 
 :root {

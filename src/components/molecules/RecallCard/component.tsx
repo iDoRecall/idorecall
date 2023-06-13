@@ -2,7 +2,6 @@ import * as React from 'react';
 import './styles.scss';
 import { RecallCardProps } from './RecallCardProps';
 import { MouseEventHandler, useState } from 'react';
-import { useNavigate } from 'react-router';
 
 export const RecallCard: React.FC<RecallCardProps> = ({
     activeCard,
@@ -10,9 +9,10 @@ export const RecallCard: React.FC<RecallCardProps> = ({
     changeActiveCard,
     deleteRecall,
 }) => {
-    const [isActionsDisabled, setIsActionsDisabled] = useState(false);
+    const [isActionsDisabled, setIsActionsDisabled] = useState<boolean>(false);
     // const cardRef = useRef<HTMLDivElement>(null);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
+    console.log(activeCard);
 
     const handleDelete: MouseEventHandler<HTMLDivElement> = (event) => {
         if (!activeCard) {
@@ -58,7 +58,7 @@ export const RecallCard: React.FC<RecallCardProps> = ({
                 <div
                     onClick={(event) => {
                         event.stopPropagation();
-                        navigate('/');
+                        // navigate('/');
                     }}
                 >
                     <div className='clipperCard__wrapAction__wrap'>

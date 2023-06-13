@@ -6,6 +6,7 @@ import { Recall } from '../../../models';
 import { RecallCard } from '../../molecules/RecallCard';
 
 export const RecallsList: React.FC<RecallsListProps> = () => {
+    // const [activeCard, setActiveCard] = useState<string>('');
     return (
         <div className='recalls-list-container'>
             {fakeRecalls.map((recall: Recall, index) => (
