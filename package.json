@@ -30,6 +30,7 @@
         "eslint-plugin-promise": "^6.1.1",
         "eslint-plugin-react": "^7.32.2",
         "formik": "^2.4.1",
+        "froala-editor": "^4.0.13",
         "husky": "^8.0.3",
         "lint-staged": "^13.2.2",
         "obsidian": "latest",
