@@ -1,5 +1,5 @@
 :root .view-content#idr-app {
-  --idr-text-color: #010101;
+  --idr-text-color: var(--idr-primary-color);
   --idr-contrast-bg: #ffffff;
   --idr-medium-bg: #f9f9f9;
   --idr-item-bg: #eeeeee;
@@ -22,6 +22,7 @@
 }
 
 :root {
+  --idr-primary-color: #263238; // text and some UI elements
   --idr-accent-color: #9ec6b4;
   --idr-box-shadow-color: #00000029;
   //$medium--1: #d1d3d4; // light icons
