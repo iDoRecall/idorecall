@@ -113,7 +113,7 @@
     }
   }
   .errors {
-    color: var(--idr-color-danger--1);
+    color: var(--idr-color-danger--1) !important;
     font-size: 13px;
     text-align: right;
     margin-right: 5px;
