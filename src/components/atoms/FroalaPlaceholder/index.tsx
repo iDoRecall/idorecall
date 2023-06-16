@@ -1,2 +1,2 @@
-import FroalaPlaceholder from '@src/view/components/FroalaPlaceholder/component';
+import { FroalaPlaceholder } from './component';
 export { FroalaPlaceholder };

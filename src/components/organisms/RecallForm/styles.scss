@@ -1,0 +1,131 @@
+.editing-recall {
+  overflow: auto;
+  background-color: var(--idr-medium-bg);
+  padding: 20px 40px 30px 45px;
+  position: relative;
+  height: 100%;
+
+  .swap {
+    &.question-inactive {
+      margin-top: 30px;
+    }
+    &.swap-error-question {
+      margin-top: 10px;
+    }
+    a {
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    svg {
+      width: 25px;
+      height: auto;
+    }
+  }
+
+  .fr-box {
+    margin-left: -15px;
+  }
+
+  .fr-quick-insert,
+  .fr-line-breaker {
+    display: none;
+  }
+
+  .wrap-autocomplete {
+    margin-left: -15px;
+  }
+  span.icon {
+    font-size: 70px;
+    font-weight: 100;
+    width: 30px;
+    margin-right: 40px;
+    & ~ p {
+      opacity: 0.3;
+    }
+  }
+  form > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    & > li {
+      display: flex;
+      margin-bottom: 10px;
+      align-items: center;
+      svg.letter {
+        width: 50px;
+        height: 70px;
+        opacity: 0.8;
+        object-fit: cover;
+        margin-right: 30px;
+      }
+      a {
+        color: var(--idr-dark--2);
+      }
+      span {
+        font-size: 11px;
+        letter-spacing: 0;
+      }
+      .idr-icons {
+        fill: var(--idr-dark--1);
+        width: 55px;
+        margin-right: 25px;
+      }
+    }
+  }
+  .top-image {
+    align-items: baseline;
+  }
+  #reversible {
+    display: none;
+  }
+  input ~ label {
+    position: relative;
+    padding-left: 30px;
+    &::before {
+      top: -3px;
+      content: '';
+      width: 15px;
+      display: block;
+      height: 15px;
+      position: absolute;
+      border: 1px solid #888;
+      border-radius: 2px;
+      left: 0;
+    }
+  }
+  input:checked ~ label::after {
+    content: ' \2713';
+    font-size: 16px;
+    top: -4px;
+    display: block;
+    position: absolute;
+    left: 3px;
+  }
+
+  footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    padding: 20px 0;
+
+    .btn-link {
+      text-decoration: none;
+    }
+  }
+  .errors {
+    color: var(--idr-color-danger--1);
+    font-size: 13px;
+    text-align: right;
+    margin-right: 5px;
+  }
+}
+
+svg {
+  flex-shrink: 0;
+}
+
+.max-width-field {
+  & > div {
+    width: 100%;
+  }
+}

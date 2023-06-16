@@ -1,4 +1,4 @@
-import { cmExtensions } from 'cm-extensions/cmExtensions';
+// import { cmExtensions } from 'cm-extensions/cmExtensions';
 import {
     addIcon,
     App,
@@ -108,7 +108,7 @@ export default class IDRPlugin extends Plugin {
             }),
         );
 
-        this.registerEditorExtension(cmExtensions(this));
+        // this.registerEditorExtension(cmExtensions(this));
     }
 
     async activateView() {

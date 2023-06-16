@@ -1,9 +1,25 @@
 // app settings (for dark theme)
-.view-content#idr-app * {
+.view-content#idr-app *:not(button) {
   color: var(--idr-text-color);
 }
 
 // The initial content have a paddings there
 .workspace-leaf-content .view-content#idr-app {
   padding: 0;
+}
+
+// global icon configuration
+.idr-icons {
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  text-decoration: inherit;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  // Uncomment for 3D effect
+  text-shadow: 1px 1px 1px var(--idr-box-shadow-color);
 }

@@ -14,7 +14,9 @@
     margin: 0;
     padding: 0;
     width: 100%;
+    align-items: center;
 }
+
 .wrap-autocomplete li {
     list-style: none;
     height: 30px;
@@ -90,7 +92,7 @@
     }
 }
 
-.input-autocomplete {
+.wrap-autocomplete .input-autocomplete {
     background-color: transparent;
     flex-grow: 1;
     font-size: 11px;
@@ -98,6 +100,7 @@
     border: none;
     outline: none;
     color: var(--idr-primary-color);
+    box-shadow: none;
 
     &::placeholder {
         color: var(--idr-primary-color);

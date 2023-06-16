@@ -35,7 +35,7 @@
 }
 
 .mq-math-mode {
-    width: 324px;
+    //width: 324px;
 }
 
 .fr-toolbar .fr-command.fr-btn i,
@@ -97,10 +97,10 @@
 .fr-toolbar .fr-command.fr-btn {
     margin: 0;
     padding: 0 3px;
+    box-shadow: none;
 }
 
 .fr-toolbar .fr-btn-grp {
     display: flex;
     justify-content: space-between;
-    width: 27%;
 }

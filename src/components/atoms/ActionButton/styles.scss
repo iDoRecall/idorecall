@@ -63,40 +63,60 @@
     }
     //-----FORM------/
 
+    // IN THE CODE BELOW SCSS IS NOT SUPPORT CSS VARS. EVERY COlOR IS DUPLICATED WITH ITS VARIABLE IN COMMENT
+
     &--light {
+        //@include button-theme(
+        //    var(--idr-color-medium--2),
+        //    var(--idr-primary-color)
+        //);
         @include button-theme(
-            var(--idr-color-medium--2),
-            var(--idr-primary-color)
+                        #EEEEEEFF,
+                        #263238FF
         );
     }
 
     &--green {
+        //@include button-theme(
+        //    var(--idr-secondary--1),
+        //    var(--idr-primary-color)
+        //);
         @include button-theme(
-            var(--idr-secondary--1),
-            var(--idr-primary-color)
+                        #95C8B1FF,
+                        #263238FF
         );
     }
 
     &--dark {
+        //@include button-theme(
+        //    var(--idr-primary-color),
+        //    var(--idr-secondary--1)
+        //);
         @include button-theme(
-            var(--idr-primary-color),
-            var(--idr-secondary--1)
+                        #263238FF,
+                        #95C8B1FF
         );
     }
 
     &--warning {
+        //@include button-theme(
+        //    var(--idr-primary-color),
+        //    var(--idr-color-warning)
+        //);
         @include button-theme(
-            var(--idr-primary-color),
-            var(--idr-color-warning)
+                        #263238FF,
+                        #FBB03BFF
         );
     }
 
     &--warning-light {
-        @include button-theme(var(--idr-color-warning), var(--idr-light--1));
+        //@include button-theme(var(--idr-color-warning), var(--idr-light--1));
+        @include button-theme(#FBB03BFF, #FFFFFFFF);
     }
 
     &--danger {
-        @include button-theme(var(--idr-color-danger--3), var(--idr-light--1));
+        //@include button-theme(var(--idr-color-danger--3), var(--idr-light--1));
+        @include button-theme(#EC2227FF, #FFFFFFFF);
     }
 
     &:disabled {
