@@ -1,13 +1,11 @@
 import { ItemView, WorkspaceLeaf } from 'obsidian';
-import * as React from 'react';
-import { createRoot } from 'react-dom/client';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { App } from './App';
 import IDRPlugin from './main';
 import { setDarkTheme } from './utils/setDarkTheme';
 
 export default class IDRView extends ItemView {
-    root = createRoot(this.containerEl.children[1]);
-
     constructor(leaf: WorkspaceLeaf, plugin: IDRPlugin) {
         super(leaf);
         // for styles separation form another leafs
@@ -35,15 +33,16 @@ export default class IDRView extends ItemView {
             'Current note -> ',
             this.app.workspace.getActiveFile()?.basename,
         );
-        this.root.render(
+        ReactDOM.render(
             <React.StrictMode>
                 <App />
             </React.StrictMode>,
+            this.containerEl.children[1],
         );
     }
 
     async onClose() {
         console.log('onClose');
-        this.root.unmount();
+        ReactDOM.unmountComponentAtNode(this.containerEl.children[1]);
     }
 }
