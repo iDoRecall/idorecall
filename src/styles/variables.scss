@@ -7,6 +7,11 @@
   --idr-card-separator: var(--idr-color-medium--2);
   --idr-card-icon: var(--idr-color-medium--4);
   --idr-card-actions: var(--idr-text-color);
+  --idr-form-icons: var(--idr-dark--1);
+  --idr-froala-buttons: #ebebeb;
+  --idr-froala-svg: none;
+  --idr-froala-tabs: #f5f5f5;
+  --idr-dropdown-color: var(--idr-light--1);
 
 }
 
@@ -19,6 +24,11 @@
   --idr-card-separator: var(--idr-dark--2);
   --idr-card-icon: var(--idr-accent-color);
   --idr-card-actions: var(--idr-text-color);
+  --idr-form-icons: var(--idr-accent-color);
+  --idr-froala-buttons: var(--idr-accent-color);
+  --idr-froala-svg: invert(99%) sepia(3%) saturate(682%) hue-rotate(325deg) brightness(116%) contrast(100%); // froala dont allow to change svg colors
+  --idr-froala-tabs: var(--idr-dark--2);
+  --idr-dropdown-color: var(--idr-dark--1);
 }
 
 :root {
