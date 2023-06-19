@@ -261,7 +261,6 @@ export const RecallForm: React.FC<RecallFormProps> = ({
                                     placeholder='Start typing here to add a tag'
                                     nameField='tags'
                                     initContent={recall ? recall.tags : []}
-                                    emitter={''}
                                 />
                             </li>
                             <li>

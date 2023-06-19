@@ -1,55 +1,61 @@
 :root .view-content#idr-app {
-  --idr-text-color: var(--idr-primary-color);
-  --idr-contrast-bg: #ffffff;
-  --idr-medium-bg: #f9f9f9;
-  --idr-item-bg: #eeeeee;
-  --idr-card-bg: #ffffff;
-  --idr-card-separator: var(--idr-color-medium--2);
-  --idr-card-icon: var(--idr-color-medium--4);
-  --idr-card-actions: var(--idr-text-color);
-  --idr-form-icons: var(--idr-dark--1);
-  --idr-froala-buttons: #ebebeb;
-  --idr-froala-svg: none;
-  --idr-froala-tabs: #f5f5f5;
-  --idr-dropdown-color: var(--idr-light--1);
-
+    --idr-text-color: var(--idr-primary-color);
+    --idr-contrast-bg: #ffffff;
+    --idr-medium-bg: #f9f9f9;
+    --idr-item-bg: #eeeeee;
+    --idr-card-bg: #ffffff;
+    --idr-card-separator: var(--idr-color-medium--2);
+    --idr-card-icon: var(--idr-color-medium--4);
+    --idr-card-actions: var(--idr-text-color);
+    --idr-form-icons: var(--idr-dark--1);
+    --idr-froala-buttons: #ebebeb;
+    --idr-froala-svg: none;
+    --idr-froala-tabs: #f5f5f5;
+    --idr-dropdown-color: var(--idr-light--1);
+    --idr-chip-color: var(--idr-color-medium--2);
+    --idr-filter-options-color: var(--idr-light--2);;
 }
 
 :root .view-content#idr-app.dark {
-  --idr-text-color: #f9f9f9;
-  --idr-contrast-bg: #222222;
-  --idr-medium-bg: #303136;
-  --idr-item-bg: #4f5054;
-  --idr-card-bg: #4f5054;
-  --idr-card-separator: var(--idr-dark--2);
-  --idr-card-icon: var(--idr-accent-color);
-  --idr-card-actions: var(--idr-text-color);
-  --idr-form-icons: var(--idr-accent-color);
-  --idr-froala-buttons: var(--idr-accent-color);
-  --idr-froala-svg: invert(99%) sepia(3%) saturate(682%) hue-rotate(325deg) brightness(116%) contrast(100%); // froala dont allow to change svg colors
-  --idr-froala-tabs: var(--idr-dark--2);
-  --idr-dropdown-color: var(--idr-dark--1);
+    --idr-text-color: #f9f9f9;
+    --idr-contrast-bg: #222222;
+    --idr-medium-bg: #303136;
+    --idr-item-bg: #4f5054;
+    --idr-card-bg: #4f5054;
+    --idr-card-separator: var(--idr-dark--2);
+    --idr-card-icon: var(--idr-accent-color);
+    --idr-card-actions: var(--idr-text-color);
+    --idr-form-icons: var(--idr-accent-color);
+    --idr-froala-buttons: var(--idr-accent-color);
+    --idr-froala-svg: invert(99%) sepia(3%) saturate(682%) hue-rotate(325deg)
+        brightness(116%) contrast(100%); // froala dont allow to change svg colors
+    --idr-froala-tabs: var(--idr-dark--2);
+    --idr-dropdown-color: var(--idr-dark--1);
+    --idr-chip-color: var(--idr-dark--2);
+    --idr-filter-options-color: var(--idr-dark--2);
 }
 
 :root {
-  --idr-primary-color: #263238; // text and some UI elements
-  --idr-accent-color: #9ec6b4;
-  --idr-box-shadow-color: #00000029;
-  //$medium--1: #d1d3d4; // light icons
-  --idr-color-medium--2: #eee;
-  --idr-color-medium--3: #b3b3b3; // captions
-  --idr-color-medium--4: #8f8f8f;
-  --idr-color-medium--5: #f9f9f9; // lightgray backgroundt
-  --idr-secondary--1: #95c8b1;
-  --idr-dark--1: #424c51;
-  --idr-dark--2: #769d8b;
+    --idr-primary-color: #263238; // text and some UI elements
+    --idr-accent-color: #9ec6b4;
+    --idr-box-shadow-color: #00000029;
+    //$medium--1: #d1d3d4; // light icons
+    --idr-color-medium--2: #eee;
+    --idr-color-medium--3: #b3b3b3; // captions
+    --idr-color-medium--4: #8f8f8f;
+    --idr-color-medium--5: #f9f9f9; // lightgray backgroundt
 
-  --idr-light--1: #FFFFFFFF;
-  --idr-light--2: #daece4;
+    --idr-secondary--1: #95c8b1;
 
-  --idr-color-danger--1: #b92e00;
-  --idr-color-danger--2: #b7595b;
-  --idr-color-danger--3: #ec2227; // for danger items - main color
+    --idr-dark--1: #424c51;
+    --idr-dark--2: #769d8b;
 
-  --idr-color-warning: #fbb03b;
+    --idr-light--1: #ffffffff;
+    --idr-light--2: #daece4;
+
+    --idr-color-danger--1: #b92e00;
+    --idr-color-danger--2: #b7595b;
+    --idr-color-danger--3: #ec2227; // for danger items - main color
+
+    --idr-color-warning: #fbb03b;
 }

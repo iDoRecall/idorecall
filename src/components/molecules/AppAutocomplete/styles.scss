@@ -38,7 +38,7 @@
     padding: 10px;
 
     li {
-        background-color: var(--idr-color-medium--2);
+        background-color: var(--idr-chip-color);
         margin: 5px 5px 5px 0;
     }
 
@@ -72,7 +72,7 @@
 .filters-options ul {
     box-shadow: 0 2px 4px -1px var(--idr-box-shadow-color);
     border-radius: 0 0 5px 5px;
-    background-color: var(--idr-light--1);
+    background-color: var(--idr-dropdown-color);
     max-height: 150px;
     overflow-y: auto;
     position: absolute;
@@ -80,7 +80,7 @@
 }
 
 .filters-options li {
-    background-color: var(--idr-light--2);
+    background-color: var(--idr-filter-options-color);
     margin: 10px;
     cursor: pointer;
 
@@ -103,6 +103,6 @@
     box-shadow: none;
 
     &::placeholder {
-        color: var(--idr-primary-color);
+        color: var(--idr-text-color);
     }
 }
