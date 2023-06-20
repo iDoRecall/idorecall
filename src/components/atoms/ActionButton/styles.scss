@@ -20,7 +20,7 @@
     }
 }
 
-.idr-ext-button {
+#idr-app .idr-ext-button {
     border: none;
     font-family: Roboto, 'Helvetica Neue', sans-serif;
     outline: none;
@@ -35,6 +35,7 @@
     padding: 15px 20px;
     cursor: pointer;
     text-decoration: none;
+    height: auto;
 
     //-----SIZE------/
     &--medium {
