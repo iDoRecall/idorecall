@@ -1,0 +1,25 @@
+.main-template-grid {
+  display: grid;
+  grid-template-rows: 115px auto;
+  height: calc(100vh - 40px);
+}
+
+.main-template-content {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100%;
+
+  &::-webkit-scrollbar {
+    width: 7px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--idr-color-medium--3);
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}

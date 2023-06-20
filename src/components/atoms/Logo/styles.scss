@@ -1,0 +1,26 @@
+.logo-content {
+    display: flex;
+}
+
+.logo-wrap-img {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    width: 86px;
+    height: 86px;
+    padding-right: 16px;
+    position: relative;
+}
+
+.logo-image {
+    position: absolute;}
+
+.logo-wrap-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 16px;
+    font-size: 22px;
+    line-height: 23px;
+}

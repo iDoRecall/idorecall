@@ -1,0 +1,9 @@
+.recalls-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: var(--idr-medium-bg);
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+}

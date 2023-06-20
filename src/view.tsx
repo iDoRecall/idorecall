@@ -1,14 +1,19 @@
 import { ItemView, WorkspaceLeaf } from 'obsidian';
-import * as React from 'react';
-import { createRoot } from 'react-dom/client';
-import { ReactView } from './ReactView';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { App } from './App';
+import IDRPlugin from './main';
+import { setDarkTheme } from './utils/setDarkTheme';
 
 export default class IDRView extends ItemView {
-    constructor(leaf: WorkspaceLeaf) {
+    constructor(leaf: WorkspaceLeaf, plugin: IDRPlugin) {
         super(leaf);
+        // for styles separation form another leafs
+        this.containerEl.children[1].id = 'idr-app';
+        setTimeout(() => {
+            setDarkTheme(plugin.settings.isDarkTheme);
+        });
     }
-
-    root = createRoot(this.containerEl.children[1]);
 
     getDisplayText() {
         return 'IDoRecall';
@@ -23,16 +28,21 @@ export default class IDRView extends ItemView {
     }
 
     async onOpen() {
-        console.log('onOpen');
-        this.root.render(
+        // TODO: we need current opened note to get recalls list
+        console.log(
+            'Current note -> ',
+            this.app.workspace.getActiveFile()?.basename,
+        );
+        ReactDOM.render(
             <React.StrictMode>
-                <ReactView/>
+                <App />
             </React.StrictMode>,
+            this.containerEl.children[1],
         );
     }
 
     async onClose() {
         console.log('onClose');
-        this.root.unmount();
+        ReactDOM.unmountComponentAtNode(this.containerEl.children[1]);
     }
 }

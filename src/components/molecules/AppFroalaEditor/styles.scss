@@ -1,0 +1,181 @@
+.fr-toolbar.fr-top {
+    top: 0;
+    border: 0;
+    border-bottom: 7px solid #95c8b1;
+    border-radius: 10px 10px 0 0;
+    -moz-border-radius: 10px 10px 0 0;
+    -webkit-border-radius: 10px 10px 0 0;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    background: none;
+    z-index: 0;
+}
+.fr-toolbar.fr-bottom {
+    bottom: 0;
+    border-top: 0;
+    padding-bottom: 0;
+    border-radius: 0 0 10px 10px;
+    -moz-border-radius: 0 0 10px 10px;
+    -webkit-border-radius: 0 0 10px 10px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}
+.fr-toolbar.fr-bottom .fr-newline {
+    padding-top: 0;
+    -webkit-transition: padding-top 0.5s;
+    -moz-transition: padding-top 0.5s;
+    -ms-transition: padding-top 0.5s;
+    -o-transition: padding-top 0.5s;
+}
+
+.position-relative {
+    position: relative !important;
+}
+
+.mq-math-mode {
+    //width: 324px;
+}
+
+.fr-newline {
+    display: none !important;
+}
+
+.fr-toolbar .fr-command.fr-btn i,
+.fr-toolbar .fr-command.fr-btn svg,
+.fr-popup .fr-command.fr-btn i,
+.fr-popup .fr-command.fr-btn svg,
+.fr-modal .fr-command.fr-btn i,
+.fr-modal .fr-command.fr-btn svg {
+    display: block;
+    text-align: center;
+    float: none;
+    margin-right: 15px;
+    width: 19px;
+}
+.fr-toolbar .fr-command.fr-btn i,
+.fr-toolbar .fr-command.fr-btn svg,
+.fr-popup .fr-command.fr-btn i,
+.fr-popup .fr-command.fr-btn svg,
+.fr-modal .fr-command.fr-btn i,
+.fr-modal .fr-command.fr-btn svg:last-child {
+    margin-right: 0;
+}
+.fr-toolbar .fr-command.fr-btn svg,
+.fr-popup .fr-command.fr-btn svg.fr-svg,
+.fr-modal .fr-command.fr-btn svg.fr-svg {
+    height: 19px;
+    margin: 0;
+}
+
+.fr-box.fr-basic.fr-top .fr-wrapper {
+    border-top: 0;
+}
+.fr-box.fr-basic .fr-wrapper {
+    background: var(--idr-card-bg);
+    border: 0;
+    box-shadow: 3px 3px 12px var(--idr-box-shadow-color);
+    left: 0;
+    top: 0;
+}
+
+.fr-second-toolbar:empty {
+    margin-top: -1px;
+    position: relative;
+    z-index: 2;
+    min-height: 0;
+    display: none;
+}
+.fr-second-toolbar {
+    background: #fff;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border-radius: 0 0 10px 10px;
+    -moz-border-radius: 0 0 10px 10px;
+    -webkit-border-radius: 0 0 10px 10px;
+    border-top: 0;
+    line-height: 1.4;
+}
+
+.fr-toolbar .fr-command.fr-btn {
+    margin: 0;
+    padding: 0 3px;
+    box-shadow: none;
+
+    & > svg {
+        filter: var(--idr-froala-svg);
+    }
+}
+
+.fr-toolbar .fr-tabs .fr-command.fr-btn:not(:hover):not(:focus).fr-active,
+.fr-toolbar .fr-tabs .fr-command.fr-btn:not(:hover):not(:focus).fr-active-tab,
+.fr-popup .fr-tabs .fr-command.fr-btn:not(:hover):not(:focus).fr-active,
+.fr-popup .fr-tabs .fr-command.fr-btn:not(:hover):not(:focus).fr-active-tab,
+.fr-modal .fr-tabs .fr-command.fr-btn:not(:hover):not(:focus).fr-active,
+.fr-modal .fr-tabs .fr-command.fr-btn:not(:hover):not(:focus).fr-active-tab {
+    background: var(--idr-froala-buttons);
+}
+
+.fr-toolbar .fr-command.fr-btn.fr-btn-active-popup,
+.fr-popup .fr-command.fr-btn.fr-btn-active-popup,
+.fr-modal .fr-command.fr-btn.fr-btn-active-popup {
+    background: var(--idr-froala-buttons);
+}
+
+.fr-toolbar .fr-command.fr-btn.fr-open:not(:hover):not(:focus):not(:active) {
+    background: var(--idr-froala-buttons);
+}
+
+.fr-popup .fr-buttons.fr-tabs {
+    background: var(--idr-froala-tabs);
+}
+
+.fr-popup {
+    background: var(--idr-dropdown-color);
+}
+
+.fr-desktop .fr-command:hover:not(.fr-table-cell),
+.fr-desktop .fr-command:focus:not(.fr-table-cell),
+.fr-desktop .fr-command.fr-btn-hover:not(.fr-table-cell),
+.fr-desktop .fr-command.fr-expanded:not(.fr-table-cell) {
+    background: var(--idr-froala-buttons);
+}
+
+.fr-desktop .fr-command:active {
+    background: var(--idr-froala-buttons);
+}
+
+.fr-toolbar .fr-command.fr-btn.fr-dropdown.fr-active:hover {
+    background: var(--idr-froala-buttons);
+}
+
+.fr-command.fr-btn + .fr-dropdown-menu {
+    background: var(--idr-dropdown-color);
+}
+
+.fr-toolbar .fr-command.fr-btn.fr-dropdown.fr-active {
+    background: var(--idr-froala-buttons);
+}
+
+.fr-toolbar .fr-command.fr-btn.fr-open {
+    background: var(--idr-froala-buttons);
+}
+
+.fr-desktop .fr-command:hover:not(.fr-table-cell) {
+    background: var(--idr-froala-buttons);
+}
+
+.fr-command.fr-btn.fr-open {
+    background: var(--idr-froala-buttons);
+}
+
+.fr-toolbar .fr-more-toolbar {
+    background: var(--idr-card-bg);
+}
+
+.fr-toolbar .fr-btn-grp {
+    display: flex;
+    justify-content: space-between;
+}

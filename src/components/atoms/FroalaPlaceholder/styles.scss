@@ -1,0 +1,15 @@
+.froala-placeholder {
+    flex: 1;
+
+    .content {
+        color: var(--idr-color-medium--3);
+        cursor: pointer;
+    }
+}
+
+.errors {
+    color: var(--idr-color-danger--1);
+    font-size: 13px;
+    text-align: right;
+    margin-right: 5px;
+}

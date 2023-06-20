@@ -1,0 +1,129 @@
+@mixin button-theme($-color-background, $-color-text) {
+    color: $-color-text;
+    background-color: $-color-background;
+    transition: box-shadow 0.15s ease-in-out, background-color 0.15s ease-in-out;
+
+    &:not(:disabled) {
+        &:hover {
+            background-color: darken($-color-background, 5%);
+            box-shadow: inset 0 0 0 2px darken($-color-background, 15%);
+        }
+
+        &:active {
+            background-color: darken($-color-background, 10%);
+            box-shadow: inset 0 0 0 1px darken($-color-background, 15%);
+        }
+
+        &:focus {
+            box-shadow: inset 0 0 0 1px darken($-color-background, 15%);
+        }
+    }
+}
+
+#idr-app .idr-ext-button {
+    border: none;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+    outline: none;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 1.15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 15px 20px;
+    cursor: pointer;
+    text-decoration: none;
+    height: auto;
+
+    //-----SIZE------/
+    &--medium {
+        padding: 15px 20px;
+    }
+
+    &--small {
+        padding: 10px 15px;
+    }
+
+    &--extra-small {
+        font-size: 14px;
+        font-weight: 300;
+        letter-spacing: 0.25px;
+        padding: 7px 10px;
+    }
+    //-----SIZE------/
+
+    //-----FORM------/
+    &--round {
+        border-radius: 10px;
+    }
+
+    &--non-round {
+        border-radius: 0;
+    }
+    //-----FORM------/
+
+    // IN THE CODE BELOW SCSS IS NOT SUPPORT CSS VARS. EVERY COlOR IS DUPLICATED WITH ITS VARIABLE IN COMMENT
+
+    &--light {
+        //@include button-theme(
+        //    var(--idr-color-medium--2),
+        //    var(--idr-primary-color)
+        //);
+        @include button-theme(
+                        #EEEEEEFF,
+                        #263238FF
+        );
+    }
+
+    &--green {
+        //@include button-theme(
+        //    var(--idr-secondary--1),
+        //    var(--idr-primary-color)
+        //);
+        @include button-theme(
+                        #95C8B1FF,
+                        #263238FF
+        );
+    }
+
+    &--dark {
+        //@include button-theme(
+        //    var(--idr-primary-color),
+        //    var(--idr-secondary--1)
+        //);
+        @include button-theme(
+                        #263238FF,
+                        #95C8B1FF
+        );
+        box-shadow: inset 0 0 0 2px darken(#769d8b, 15%);
+    }
+
+    &--warning {
+        //@include button-theme(
+        //    var(--idr-primary-color),
+        //    var(--idr-color-warning)
+        //);
+        @include button-theme(
+                        #263238FF,
+                        #FBB03BFF
+        );
+    }
+
+    &--warning-light {
+        //@include button-theme(var(--idr-color-warning), var(--idr-light--1));
+        @include button-theme(#FBB03BFF, #FFFFFFFF);
+    }
+
+    &--danger {
+        //@include button-theme(var(--idr-color-danger--3), var(--idr-light--1));
+        @include button-theme(#EC2227FF, #FFFFFFFF);
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        transition: none;
+        opacity: 0.5;
+    }
+}
