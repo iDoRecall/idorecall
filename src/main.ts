@@ -104,11 +104,12 @@ export default class IDRPlugin extends Plugin {
         this.registerEvent(
             this.app.workspace.on('file-open', async (file) => {
                 // Close and open view on file-open trigger
-                await this.activateView();
+                // await this.activateView();
             }),
         );
 
         // this.registerEditorExtension(cmExtensions(this));
+        await this.activateView();
     }
 
     async activateView() {
