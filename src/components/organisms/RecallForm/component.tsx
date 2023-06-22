@@ -29,9 +29,10 @@ const INITIAL_RECALL: Recall = {
 export const RecallForm: React.FC<RecallFormProps> = ({
     recall,
     backRoute = '/',
+    partialRecall = {},
 }) => {
     const [formValue, setFormValue] = useState<Recall>(
-        recall ?? INITIAL_RECALL,
+        recall ?? { ...INITIAL_RECALL, ...partialRecall },
     );
     const [activeQuestionMarkup, setActiveQuestionMarkup] =
         useState<boolean>(false);
@@ -125,8 +126,7 @@ export const RecallForm: React.FC<RecallFormProps> = ({
                                     </g>
                                 </svg>
 
-                                {recall ??
-                                formValue?.questionMarkup ??
+                                {formValue?.questionMarkup ||
                                 activeQuestionMarkup ? (
                                     <Field
                                         plase
@@ -202,8 +202,7 @@ export const RecallForm: React.FC<RecallFormProps> = ({
                                     </g>
                                 </svg>
 
-                                {recall ??
-                                activeAnswerMarkup ??
+                                {activeAnswerMarkup ||
                                 formValue.answerMarkup ? (
                                     <Field
                                         plase

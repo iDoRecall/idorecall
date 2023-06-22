@@ -16,6 +16,7 @@ import {
 import IDRView from './view';
 import { setDarkTheme } from './utils/setDarkTheme';
 import { statesFacade } from './states/statesFacade';
+import { CreateRecallService, UnmountService } from './services';
 
 interface IDRPluginSettings {
     apiKey: string;
@@ -105,11 +106,12 @@ export default class IDRPlugin extends Plugin {
         this.registerEvent(
             this.app.workspace.on('file-open', async (file) => {
                 // Close and open view on file-open trigger
-                // await this.activateView();
+                // TODO: Check another way to change recallsList
+                await this.activateView();
             }),
         );
 
-        void statesFacade.setPlugin(this);
+        statesFacade.setPlugin(this);
         void statesFacade.loadUser();
 
         // this.registerEditorExtension(cmExtensions(this));
@@ -142,37 +144,21 @@ export default class IDRPlugin extends Plugin {
             new Notice(`Select text to proceed`);
             return;
         }
+        // TODO: create apiKey guard
         if (!this.settings.apiKey) {
             new Notice(`Please provide IDR api key`);
             return;
         }
-        new IDRModal(this.app, (result: Recall) => {
-            console.log(JSON.stringify(result));
-            fetch('https://dev-node.idorecall.com/api/v1/obsidian', {
-                method: 'POST',
-                body: JSON.stringify(result),
-                headers: {
-                    authorization: this.settings.apiKey,
-                    'content-type': 'application/json',
-                },
-            })
-                .then((res) => {
-                    console.log(res);
-                    if (res.status === 201 || res.status === 200) {
-                        new Notice(`Recall created successfully`);
-                    } else {
-                        new Notice(`Something went wrong. Code: ${res.status}`);
-                    }
-                })
-                .catch((e) => {
-                    console.log(e);
-                    new Notice(`Something went wrong. -> ${e}`);
-                });
-        }).open();
+
+        const answer = app.workspace.activeEditor?.editor?.getSelection();
+        if (typeof answer === 'string') {
+            CreateRecallService.instance.create(answer);
+        }
     }
 
     onunload() {
         this.app.workspace.detachLeavesOfType('idr-view');
+        UnmountService.instance.unmount();
         console.log('Unloading plugin');
     }
 }

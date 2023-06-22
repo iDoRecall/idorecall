@@ -3,12 +3,12 @@ import IDRPlugin from '../../main';
 
 interface PluginState {
     plugin: IDRPlugin | null;
-    setPlugin: (plugin: IDRPlugin) => Promise<void>;
+    setPlugin: (plugin: IDRPlugin) => void;
 }
 
 export const usePluginState = create<PluginState>((set) => ({
     plugin: null,
-    setPlugin: async (plugin) => {
+    setPlugin: (plugin) => {
         set({ plugin });
     },
 }));
