@@ -1,5 +1,7 @@
-import { useUserState } from './useUserState';
+import { useUserState } from './user';
+import { usePluginState } from './plugin';
 
-export const StatesFacade = {
+export const statesFacade = {
     loadUser: useUserState.getState().loadUser,
+    setPlugin: usePluginState.getState().setPlugin,
 };

@@ -15,7 +15,7 @@ import {
 } from 'obsidian';
 import IDRView from './view';
 import { setDarkTheme } from './utils/setDarkTheme';
-import { StatesFacade } from './states/statesFacade';
+import { statesFacade } from './states/statesFacade';
 
 interface IDRPluginSettings {
     apiKey: string;
@@ -109,7 +109,8 @@ export default class IDRPlugin extends Plugin {
             }),
         );
 
-        void StatesFacade.loadUser();
+        void statesFacade.setPlugin(this);
+        void statesFacade.loadUser();
 
         // this.registerEditorExtension(cmExtensions(this));
         await this.activateView();

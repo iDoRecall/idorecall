@@ -1,6 +1,6 @@
-import { User } from '../models';
+import { User } from '../../models';
 import { create } from 'zustand';
-import { fakeUser } from '../mock/fakeUser';
+import { RestService } from '../../api/restService';
 
 interface UserState {
     user: User | null;
@@ -13,7 +13,7 @@ export const useUserState = create<UserState>((set) => ({
     isLoading: false,
     loadUser: async () => {
         set({ isLoading: true });
-        const response = await Promise.resolve(fakeUser);
+        const response = await RestService.instance.get<User>('obsidian/me');
         set({ user: response, isLoading: false });
     },
 }));

@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom';
 import { Home } from './components/pages/Home';
 import { EditRecall } from './components/pages/EditRecall';
-import { useUserState } from './states/useUserState';
+import { useUserState } from './states/user';
 import { Loading } from './components/pages/Loading';
 
 export const App = () => {
