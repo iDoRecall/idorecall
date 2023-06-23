@@ -12,6 +12,7 @@ const AppAutocomplete: React.FC<AppAutocompleteProps> = ({
     nameField,
     form,
     isAction = false,
+    onInput,
 }: AppAutocompleteProps) => {
     const [isComponentVisible, setIsComponentVisible] = useState(false);
     const [selectedOptions, setSelectedOptions] = useState<AutocompleteItem[]>(
@@ -65,8 +66,7 @@ const AppAutocomplete: React.FC<AppAutocompleteProps> = ({
         if (!inputValue) {
             return;
         }
-        // TODO: emit inputValue
-        console.log(inputValue);
+        onInput(inputValue);
     }, [inputValue]);
 
     useEffect(() => {
@@ -117,7 +117,7 @@ const AppAutocomplete: React.FC<AppAutocompleteProps> = ({
             const filterTabs = tabsFilterList.filter((tag) => {
                 return !selectedOptions.find(({ name }) => name === tag.name);
             });
-            setFiltersOptions(filterTabs);
+            setFiltersOptions(filterTabs); // input 2
         }
     }, [tabsFilterList]);
 

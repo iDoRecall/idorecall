@@ -30,6 +30,8 @@ export const RecallForm: React.FC<RecallFormProps> = ({
     recall,
     backRoute = '/',
     partialRecall = {},
+    onTagInput,
+    onClassesInput,
 }) => {
     const [formValue, setFormValue] = useState<Recall>(
         recall ?? { ...INITIAL_RECALL, ...partialRecall },
@@ -260,6 +262,7 @@ export const RecallForm: React.FC<RecallFormProps> = ({
                                     placeholder='Start typing here to add a tag'
                                     nameField='tags'
                                     initContent={recall ? recall.tags : []}
+                                    onInput={onTagInput}
                                 />
                             </li>
                             <li>
@@ -278,7 +281,7 @@ export const RecallForm: React.FC<RecallFormProps> = ({
                                     component={AppAutocomplete}
                                     placeholder='Share with classes you belong to'
                                     nameField='shareClasses'
-                                    emitter={''}
+                                    onInput={onClassesInput}
                                 />
                             </li>
                         </ul>

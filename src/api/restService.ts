@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { environment } from '../environments/environment';
 import { usePluginState } from '../states/plugin';
 import { HttpResponse } from '../models';
@@ -19,9 +19,12 @@ export class RestService {
         return RestService._instance;
     }
 
-    public async get<T>(url: string): Promise<T> {
+    public async get<T>(
+        url: string,
+        config?: AxiosRequestConfig<any> | undefined,
+    ): Promise<T> {
         return await this.api
-            .get<HttpResponse<T>>(url)
+            .get<HttpResponse<T>>(url, config)
             .then(({ data }) => data)
             .then(({ data }) => data.payload);
     }
