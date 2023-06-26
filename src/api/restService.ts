@@ -28,4 +28,15 @@ export class RestService {
             .then(({ data }) => data)
             .then(({ data }) => data.payload);
     }
+
+    public async post<T>(
+        url: string,
+        payload?: any,
+        config?: AxiosRequestConfig<any> | undefined,
+    ): Promise<T> {
+        return await this.api
+            .post<HttpResponse<T>>(url, payload)
+            .then(({ data }) => data)
+            .then(({ data }) => data.payload);
+    }
 }

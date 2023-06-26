@@ -11,7 +11,7 @@ export class CreateRecallService {
         const { setAnswer } = useCreateRecallState.getState();
 
         setAnswer(answer);
-        history.push('/edit');
+        history.push('/create');
         void plugin?.activateView();
     }
 

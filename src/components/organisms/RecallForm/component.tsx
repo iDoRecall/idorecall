@@ -33,6 +33,7 @@ export const RecallForm: React.FC<RecallFormProps> = ({
     onTagInput,
     tagSearch = [],
     onClassesInput,
+    onSubmit,
     classesSearch = [],
 }) => {
     const [formValue, setFormValue] = useState<Recall>(
@@ -63,8 +64,7 @@ export const RecallForm: React.FC<RecallFormProps> = ({
 
     const handleSubmitWithValidation = (values: Recall) => {
         if (!errorQuestion && !errorAnswer) {
-            // handleSubmit(values);
-            console.log('SUBMITTED', values);
+            onSubmit(values);
         }
     };
 
