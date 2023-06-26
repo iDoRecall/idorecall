@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { RestService } from '../../api/restService';
-import { Tag } from '@lezer/highlight';
+import { Tag } from '../../models';
 
 interface FormTagsState {
     tags: Tag[];

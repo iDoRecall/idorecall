@@ -13,6 +13,7 @@ const AppAutocomplete: React.FC<AppAutocompleteProps> = ({
     form,
     isAction = false,
     onInput,
+    itemsSearch = [],
 }: AppAutocompleteProps) => {
     const [isComponentVisible, setIsComponentVisible] = useState(false);
     const [selectedOptions, setSelectedOptions] = useState<AutocompleteItem[]>(
@@ -53,6 +54,10 @@ const AppAutocomplete: React.FC<AppAutocompleteProps> = ({
     }, [action]);
 
     useEffect(() => {
+        setTabFilterList(itemsSearch);
+    }, [itemsSearch]);
+
+    useEffect(() => {
         // TODO: maybe emit options
         changeFieldValue(selectedOptions);
     }, [selectedOptions]);
@@ -68,49 +73,6 @@ const AppAutocomplete: React.FC<AppAutocompleteProps> = ({
         }
         onInput(inputValue);
     }, [inputValue]);
-
-    useEffect(() => {
-        // instance.subscribe(
-        //     EmitterCommand.searchTagsSuccess,
-        //     ([data]: [{ tagList: Array<models.Tag> }]) => {
-        //         if (name !== EmitterCommand.searchTags) {
-        //             return;
-        //         }
-        //         const { tagList } = data;
-        //         setTagList(tagList);
-        //         const lists = tagList.filter(
-        //             (tab: models.Tag) => !tab.blackList,
-        //         );
-        //         setTabFilterList(lists);
-        //     },
-        // );
-        //
-        // instance.subscribe(EmitterCommand.searchTagsFailed, () => {
-        //     if (name !== EmitterCommand.searchTags) {
-        //         return;
-        //     }
-        //     setTabFilterList([]);
-        // });
-        //
-        // instance.subscribe(
-        //     EmitterCommand.sharingListSuccess,
-        //     ([data]: [{ tagList: Array<models.Tag> }]) => {
-        //         if (name !== EmitterCommand.sharingList) {
-        //             return;
-        //         }
-        //         const { tagList } = data;
-        //         setTagList(tagList);
-        //         setTabFilterList(tagList);
-        //     },
-        // );
-        //
-        // instance.subscribe(EmitterCommand.sharingListFailed, () => {
-        //     if (name !== EmitterCommand.sharingList) {
-        //         return;
-        //     }
-        //     setTabFilterList([]);
-        // });
-    }, []);
 
     useEffect(() => {
         if (tabsFilterList) {
@@ -215,7 +177,6 @@ const AppAutocomplete: React.FC<AppAutocompleteProps> = ({
     ) => {
         event.stopPropagation();
         const newFiltersOptions = filtersOptions.filter((option) => {
-            // option.blackList = !clickOption.blackList;
             return option.name !== clickOption.name;
         });
         setFiltersOptions(newFiltersOptions);

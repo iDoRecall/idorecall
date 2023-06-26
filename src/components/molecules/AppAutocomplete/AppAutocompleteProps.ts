@@ -7,4 +7,5 @@ export interface AppAutocompleteProps {
     form?: any;
     isAction?: boolean;
     onInput: (inputValue: string) => void;
+    itemsSearch: AutocompleteItem[];
 }

@@ -1,4 +1,4 @@
-import { User } from './interfaces/User.interface';
+import { User } from '../models';
 
 export const fakeUser: User = {
     actionForAdmin: true,

@@ -31,7 +31,9 @@ export const RecallForm: React.FC<RecallFormProps> = ({
     backRoute = '/',
     partialRecall = {},
     onTagInput,
+    tagSearch = [],
     onClassesInput,
+    classesSearch = [],
 }) => {
     const [formValue, setFormValue] = useState<Recall>(
         recall ?? { ...INITIAL_RECALL, ...partialRecall },
@@ -263,6 +265,7 @@ export const RecallForm: React.FC<RecallFormProps> = ({
                                     nameField='tags'
                                     initContent={recall ? recall.tags : []}
                                     onInput={onTagInput}
+                                    itemsSearch={tagSearch}
                                 />
                             </li>
                             <li>
@@ -282,6 +285,7 @@ export const RecallForm: React.FC<RecallFormProps> = ({
                                     placeholder='Share with classes you belong to'
                                     nameField='shareClasses'
                                     onInput={onClassesInput}
+                                    itemsSearch={classesSearch}
                                 />
                             </li>
                         </ul>

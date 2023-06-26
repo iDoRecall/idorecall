@@ -1,4 +1,4 @@
-import { Recall } from '../../../models';
+import { AutocompleteItem, Recall } from '../../../models';
 
 export interface RecallFormProps {
     recall?: Recall | null;
@@ -6,4 +6,6 @@ export interface RecallFormProps {
     partialRecall?: Partial<Recall> | null;
     onTagInput: (inputValue: string) => void;
     onClassesInput: (inputValue: string) => void;
+    tagSearch: AutocompleteItem[];
+    classesSearch: AutocompleteItem[];
 }

@@ -14,8 +14,8 @@ export const EditRecall = () => {
     const { recallId } = useParams();
     const { answer } = useCreateRecallState();
     const recall = fakeRecalls.find((r) => r.id === recallId);
-    const { loadTagsByQuery } = useFormTagsState();
-    const { loadClassesByQuery } = useFormClassesState();
+    const { loadTagsByQuery, tags } = useFormTagsState();
+    const { loadClassesByQuery, classes } = useFormClassesState();
 
     return (
         <div>
@@ -23,6 +23,8 @@ export const EditRecall = () => {
                 <Header key='header' user={fakeUser} />
                 <RecallForm
                     recall={recallId ? recall : null}
+                    tagSearch={tags}
+                    classesSearch={classes}
                     partialRecall={
                         answer ? { answer, answerMarkup: answer } : null
                     }
