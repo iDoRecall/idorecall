@@ -9,6 +9,8 @@ import { RecallForm } from '../../organisms/RecallForm';
 import { useCreateRecallState } from '../../../states/create-recall';
 import { useFormTagsState } from '../../../states/form-tags';
 import { useFormClassesState } from '../../../states/form-classes';
+import { Recall } from '../../../models';
+import { RecallService } from '../../../api/recall';
 
 export const EditRecall = () => {
     const { recallId } = useParams();
@@ -16,6 +18,9 @@ export const EditRecall = () => {
     const recall = fakeRecalls.find((r) => r.id === recallId);
     const { loadTagsByQuery, tags } = useFormTagsState();
     const { loadClassesByQuery, classes } = useFormClassesState();
+    const editRecall = (recall: Recall): void => {
+        void RecallService.instance.editRecall(recall);
+    };
 
     return (
         <div>
@@ -31,6 +36,7 @@ export const EditRecall = () => {
                     onTagInput={loadTagsByQuery}
                     onClassesInput={loadClassesByQuery}
                     key='content'
+                    onSubmit={editRecall}
                 />
             </MainContentTemplate>
         </div>
