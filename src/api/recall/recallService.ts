@@ -16,7 +16,7 @@ export class RecallService {
         return await this.rest.post<boolean>('obsidian/recalls', recall);
     }
 
-    public async editRecall(recall: Recall): Promise<void> {
-        console.log('EDITED', recall);
+    public async editRecall(recall: Recall): Promise<Recall> {
+        return await this.rest.post<Recall>(`obsidian/recalls/${recall.id}`);
     }
 }
