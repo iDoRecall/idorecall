@@ -45,7 +45,6 @@ const AppFroalaEditor: React.FC<AppFroalaEditorProps> = ({
     };
 
     useEffect(() => {
-        console.log(initContent);
         if (!initContent) return;
         setContent(initContent);
     }, [initContent]);
@@ -63,10 +62,10 @@ const AppFroalaEditor: React.FC<AppFroalaEditorProps> = ({
 
     const handleModelChange = (content: string) => {
         const editor = refFroala.current?.getEditor();
-        const contentNodes = editor.el;
+        const contentNodes = editor?.el;
         setContent(content);
 
-        const textContent = contentNodes.textContent;
+        const textContent = contentNodes?.textContent;
 
         const isEmptyText =
             textContent.split('').every((item: string) => {

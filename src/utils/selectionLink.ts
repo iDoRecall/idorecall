@@ -10,7 +10,7 @@ const genID = (length = 5) => {
     return id.slice(0, length);
 };
 
-export function getSelectionLink() {
+export function getSelectionLink(): string {
     const editor =
         usePluginState.getState().plugin?.app.workspace.activeEditor?.editor;
     if (!editor) {
@@ -65,4 +65,21 @@ export function getSelectionLink() {
         editor.transaction(transaction);
     }
     return linkId;
+}
+
+export function removeSelectionLink(link: string): void {
+    const editor =
+        usePluginState.getState().plugin?.app.workspace.activeEditor?.editor;
+    if (!editor) {
+        return;
+    }
+
+    const file = usePluginState
+        .getState()
+        .plugin?.app.workspace.getActiveFile();
+    if (!file) {
+        // return;
+    }
+
+    // TODO: remove listId from that shit
 }

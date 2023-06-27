@@ -9,6 +9,7 @@ import { AppAutocomplete } from '../../molecules/AppAutocomplete';
 import ActionButton from '../../atoms/ActionButton/component';
 import { useNavigate } from 'react-router';
 import { isEqual } from '../../../utils/is-equal';
+import { handleFormula } from '../../../utils/handleFormula';
 
 const INITIAL_RECALL: Recall = {
     questionMarkup: '',
@@ -64,8 +65,23 @@ export const RecallForm: React.FC<RecallFormProps> = ({
 
     const handleSubmitWithValidation = (values: Recall) => {
         if (!errorQuestion && !errorAnswer) {
+            values.answer =
+                values.answer || getValueFromMarkup(values.answerMarkup);
+
+            values.question =
+                values.question || getValueFromMarkup(values.questionMarkup);
+
             onSubmit(values);
         }
+    };
+
+    const getValueFromMarkup = (markup: string): string => {
+        const div = document.createElement('div');
+        div.innerHTML = markup;
+        handleFormula(div);
+        const { innerText } = div;
+        div.remove();
+        return innerText;
     };
 
     const handleKeyDown = (keyEvent: React.KeyboardEvent) => {

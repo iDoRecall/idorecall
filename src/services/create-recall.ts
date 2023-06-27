@@ -1,18 +1,47 @@
 import { createBrowserHistory } from '@remix-run/router';
 import { usePluginState } from '../states/plugin';
-import { useCreateRecallState } from '../states/create-recall';
+import { useLaunchCreatingState } from '../states/launch-creating';
+import { Recall } from '../models';
+import { RecallService } from '../api/recall';
+import { getSelectionLink, removeSelectionLink } from '../utils/selectionLink';
 
 export class CreateRecallService {
     private static _instance: CreateRecallService;
 
-    public create(answer: string): void {
+    public launchCreating(answer: string): void {
         const history = createBrowserHistory();
         const { plugin } = usePluginState.getState();
-        const { setAnswer } = useCreateRecallState.getState();
+        const { setAnswer, setLinkId } = useLaunchCreatingState.getState();
 
         setAnswer(answer);
+        setLinkId(getSelectionLink());
         history.push('/create');
         void plugin?.activateView();
+    }
+
+    public async create(recall: Recall): Promise<boolean> {
+        const { linkId } = useLaunchCreatingState.getState();
+        const payload = {
+            ...recall,
+            source: {
+                type: 'simple_source',
+                link: `obsidian://idr-uri?vault=${usePluginState
+                    .getState()
+                    .plugin?.app.vault.getName()}&file=${
+                    usePluginState
+                        .getState()
+                        .plugin?.app.workspace.getActiveFile()?.basename
+                }&block=${linkId}`,
+            },
+            groupIds: recall.shareClasses?.map((group) => group.id),
+        };
+        // handle error
+        return await RecallService.instance.createRecall(payload).catch((e) => {
+            if (linkId) {
+                removeSelectionLink(linkId);
+            }
+            return e;
+        });
     }
 
     public static get instance(): CreateRecallService {

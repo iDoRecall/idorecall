@@ -26,7 +26,6 @@ export const RecallsList: React.FC<RecallsListProps> = () => {
     };
 
     const deleteRecall = (recall: Recall) => {
-        console.log(recall);
         // emit to the smart parent;
     };
 

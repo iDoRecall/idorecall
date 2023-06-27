@@ -152,7 +152,7 @@ export default class IDRPlugin extends Plugin {
 
         const answer = app.workspace.activeEditor?.editor?.getSelection();
         if (typeof answer === 'string') {
-            CreateRecallService.instance.create(answer);
+            CreateRecallService.instance.launchCreating(answer);
         }
     }
 

@@ -1,13 +1,21 @@
 import { create } from 'zustand';
+import { Recall } from '../../models';
+import { CreateRecallService } from '../../services';
 
 interface CreateRecallState {
-    answer: string | null;
-    setAnswer: (answer: string | null) => void;
+    isLoading: boolean;
+    saveRecall: (recall: Recall) => Promise<boolean>;
 }
 
 export const useCreateRecallState = create<CreateRecallState>((set) => ({
-    answer: null,
-    setAnswer: (answer) => {
-        set({ answer });
+    isLoading: false,
+    saveRecall: async (recall) => {
+        set({ isLoading: true });
+        const result = await CreateRecallService.instance
+            .create(recall)
+            .catch(() => false);
+        set({ isLoading: false });
+
+        return result;
     },
 }));
