@@ -1,5 +1,6 @@
-import { EditorTransaction } from 'obsidian';
+import { Editor, EditorTransaction } from 'obsidian';
 import { usePluginState } from '../states/plugin';
+import { removeLink } from './removeLink';
 
 const genID = (length = 5) => {
     const characters = 'abcdefghijklmnopqrstuvwxyz-0123456789';
@@ -64,22 +65,14 @@ export function getSelectionLink(): string {
         });
         editor.transaction(transaction);
     }
+
     return linkId;
 }
 
-export function removeSelectionLink(link: string): void {
-    const editor =
-        usePluginState.getState().plugin?.app.workspace.activeEditor?.editor;
-    if (!editor) {
+export function removeSelectionLink(link: string, activeEditor: Editor): void {
+    if (!activeEditor) {
         return;
     }
 
-    const file = usePluginState
-        .getState()
-        .plugin?.app.workspace.getActiveFile();
-    if (!file) {
-        // return;
-    }
-
-    // TODO: remove listId from that shit
+    activeEditor.setValue(removeLink(activeEditor.getValue(), link));
 }
