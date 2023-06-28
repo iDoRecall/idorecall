@@ -9,6 +9,7 @@ import { AppAutocomplete } from '../../molecules/AppAutocomplete';
 import ActionButton from '../../atoms/ActionButton/component';
 import { useNavigate } from 'react-router';
 import { isEqual } from '../../../utils/is-equal';
+import { handleFormula } from '../../../utils/handleFormula';
 
 const INITIAL_RECALL: Recall = {
     questionMarkup: '',
@@ -29,9 +30,15 @@ const INITIAL_RECALL: Recall = {
 export const RecallForm: React.FC<RecallFormProps> = ({
     recall,
     backRoute = '/',
+    partialRecall = {},
+    onTagInput,
+    tagSearch = [],
+    onClassesInput,
+    onSubmit,
+    classesSearch = [],
 }) => {
     const [formValue, setFormValue] = useState<Recall>(
-        recall ?? INITIAL_RECALL,
+        recall ?? { ...INITIAL_RECALL, ...partialRecall },
     );
     const [activeQuestionMarkup, setActiveQuestionMarkup] =
         useState<boolean>(false);
@@ -58,9 +65,23 @@ export const RecallForm: React.FC<RecallFormProps> = ({
 
     const handleSubmitWithValidation = (values: Recall) => {
         if (!errorQuestion && !errorAnswer) {
-            // handleSubmit(values);
-            console.log('SUBMITTED', values);
+            values.answer =
+                values.answer || getValueFromMarkup(values.answerMarkup);
+
+            values.question =
+                values.question || getValueFromMarkup(values.questionMarkup);
+
+            onSubmit(values);
         }
+    };
+
+    const getValueFromMarkup = (markup: string): string => {
+        const div = document.createElement('div');
+        div.innerHTML = markup;
+        handleFormula(div);
+        const { innerText } = div;
+        div.remove();
+        return innerText;
     };
 
     const handleKeyDown = (keyEvent: React.KeyboardEvent) => {
@@ -125,8 +146,7 @@ export const RecallForm: React.FC<RecallFormProps> = ({
                                     </g>
                                 </svg>
 
-                                {recall ??
-                                formValue?.questionMarkup ??
+                                {formValue?.questionMarkup ||
                                 activeQuestionMarkup ? (
                                     <Field
                                         plase
@@ -202,8 +222,7 @@ export const RecallForm: React.FC<RecallFormProps> = ({
                                     </g>
                                 </svg>
 
-                                {recall ??
-                                activeAnswerMarkup ??
+                                {activeAnswerMarkup ||
                                 formValue.answerMarkup ? (
                                     <Field
                                         plase
@@ -261,6 +280,8 @@ export const RecallForm: React.FC<RecallFormProps> = ({
                                     placeholder='Start typing here to add a tag'
                                     nameField='tags'
                                     initContent={recall ? recall.tags : []}
+                                    onInput={onTagInput}
+                                    itemsSearch={tagSearch}
                                 />
                             </li>
                             <li>
@@ -279,7 +300,8 @@ export const RecallForm: React.FC<RecallFormProps> = ({
                                     component={AppAutocomplete}
                                     placeholder='Share with classes you belong to'
                                     nameField='shareClasses'
-                                    emitter={''}
+                                    onInput={onClassesInput}
+                                    itemsSearch={classesSearch}
                                 />
                             </li>
                         </ul>

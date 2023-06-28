@@ -1,5 +1,5 @@
 import { ShareClasses } from './share-classes.interface';
-import { Tags } from './tags.interface';
+import { Tag } from './tags.interface';
 import { SimpleSource } from './simple-source.inteface';
 
 export interface Recall {
@@ -9,7 +9,7 @@ export interface Recall {
     questionMarkup: string;
     answerMarkup: string;
     reversible: boolean;
-    tags: Tags[];
+    tags: Tag[];
     source: SimpleSource;
     shareClasses?: ShareClasses[];
     groupIds?: string[];
