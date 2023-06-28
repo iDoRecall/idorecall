@@ -159,7 +159,6 @@ export default class IDRPlugin extends Plugin {
     onunload() {
         this.app.workspace.detachLeavesOfType('idr-view');
         UnmountService.instance.unmount();
-        console.log('Unloading plugin');
     }
 }
 

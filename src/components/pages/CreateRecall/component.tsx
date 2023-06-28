@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import './styles.scss';
 import { MainContentTemplate } from '../../templates/MainContentTemplate';
@@ -23,13 +23,15 @@ export const CreateRecall = () => {
     const { loadClassesByQuery, classes } = useFormClassesState();
     const { isLoading, saveRecall } = useCreateRecallState();
     const navigate = useNavigate();
-    const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+    // const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
     const recall = fakeRecalls.find((r) => r.id === recallId);
 
+    let submitted = false;
+
     useEffect(() => {
         return () => {
-            if (isSubmitted) {
+            if (submitted) {
                 CreateRecallService.instance.resetCreatingData();
             } else {
                 CreateRecallService.instance.unLaunchCreating();
@@ -38,8 +40,9 @@ export const CreateRecall = () => {
     }, []);
 
     const createRecall = async (recall: Recall): Promise<void> => {
-        setIsSubmitted(true);
         const success = await saveRecall(recall);
+        // setIsSubmitted(true);
+        submitted = true;
         if (success) {
             NoticeService.instance.notice('Recall created successfully');
         } else {

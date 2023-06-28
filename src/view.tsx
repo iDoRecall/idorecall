@@ -29,10 +29,9 @@ export default class IDRView extends ItemView {
 
     async onOpen() {
         // TODO: we need current opened note to get recalls list
-        console.log(
-            'Current note -> ',
-            this.app.workspace.getActiveFile()?.basename,
-        );
+        // console.log(
+        //     this.app.workspace.getActiveFile()?.basename,
+        // );
         ReactDOM.render(
             <React.StrictMode>
                 <App />
