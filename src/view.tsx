@@ -41,7 +41,6 @@ export default class IDRView extends ItemView {
     }
 
     async onClose() {
-        console.log('onClose');
         ReactDOM.unmountComponentAtNode(this.containerEl.children[1]);
     }
 }
