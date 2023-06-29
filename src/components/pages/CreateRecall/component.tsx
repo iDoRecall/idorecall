@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router';
+import { useNavigate } from 'react-router';
 import './styles.scss';
 import { MainContentTemplate } from '../../templates/MainContentTemplate';
 import { Header } from '../../molecules/Header';
@@ -13,10 +13,8 @@ import { useUserState } from '../../../states/user';
 import { useCreateRecallState } from '../../../states/create-recall';
 import { CreateRecallService, NoticeService } from '../../../services';
 import { Recall } from '../../../models';
-import { fakeRecalls } from '../../../mock/fakeRecalls';
 
 export const CreateRecall = () => {
-    const { recallId } = useParams();
     const { user } = useUserState();
     const { answer } = useLaunchCreatingState();
     const { loadTagsByQuery, tags } = useFormTagsState();
@@ -24,8 +22,6 @@ export const CreateRecall = () => {
     const { isLoading, saveRecall } = useCreateRecallState();
     const navigate = useNavigate();
     // const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
-
-    const recall = fakeRecalls.find((r) => r.id === recallId);
 
     let submitted = false;
 
@@ -61,7 +57,6 @@ export const CreateRecall = () => {
                     <Loading key='content' />
                 ) : (
                     <RecallForm
-                        recall={recallId ? recall : null}
                         tagSearch={tags}
                         classesSearch={classes}
                         partialRecall={

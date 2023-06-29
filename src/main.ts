@@ -17,6 +17,7 @@ import IDRView from './view';
 import { setDarkTheme } from './utils/setDarkTheme';
 import { statesFacade } from './states/statesFacade';
 import { CreateRecallService, UnmountService } from './services';
+import { useRecallListState } from './states/recall-list';
 
 interface IDRPluginSettings {
     apiKey: string;
@@ -105,9 +106,11 @@ export default class IDRPlugin extends Plugin {
 
         this.registerEvent(
             this.app.workspace.on('file-open', async (file) => {
-                // Close and open view on file-open trigger
-                // TODO: Check another way to change recallsList
-                await this.activateView();
+                if (file?.basename) {
+                    void useRecallListState
+                        .getState()
+                        .loadRecallList(file.basename);
+                }
             }),
         );
 

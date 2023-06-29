@@ -3,13 +3,13 @@ import { create } from 'zustand';
 import { RecallListService } from '../../api/recall-list';
 
 interface RecallListState {
-    recallList: Recall[] | null;
+    recallList: Recall[];
     isLoading: boolean;
     loadRecallList: (basename: string) => Promise<void>;
 }
 
 export const useRecallListState = create<RecallListState>((set) => ({
-    recallList: null,
+    recallList: [],
     isLoading: false,
     loadRecallList: async (basename) => {
         set({ isLoading: true });

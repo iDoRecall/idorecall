@@ -1,16 +1,15 @@
 import * as React from 'react';
 import './styles.scss';
 import { RecallsListProps } from './RecallsListProps';
-import { fakeRecalls } from '../../../mock/fakeRecalls';
 import { Recall } from '../../../models';
 import { RecallCard } from '../../molecules/RecallCard';
 import { useState } from 'react';
 
-export const RecallsList: React.FC<RecallsListProps> = () => {
+export const RecallsList: React.FC<RecallsListProps> = ({ recalls }) => {
     const [activeCard, setActiveCard] = useState<string>('');
 
     const changeActiveCard = (id: string, shouldBecomeActive = true): void => {
-        const newActiveCard = fakeRecalls.find(
+        const newActiveCard = recalls.find(
             (recall: Recall) => recall && id === recall.id,
         );
         if (!newActiveCard) {
@@ -31,7 +30,7 @@ export const RecallsList: React.FC<RecallsListProps> = () => {
 
     return (
         <div className='recalls-list-container'>
-            {fakeRecalls.map((recall: Recall) => (
+            {recalls.map((recall: Recall) => (
                 <RecallCard
                     key={recall.id}
                     activeCard={activeCard === recall.id}
