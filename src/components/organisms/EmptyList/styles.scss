@@ -1,0 +1,14 @@
+.empty-list-wrapper {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  background-color: var(--idr-medium-bg);
+}
+
+.empty-list-content {
+  padding: 30px;
+  font-size: 22px;
+  line-height: 23px;
+  text-align: center;
+}

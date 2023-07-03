@@ -4,6 +4,7 @@ import { RecallsListProps } from './RecallsListProps';
 import { Recall } from '../../../models';
 import { RecallCard } from '../../molecules/RecallCard';
 import { useState } from 'react';
+import { EmptyList } from '../EmptyList';
 
 export const RecallsList: React.FC<RecallsListProps> = ({ recalls }) => {
     const [activeCard, setActiveCard] = useState<string>('');
@@ -28,7 +29,7 @@ export const RecallsList: React.FC<RecallsListProps> = ({ recalls }) => {
         // emit to the smart parent;
     };
 
-    return (
+    return recalls.length ? (
         <div className='recalls-list-container'>
             {recalls.map((recall: Recall) => (
                 <RecallCard
@@ -40,5 +41,10 @@ export const RecallsList: React.FC<RecallsListProps> = ({ recalls }) => {
                 />
             ))}
         </div>
+    ) : (
+        <EmptyList
+            title={'Nothing here yet'}
+            text={'Create some recalls, after that, you will see recall list.'}
+        />
     );
 };
