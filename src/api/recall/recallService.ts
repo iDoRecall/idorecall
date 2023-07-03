@@ -19,4 +19,8 @@ export class RecallService {
     public async editRecall(recall: Recall): Promise<Recall> {
         return await this.rest.post<Recall>(`obsidian/recalls/${recall.id}`);
     }
+
+    public async deleteRecall(recall: Recall): Promise<boolean> {
+        return await this.rest.delete<boolean>(`obsidian/recalls/${recall.id}`);
+    }
 }

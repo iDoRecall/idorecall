@@ -35,7 +35,17 @@ export class RestService {
         config?: AxiosRequestConfig<any> | undefined,
     ): Promise<T> {
         return await this.api
-            .post<HttpResponse<T>>(url, payload)
+            .post<HttpResponse<T>>(url, payload, config)
+            .then(({ data }) => data)
+            .then(({ data }) => data.payload);
+    }
+
+    public async delete<T>(
+        url: string,
+        config?: AxiosRequestConfig<any> | undefined,
+    ): Promise<T> {
+        return await this.api
+            .delete(url, config)
             .then(({ data }) => data)
             .then(({ data }) => data.payload);
     }
