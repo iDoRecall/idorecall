@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import { App } from './App';
 import IDRPlugin from './main';
 import { setDarkTheme } from './utils/setDarkTheme';
-import { useRecallListState } from './states/recall-list';
 
 export default class IDRView extends ItemView {
     constructor(leaf: WorkspaceLeaf, plugin: IDRPlugin) {
@@ -29,11 +28,6 @@ export default class IDRView extends ItemView {
     }
 
     async onOpen() {
-        const basename = this.app.workspace.getActiveFile()?.basename;
-        if (basename) {
-            void useRecallListState.getState().loadRecallList(basename);
-        }
-
         ReactDOM.render(
             <React.StrictMode>
                 <App />
