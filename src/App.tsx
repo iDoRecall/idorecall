@@ -12,9 +12,23 @@ import { EditRecall } from './components/pages/EditRecall';
 import { useUserState } from './states/user';
 import { Loading } from './components/organisms/Loading';
 import { CreateRecall } from './components/pages/CreateRecall/component';
+import { usePluginState } from './states/plugin';
+import { EmptyList } from './components/organisms/EmptyList';
 
 export const App = () => {
     const isUserLoading = useUserState((state) => state.isLoading);
+    const isApiKeyExist = !!usePluginState((state) => state.settings?.apiKey);
+
+    if (!isApiKeyExist) {
+        return (
+            <EmptyList
+                title={'Api key is`nt provided'}
+                text={
+                    'You can provide it in community plugins section of obsidian settings.'
+                }
+            />
+        );
+    }
 
     if (isUserLoading) {
         return <Loading />;
@@ -30,7 +44,6 @@ export const App = () => {
                 <Route path='/' element={<Home />} />
                 <Route path='/create' element={<CreateRecall />} />
                 <Route path='/edit/:recallId' element={<EditRecall />} />
-                {/* TODO: implement not found */}
                 <Route path='*' element={<Home />} />
             </Routes>
         </Router>

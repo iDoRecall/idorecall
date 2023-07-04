@@ -6,6 +6,7 @@ interface UserState {
     user: User | null;
     isLoading: boolean;
     loadUser: () => Promise<void>;
+    resetUser: () => void;
 }
 
 export const useUserState = create<UserState>((set) => ({
@@ -15,5 +16,8 @@ export const useUserState = create<UserState>((set) => ({
         set({ isLoading: true });
         const response = await RestService.instance.get<User>('obsidian/me');
         set({ user: response, isLoading: false });
+    },
+    resetUser: () => {
+        set({ user: null });
     },
 }));

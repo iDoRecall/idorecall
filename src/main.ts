@@ -16,13 +16,13 @@ import {
 import IDRView from './view';
 import { setDarkTheme } from './utils/setDarkTheme';
 import { statesFacade } from './states/statesFacade';
-import { CreateRecallService, UnmountService } from './services';
+import {
+    CreateRecallService,
+    SettingsService,
+    UnmountService,
+} from './services';
 import { useRecallListState } from './states/recall-list';
-
-interface IDRPluginSettings {
-    apiKey: string;
-    isDarkTheme: boolean;
-}
+import { IDRPluginSettings } from './models';
 
 interface Recall {
     question: string;
@@ -115,7 +115,6 @@ export default class IDRPlugin extends Plugin {
         );
 
         statesFacade.setPlugin(this);
-        void statesFacade.loadUser();
 
         // this.registerEditorExtension(cmExtensions(this));
         await this.activateView();
@@ -337,6 +336,9 @@ class IDRSettingTab extends PluginSettingTab {
                     .onChange(async (value) => {
                         this.plugin.settings.apiKey = value;
                         await this.plugin.saveSettings();
+                        SettingsService.instance.setSettings(
+                            this.plugin.settings,
+                        );
                     }),
             );
         new Setting(containerEl)
@@ -349,6 +351,9 @@ class IDRSettingTab extends PluginSettingTab {
                         this.plugin.settings.isDarkTheme = checked;
                         setDarkTheme(checked);
                         await this.plugin.saveSettings();
+                        SettingsService.instance.setSettings(
+                            this.plugin.settings,
+                        );
                     }),
             );
     }

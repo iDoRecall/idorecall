@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import { App } from './App';
 import IDRPlugin from './main';
 import { setDarkTheme } from './utils/setDarkTheme';
+import { SettingsService } from './services';
+import { statesFacade } from './states/statesFacade';
 
 export default class IDRView extends ItemView {
     constructor(leaf: WorkspaceLeaf, plugin: IDRPlugin) {
@@ -13,6 +15,9 @@ export default class IDRView extends ItemView {
         setTimeout(() => {
             setDarkTheme(plugin.settings.isDarkTheme);
         });
+
+        SettingsService.instance.setSettings(plugin.settings);
+        void statesFacade.loadUser();
     }
 
     getDisplayText() {
