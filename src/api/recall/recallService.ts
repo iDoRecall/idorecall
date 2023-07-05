@@ -17,10 +17,17 @@ export class RecallService {
     }
 
     public async editRecall(recall: Recall): Promise<Recall> {
-        return await this.rest.patch<Recall>(`obsidian/recalls/${recall.id}`);
+        return await this.rest.patch<Recall>(
+            `obsidian/recalls/${recall.id}`,
+            recall,
+        );
     }
 
     public async deleteRecall(recall: Recall): Promise<boolean> {
         return await this.rest.delete<boolean>(`obsidian/recalls/${recall.id}`);
+    }
+
+    public async getRecallById(id: string): Promise<Recall> {
+        return await this.rest.get<Recall>(`obsidian/recalls/${id}`);
     }
 }

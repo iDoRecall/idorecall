@@ -17,6 +17,7 @@ import IDRView from './view';
 import { setDarkTheme } from './utils/setDarkTheme';
 import { statesFacade } from './states/statesFacade';
 import {
+    ActiveEditorService,
     CreateRecallService,
     SettingsService,
     UnmountService,
@@ -110,6 +111,12 @@ export default class IDRPlugin extends Plugin {
                     void useRecallListState
                         .getState()
                         .loadRecallList(file.basename);
+                }
+
+                const editor = this.app.workspace.activeEditor?.editor;
+
+                if (editor) {
+                    ActiveEditorService.instance.setActiveEditor(editor);
                 }
             }),
         );

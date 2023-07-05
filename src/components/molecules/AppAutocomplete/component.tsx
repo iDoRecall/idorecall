@@ -19,7 +19,6 @@ const AppAutocomplete: React.FC<AppAutocompleteProps> = ({
     const [selectedOptions, setSelectedOptions] = useState<AutocompleteItem[]>(
         [],
     );
-    // TODO: Make sure we need that
     const [action, setAction] = useState(''); // ???
     const [inputValue, setInputValue] = useState('');
     const [tabsFilterList, setTabFilterList] = useState<AutocompleteItem[]>([]);
@@ -58,7 +57,6 @@ const AppAutocomplete: React.FC<AppAutocompleteProps> = ({
     }, [itemsSearch]);
 
     useEffect(() => {
-        // TODO: maybe emit options
         changeFieldValue(selectedOptions);
     }, [selectedOptions]);
 
@@ -263,7 +261,6 @@ const AppAutocomplete: React.FC<AppAutocompleteProps> = ({
                                     <svg
                                         className='closeOptions'
                                         onMouseDown={(event: any) => {
-                                            setAction('blacklistTag');
                                             deleteFiltersOption(event, option);
                                         }}
                                         version='1.1'

@@ -11,12 +11,7 @@ export class CreateRecallService {
     public launchCreating(answer: string): void {
         const history = createBrowserHistory();
         const { plugin } = usePluginState.getState();
-        const { setAnswer, setLinkId, setActiveEditor } =
-            useLaunchCreatingState.getState();
-
-        if (plugin?.app.workspace.activeEditor?.editor) {
-            setActiveEditor(plugin.app.workspace.activeEditor.editor);
-        }
+        const { setAnswer, setLinkId } = useLaunchCreatingState.getState();
         setAnswer(answer);
         setLinkId(getSelectionLink());
         history.push('/create');
@@ -24,7 +19,8 @@ export class CreateRecallService {
     }
 
     public async create(recall: Recall): Promise<boolean> {
-        const { linkId, activeEditor } = useLaunchCreatingState.getState();
+        const { linkId } = useLaunchCreatingState.getState();
+        const { activeEditor } = usePluginState.getState();
         const payload = {
             ...recall,
             source: {
@@ -49,7 +45,8 @@ export class CreateRecallService {
     }
 
     public unLaunchCreating(): void {
-        const { linkId, activeEditor } = useLaunchCreatingState.getState();
+        const { linkId } = useLaunchCreatingState.getState();
+        const { activeEditor } = usePluginState.getState();
         if (linkId && activeEditor) {
             removeSelectionLink(linkId, activeEditor);
         }

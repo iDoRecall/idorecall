@@ -1,5 +1,5 @@
 class T {
-    lang: string
+    lang: string;
 
     all = {
         en: {
@@ -14,15 +14,15 @@ class T {
                 highlight: 'Highlight',
             },
         },
-    }
+    };
 
     constructor() {
-        this.lang = localStorage.getItem('language')
+        this.lang = localStorage.getItem('language') as string;
     }
 
     get texts(): typeof this.all.en {
-        return this.all['en']
+        return this.all['en'];
     }
 }
 
-export default new T().texts
+export default new T().texts;

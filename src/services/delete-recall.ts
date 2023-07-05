@@ -19,7 +19,7 @@ export class DeleteRecallService {
         const sourceParams = new URLSearchParams(recall.source.link);
         const block = sourceParams.get('block');
         const plugin = usePluginState.getState()?.plugin;
-        const activeEditor = plugin?.app.workspace.activeEditor?.editor;
+        const activeEditor = usePluginState.getState()?.activeEditor;
 
         const isDeleted = await RecallService.instance
             .deleteRecall(recall)
