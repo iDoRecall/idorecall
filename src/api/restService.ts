@@ -8,7 +8,7 @@ export class RestService {
     private readonly api = axios.create({
         baseURL: `${environment.serverURL}${environment.apiUrl}`,
         headers: {
-            Authorization: usePluginState.getState().plugin?.settings.apiKey,
+            Authorization: usePluginState.getState().settings?.apiKey,
         },
     });
 
@@ -35,7 +35,28 @@ export class RestService {
         config?: AxiosRequestConfig<any> | undefined,
     ): Promise<T> {
         return await this.api
-            .post<HttpResponse<T>>(url, payload)
+            .post<HttpResponse<T>>(url, payload, config)
+            .then(({ data }) => data)
+            .then(({ data }) => data.payload);
+    }
+
+    public async patch<T>(
+        url: string,
+        payload?: any,
+        config?: AxiosRequestConfig<any> | undefined,
+    ): Promise<T> {
+        return await this.api
+            .patch<HttpResponse<T>>(url, payload, config)
+            .then(({ data }) => data)
+            .then(({ data }) => data.payload);
+    }
+
+    public async delete<T>(
+        url: string,
+        config?: AxiosRequestConfig<any> | undefined,
+    ): Promise<T> {
+        return await this.api
+            .delete(url, config)
             .then(({ data }) => data)
             .then(({ data }) => data.payload);
     }

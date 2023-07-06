@@ -1,3 +1,4 @@
+export type { IDRPluginSettings } from './plugin-settings';
 export type { HttpResponse } from './http-response';
 export type { Recall } from './recall.interface';
 export type { ShareClasses } from './share-classes.interface';

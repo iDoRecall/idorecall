@@ -24,7 +24,8 @@
         "@typescript-eslint/restrict-template-expressions": "off",
         "@typescript-eslint/no-misused-promises": "off",
         "no-new": "off",
-        "no-void": "off"
+        "no-void": "off",
+        "@typescript-eslint/dot-notation": "off"
     },
     "settings": {
         "react": {

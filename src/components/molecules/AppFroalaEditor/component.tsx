@@ -33,6 +33,7 @@ const AppFroalaEditor: React.FC<AppFroalaEditorProps> = ({
     const [content, setContent] = useState('');
     const [, setFroalaInnerHTML] = useState('');
     const [froalaInnerText, setFroalaInnerText] = useState('');
+    const [isUnmounted, setIsUnmounted] = useState(false);
 
     const changeFieldValue = (value: string) => {
         if (!form) return;
@@ -45,22 +46,38 @@ const AppFroalaEditor: React.FC<AppFroalaEditorProps> = ({
     };
 
     useEffect(() => {
-        if (!initContent) return;
-        setContent(initContent);
-    }, [initContent]);
+        return () => {
+            setIsUnmounted(true);
+        };
+    }, []);
 
     useEffect(() => {
-        changeFieldValue(content);
-    }, [content]);
-
-    useEffect(() => {
-        setFroalaInnerHTML(content);
-        if (refFroala.current) {
-            setFroalaInnerText((refFroala.current as any).editor.el.innerText);
+        if (!isUnmounted) {
+            setContent(initContent);
         }
-    }, [content]);
+    }, [initContent, isUnmounted]);
+
+    useEffect(() => {
+        if (!isUnmounted) {
+            changeFieldValue(content);
+        }
+    }, [content, isUnmounted]);
+
+    useEffect(() => {
+        if (!isUnmounted) {
+            setFroalaInnerHTML(content);
+            if (refFroala.current) {
+                setFroalaInnerText(
+                    (refFroala.current as any).editor.el.innerText,
+                );
+            }
+        }
+    }, [content, isUnmounted]);
 
     const handleModelChange = (content: string) => {
+        if (isUnmounted) {
+            return;
+        }
         const editor = refFroala.current?.getEditor();
         const contentNodes = editor?.el;
         setContent(content);
@@ -68,7 +85,7 @@ const AppFroalaEditor: React.FC<AppFroalaEditorProps> = ({
         const textContent = contentNodes?.textContent;
 
         const isEmptyText =
-            textContent.split('').every((item: string) => {
+            textContent?.split('').every((item: string) => {
                 const char = item.charCodeAt(0);
                 return (
                     char === ZERO_WIDTH_SPACE_CHAR ||
@@ -77,7 +94,7 @@ const AppFroalaEditor: React.FC<AppFroalaEditorProps> = ({
                 );
             }) || !textContent;
 
-        const isImg = !!contentNodes.querySelector('img');
+        const isImg = !!contentNodes?.querySelector('img');
 
         if (isEmptyText && !isImg) {
             setError('Required');

@@ -121,7 +121,7 @@ export const RecallCard: React.FC<RecallCardProps> = ({
                         </svg>
                         {activeCard && (
                             <span className='clipperCard__wrapAction__wrap__text'>
-                                Discard
+                                Delete
                             </span>
                         )}
                     </div>

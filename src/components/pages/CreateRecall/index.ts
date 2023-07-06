@@ -1,2 +1,2 @@
-import { EditRecall } from './component';
-export { EditRecall };
+import { CreateRecall } from './component';
+export { CreateRecall };

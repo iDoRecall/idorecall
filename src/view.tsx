@@ -4,6 +4,11 @@ import ReactDOM from 'react-dom';
 import { App } from './App';
 import IDRPlugin from './main';
 import { setDarkTheme } from './utils/setDarkTheme';
+import {
+    ActiveEditorService,
+    LoadUserService,
+    SettingsService,
+} from './services';
 
 export default class IDRView extends ItemView {
     constructor(leaf: WorkspaceLeaf, plugin: IDRPlugin) {
@@ -13,6 +18,15 @@ export default class IDRView extends ItemView {
         setTimeout(() => {
             setDarkTheme(plugin.settings.isDarkTheme);
         });
+
+        SettingsService.instance.setSettings(plugin.settings);
+        if (plugin.app.workspace.activeEditor?.editor) {
+            ActiveEditorService.instance.setActiveEditor(
+                plugin.app.workspace.activeEditor?.editor,
+            );
+        }
+
+        LoadUserService.instance.loadUser();
     }
 
     getDisplayText() {
@@ -28,11 +42,6 @@ export default class IDRView extends ItemView {
     }
 
     async onOpen() {
-        // TODO: we need current opened note to get recalls list
-        console.log(
-            'Current note -> ',
-            this.app.workspace.getActiveFile()?.basename,
-        );
         ReactDOM.render(
             <React.StrictMode>
                 <App />
@@ -42,7 +51,6 @@ export default class IDRView extends ItemView {
     }
 
     async onClose() {
-        console.log('onClose');
         ReactDOM.unmountComponentAtNode(this.containerEl.children[1]);
     }
 }

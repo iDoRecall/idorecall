@@ -15,13 +15,15 @@ import {
 } from 'obsidian';
 import IDRView from './view';
 import { setDarkTheme } from './utils/setDarkTheme';
-import { statesFacade } from './states/statesFacade';
-import { CreateRecallService, UnmountService } from './services';
-
-interface IDRPluginSettings {
-    apiKey: string;
-    isDarkTheme: boolean;
-}
+import {
+    ActiveEditorService,
+    CreateRecallService,
+    PluginService,
+    SettingsService,
+    UnmountService,
+} from './services';
+import { useRecallListState } from './states/recall-list';
+import { IDRPluginSettings } from './models';
 
 interface Recall {
     question: string;
@@ -105,14 +107,21 @@ export default class IDRPlugin extends Plugin {
 
         this.registerEvent(
             this.app.workspace.on('file-open', async (file) => {
-                // Close and open view on file-open trigger
-                // TODO: Check another way to change recallsList
-                await this.activateView();
+                if (file?.basename) {
+                    void useRecallListState
+                        .getState()
+                        .loadRecallList(file.basename);
+                }
+
+                const editor = this.app.workspace.activeEditor?.editor;
+
+                if (editor) {
+                    ActiveEditorService.instance.setActiveEditor(editor);
+                }
             }),
         );
 
-        statesFacade.setPlugin(this);
-        void statesFacade.loadUser();
+        PluginService.instance.setPlugin(this);
 
         // this.registerEditorExtension(cmExtensions(this));
         await this.activateView();
@@ -144,7 +153,7 @@ export default class IDRPlugin extends Plugin {
             new Notice(`Select text to proceed`);
             return;
         }
-        // TODO: create apiKey guard
+
         if (!this.settings.apiKey) {
             new Notice(`Please provide IDR api key`);
             return;
@@ -159,7 +168,6 @@ export default class IDRPlugin extends Plugin {
     onunload() {
         this.app.workspace.detachLeavesOfType('idr-view');
         UnmountService.instance.unmount();
-        console.log('Unloading plugin');
     }
 }
 
@@ -335,6 +343,9 @@ class IDRSettingTab extends PluginSettingTab {
                     .onChange(async (value) => {
                         this.plugin.settings.apiKey = value;
                         await this.plugin.saveSettings();
+                        SettingsService.instance.setSettings(
+                            this.plugin.settings,
+                        );
                     }),
             );
         new Setting(containerEl)
@@ -347,6 +358,9 @@ class IDRSettingTab extends PluginSettingTab {
                         this.plugin.settings.isDarkTheme = checked;
                         setDarkTheme(checked);
                         await this.plugin.saveSettings();
+                        SettingsService.instance.setSettings(
+                            this.plugin.settings,
+                        );
                     }),
             );
     }
