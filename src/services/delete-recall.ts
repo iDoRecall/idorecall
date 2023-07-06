@@ -46,7 +46,7 @@ export class DeleteRecallService {
             }
         } else {
             NoticeService.instance.notice(
-                'Recall is`nt deleted, something wrong',
+                'Recall isn`t deleted, something wrong',
             );
         }
     }

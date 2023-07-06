@@ -22,7 +22,7 @@ export const App = () => {
     if (!isApiKeyExist) {
         return (
             <EmptyList
-                title={'Api key is`nt provided'}
+                title={'Api key isn`t provided'}
                 text={
                     'You can provide it in community plugins section of obsidian settings.'
                 }

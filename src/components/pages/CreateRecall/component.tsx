@@ -40,7 +40,7 @@ export const CreateRecall = () => {
             NoticeService.instance.notice('Recall created successfully');
         } else {
             NoticeService.instance.notice(
-                'Recall is`nt created, something wrong',
+                'Recall isn`t created, something wrong',
             );
         }
         navigate('/');
