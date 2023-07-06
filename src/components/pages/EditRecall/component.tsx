@@ -28,8 +28,10 @@ export const EditRecall = () => {
         void loadRecall();
     }, []);
 
-    const editRecall = (recall: Recall): void => {
-        void RecallService.instance.editRecall(recall);
+    const editRecall = async (recall: Recall): Promise<void> => {
+        setIsRecallLoading(true);
+        await RecallService.instance.editRecall(recall);
+        setIsRecallLoading(false);
         navigate('/');
     };
 

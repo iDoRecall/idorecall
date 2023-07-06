@@ -25,6 +25,16 @@ export class DeleteRecallService {
             .deleteRecall(recall)
             .catch(() => false);
 
+        if (!(isDeleted && block && activeEditor)) {
+            // once bug with link removing was seen, and still not resolved
+            console.warn('FOR FUTURE BUG SEE INFO:');
+            console.table({
+                isDeleted,
+                block,
+                activeEditor,
+            });
+        }
+
         if (isDeleted) {
             NoticeService.instance.notice('Recall deleted successfully');
             if (block && activeEditor) {

@@ -15,10 +15,10 @@ import {
 } from 'obsidian';
 import IDRView from './view';
 import { setDarkTheme } from './utils/setDarkTheme';
-import { statesFacade } from './states/statesFacade';
 import {
     ActiveEditorService,
     CreateRecallService,
+    PluginService,
     SettingsService,
     UnmountService,
 } from './services';
@@ -121,7 +121,7 @@ export default class IDRPlugin extends Plugin {
             }),
         );
 
-        statesFacade.setPlugin(this);
+        PluginService.instance.setPlugin(this);
 
         // this.registerEditorExtension(cmExtensions(this));
         await this.activateView();
@@ -153,7 +153,7 @@ export default class IDRPlugin extends Plugin {
             new Notice(`Select text to proceed`);
             return;
         }
-        // TODO: create apiKey guard
+
         if (!this.settings.apiKey) {
             new Notice(`Please provide IDR api key`);
             return;

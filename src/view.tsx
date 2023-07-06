@@ -4,8 +4,11 @@ import ReactDOM from 'react-dom';
 import { App } from './App';
 import IDRPlugin from './main';
 import { setDarkTheme } from './utils/setDarkTheme';
-import { ActiveEditorService, SettingsService } from './services';
-import { statesFacade } from './states/statesFacade';
+import {
+    ActiveEditorService,
+    LoadUserService,
+    SettingsService,
+} from './services';
 
 export default class IDRView extends ItemView {
     constructor(leaf: WorkspaceLeaf, plugin: IDRPlugin) {
@@ -23,7 +26,7 @@ export default class IDRView extends ItemView {
             );
         }
 
-        void statesFacade.loadUser();
+        LoadUserService.instance.loadUser();
     }
 
     getDisplayText() {
@@ -39,7 +42,6 @@ export default class IDRView extends ItemView {
     }
 
     async onOpen() {
-        // TODO: make app with strict width
         ReactDOM.render(
             <React.StrictMode>
                 <App />

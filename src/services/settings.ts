@@ -7,8 +7,13 @@ export class SettingsService {
 
     public setSettings(settings: IDRPluginSettings): void {
         const oldApiKey = usePluginState.getState().settings?.apiKey;
+
         if (oldApiKey !== settings.apiKey && settings.apiKey && !!oldApiKey) {
             void useUserState.getState().loadUser();
+        }
+
+        if (!!oldApiKey && !settings.apiKey) {
+            useUserState.getState().resetUser();
         }
         usePluginState.getState().setPluginSettings(settings);
     }
