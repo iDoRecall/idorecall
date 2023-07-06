@@ -11,7 +11,7 @@ import { Home } from './components/pages/Home';
 import { EditRecall } from './components/pages/EditRecall';
 import { useUserState } from './states/user';
 import { Loading } from './components/organisms/Loading';
-import { CreateRecall } from './components/pages/CreateRecall/component';
+import { CreateRecall } from './components/pages/CreateRecall';
 import { usePluginState } from './states/plugin';
 import { EmptyList } from './components/organisms/EmptyList';
 

@@ -8,6 +8,19 @@
   padding: 0;
 }
 
+// global width configuration
+div#idr-app {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(to bottom, var(--idr-contrast-bg) 0, var(--idr-contrast-bg) 115px, var(--idr-medium-bg) 115px, var(--idr-medium-bg) 100%);
+}
+
+div#idr-app > div {
+  min-width: 400px;
+  max-width: 600px;
+  width: inherit;
+}
+
 // global icon configuration
 .idr-icons {
   font-style: normal;
