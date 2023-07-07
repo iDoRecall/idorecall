@@ -8,7 +8,7 @@
         "isolatedModules": true,
         "module": "ESNext",
         "target": "es6",
-        "strictNullChecks": true,
+        "strictNullChecks": false,
         "allowJs": true,
         "noImplicitAny": true,
         "moduleResolution": "node",

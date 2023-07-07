@@ -2,23 +2,28 @@ import { create } from 'zustand';
 
 interface FormAnswerState {
     answer: string | null;
+    question: string | null;
     linkId: string | null;
-    setAnswer: (answer: string | null) => void;
+    setFields: (fields: {
+        answer: string | null;
+        question: string | null;
+    }) => void;
     setLinkId: (linkId: string) => void;
     reset: () => void;
 }
 
 export const useLaunchCreatingState = create<FormAnswerState>((set) => ({
     answer: null,
+    question: null,
     linkId: null,
     activeEditor: null,
-    setAnswer: (answer) => {
-        set({ answer });
+    setFields: (fields) => {
+        set(fields);
     },
     setLinkId: (linkId) => {
         set({ linkId });
     },
     reset: () => {
-        set({ answer: null, linkId: null });
+        set({ answer: null, question: null, linkId: null });
     },
 }));

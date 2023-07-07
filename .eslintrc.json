@@ -25,7 +25,8 @@
         "@typescript-eslint/no-misused-promises": "off",
         "no-new": "off",
         "no-void": "off",
-        "@typescript-eslint/dot-notation": "off"
+        "@typescript-eslint/dot-notation": "off",
+        "@typescript-eslint/prefer-nullish-coalescing": "off"
     },
     "settings": {
         "react": {

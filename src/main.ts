@@ -1,12 +1,7 @@
-// import { cmExtensions } from 'cm-extensions/cmExtensions';
+import { cmExtensions } from 'cm-extensions/cmExtensions';
 import {
     addIcon,
     App,
-    EditorTransaction,
-    Menu,
-    MenuItem,
-    Modal,
-    Notice,
     Plugin,
     PluginSettingTab,
     Setting,
@@ -17,24 +12,12 @@ import IDRView from './view';
 import { setDarkTheme } from './utils/setDarkTheme';
 import {
     ActiveEditorService,
-    CreateRecallService,
     PluginService,
     SettingsService,
     UnmountService,
 } from './services';
 import { useRecallListState } from './states/recall-list';
 import { IDRPluginSettings } from './models';
-
-interface Recall {
-    question: string;
-    answer: string;
-    source?: {
-        type: string;
-        link: string;
-    };
-    tags?: string;
-    reversible: boolean;
-}
 
 export default class IDRPlugin extends Plugin {
     settings: IDRPluginSettings;
@@ -53,22 +36,13 @@ export default class IDRPlugin extends Plugin {
         );
 
         this.addRibbonIcon('idr-icon', 'IDoRecall Plugin', () => {
-            // TODO: maybe trigger react view by press idr-icon
-            this.handleIDRModal();
+            void this.activateView();
         });
 
         this.registerView(
             'idr-view',
             (leaf: WorkspaceLeaf) => (this.view = new IDRView(leaf, this)),
         );
-
-        this.addCommand({
-            id: 'create-recall',
-            name: 'Create recall',
-            callback: () => {
-                this.handleIDRModal();
-            },
-        });
 
         this.addSettingTab(new IDRSettingTab(this.app, this));
 
@@ -94,18 +68,6 @@ export default class IDRPlugin extends Plugin {
         });
 
         this.registerEvent(
-            this.app.workspace.on('editor-menu', (menu: Menu) => {
-                menu.addItem((item: MenuItem) => {
-                    item.setTitle('Create recall')
-                        .setIcon('idr-icon')
-                        .onClick(() => {
-                            this.handleIDRModal();
-                        });
-                });
-            }),
-        );
-
-        this.registerEvent(
             this.app.workspace.on('file-open', async (file) => {
                 if (file?.basename) {
                     void useRecallListState
@@ -123,7 +85,7 @@ export default class IDRPlugin extends Plugin {
 
         PluginService.instance.setPlugin(this);
 
-        // this.registerEditorExtension(cmExtensions(this));
+        this.registerEditorExtension(cmExtensions(this));
         await this.activateView();
     }
 
@@ -148,175 +110,11 @@ export default class IDRPlugin extends Plugin {
         await this.saveData(this.settings);
     }
 
-    private handleIDRModal() {
-        if (!app?.workspace?.activeEditor?.editor?.getSelection()) {
-            new Notice(`Select text to proceed`);
-            return;
-        }
-
-        if (!this.settings.apiKey) {
-            new Notice(`Please provide IDR api key`);
-            return;
-        }
-
-        const answer = app.workspace.activeEditor?.editor?.getSelection();
-        if (typeof answer === 'string') {
-            CreateRecallService.instance.launchCreating(answer);
-        }
-    }
-
     onunload() {
         this.app.workspace.detachLeavesOfType('idr-view');
         UnmountService.instance.unmount();
     }
 }
-
-export class IDRModal extends Modal {
-    result: Recall = {
-        question: '',
-        answer: '',
-        reversible: false,
-    };
-
-    onSubmit: (result: Recall) => void;
-
-    constructor(app: App, onSubmit: (result: Recall) => void) {
-        super(app);
-        this.onSubmit = onSubmit;
-    }
-
-    onOpen() {
-        const { contentEl } = this;
-
-        contentEl.createEl('h1', { text: 'Create recall' });
-
-        new Setting(contentEl).setName('Question').addTextArea((text) =>
-            text.onChange((value) => {
-                this.result.question = value;
-            }),
-        );
-
-        new Setting(contentEl).setName('Answer').addTextArea((text) => {
-            const answer = app.workspace.activeEditor?.editor?.getSelection();
-            if (typeof answer === 'string') {
-                text.setValue(answer);
-                this.result.answer = answer;
-            }
-            text.onChange((value) => {
-                this.result.answer = value;
-            });
-        });
-
-        new Setting(contentEl)
-            .setName('Tags')
-            .setDesc('Example: tag1,tag2,tag3')
-            .addText((text) => {
-                text.onChange((value) => {
-                    this.result.tags = value;
-                });
-            });
-
-        new Setting(contentEl)
-            .setName('Reversible')
-            .setDesc('Set recall as reversible')
-            .addToggle((t) => {
-                t.onChange((value) => {
-                    this.result.reversible = value;
-                });
-            });
-
-        new Setting(contentEl).addButton((btn) =>
-            btn
-                .setButtonText('Submit')
-                .setCta()
-                .onClick(() => {
-                    if (!this.result.question.length) {
-                        new Notice('Question field is empty');
-                    } else if (!this.result.answer.length) {
-                        new Notice('Answer field is empty');
-                    } else {
-                        const link = getLink();
-                        this.result.source = {
-                            type: 'simple_source',
-                            link: `obsidian://idr-uri?vault=${this.app.vault.getName()}&file=${
-                                this.app.workspace.getActiveFile()?.basename
-                            }&block=${link}`,
-                        };
-                        this.close();
-                        this.onSubmit(this.result);
-                    }
-                }),
-        );
-    }
-
-    onClose() {
-        const { contentEl } = this;
-        contentEl.empty();
-    }
-}
-
-function getLink() {
-    const editor = app.workspace.activeEditor?.editor;
-    if (!editor) {
-        return '';
-    }
-    const selections = editor.listSelections();
-    const transaction: EditorTransaction = {
-        changes: [],
-    };
-
-    const file = app.workspace.getActiveFile();
-    if (!file) {
-        return '';
-    }
-    let linkId = `^${genID()}`;
-    for (const selection of selections) {
-        const cursorFrom = selection.anchor;
-        const cursorTo = selection.head;
-        const minLine = Math.min(cursorFrom.line, cursorTo.line);
-        const maxLine = Math.max(cursorFrom.line, cursorTo.line);
-        const maxLineLength = editor.getLine(maxLine).length;
-
-        const updatedLines: string[] = [];
-        for (let lineNumber = minLine; lineNumber <= maxLine; lineNumber++) {
-            let block = editor.getLine(lineNumber);
-            const blockIDRegex = /(?:^| +)(?<blockID>\^[a-zA-Z0-9-]+)$/u;
-
-            if (lineNumber === minLine) {
-                const blockIDMatch = block.match(blockIDRegex)?.groups?.blockID;
-                const blockID =
-                    blockIDMatch === undefined ? null : String(blockIDMatch);
-
-                if (blockID === null) {
-                    block = block.replace(/\s*?$/, ` ${linkId}`);
-                } else {
-                    linkId = blockID;
-                }
-            }
-            updatedLines.push(block);
-        }
-
-        transaction.changes?.push({
-            from: { line: minLine, ch: 0 },
-            to: { line: maxLine, ch: maxLineLength },
-            text: updatedLines.join('\n'),
-        });
-        transaction.selections = selections.map((selection) => {
-            return { from: selection.anchor, to: selection.head };
-        });
-        editor.transaction(transaction);
-    }
-    return linkId;
-}
-
-const genID = (length = 5) => {
-    const characters = 'abcdefghijklmnopqrstuvwxyz-0123456789';
-    let id = '';
-    while (id.length < length) {
-        id += characters[Math.floor(Math.random() * characters.length)];
-    }
-    return id.slice(0, length);
-};
 
 class IDRSettingTab extends PluginSettingTab {
     plugin: IDRPlugin;

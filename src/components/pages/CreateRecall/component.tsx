@@ -16,7 +16,7 @@ import { Recall } from '../../../models';
 
 export const CreateRecall = () => {
     const { user } = useUserState();
-    const { answer } = useLaunchCreatingState();
+    const { answer = null, question = null, reset } = useLaunchCreatingState();
     const { loadTagsByQuery, tags } = useFormTagsState();
     const { loadClassesByQuery, classes } = useFormClassesState();
     const { isLoading, saveRecall } = useCreateRecallState();
@@ -30,6 +30,7 @@ export const CreateRecall = () => {
             } else {
                 CreateRecallService.instance.unLaunchCreating();
             }
+            reset();
         };
     }, []);
 
@@ -56,9 +57,12 @@ export const CreateRecall = () => {
                     <RecallForm
                         tagSearch={tags}
                         classesSearch={classes}
-                        partialRecall={
-                            answer ? { answer, answerMarkup: answer } : null
-                        }
+                        partialRecall={{
+                            answer,
+                            answerMarkup: answer,
+                            question,
+                            questionMarkup: question,
+                        }}
                         onTagInput={loadTagsByQuery}
                         onClassesInput={loadClassesByQuery}
                         key='content'
