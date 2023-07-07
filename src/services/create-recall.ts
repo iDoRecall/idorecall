@@ -8,11 +8,14 @@ import { getSelectionLink, removeSelectionLink } from '../utils/selectionLink';
 export class CreateRecallService {
     private static _instance: CreateRecallService;
 
-    public launchCreating(answer: string): void {
+    public launchCreating(fields: {
+        answer: string | null;
+        question: string | null;
+    }): void {
         const history = createBrowserHistory();
         const { plugin } = usePluginState.getState();
-        const { setAnswer, setLinkId } = useLaunchCreatingState.getState();
-        setAnswer(answer);
+        const { setFields, setLinkId } = useLaunchCreatingState.getState();
+        setFields(fields);
         setLinkId(getSelectionLink());
         history.push('/create');
         void plugin?.activateView();
@@ -36,7 +39,7 @@ export class CreateRecallService {
             groupIds: recall.shareClasses?.map((group) => group.id),
         };
 
-        return await RecallService.instance.createRecall(payload).catch((e) => {
+        return await RecallService.instance.createRecall(payload).catch(() => {
             if (linkId && activeEditor) {
                 removeSelectionLink(linkId, activeEditor);
             }

@@ -4,6 +4,7 @@ import React from 'react';
 import { Mark } from './Mark';
 import { InlineStyle, resolveStyles } from './styles';
 import './styles/InlineMenu.css';
+import { CreateRecallService } from '../../services';
 
 export const InlineMenuComponent: React.FC<{
     cm?: EditorView;
@@ -17,14 +18,25 @@ export const InlineMenuComponent: React.FC<{
         if (!cm) return;
         const selection = cm.state.selection.main;
         const selectedText = cm.state.sliceDoc(selection.from, selection.to);
-        console.log(s, cm, selectedText);
 
         switch (s.value) {
             case 'toQuestionAndAnswer':
+                CreateRecallService.instance.launchCreating({
+                    answer: selectedText,
+                    question: selectedText,
+                });
                 break;
             case 'toQuestion':
+                CreateRecallService.instance.launchCreating({
+                    answer: null,
+                    question: selectedText,
+                });
                 break;
             case 'toAnswer':
+                CreateRecallService.instance.launchCreating({
+                    answer: selectedText,
+                    question: null,
+                });
                 break;
         }
     };

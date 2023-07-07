@@ -40,6 +40,17 @@ const getCursorTooltips =
                     arrow: false,
                     create: (view: EditorView) => {
                         const dom = document.createElement('div');
+                        const listener = () => {
+                            if (document.getSelection().isCollapsed) {
+                                ReactDOM.unmountComponentAtNode(dom);
+                                dom.hidden = true;
+                                document.removeEventListener(
+                                    'selectionchange',
+                                    listener,
+                                );
+                            }
+                        };
+                        document.addEventListener('selectionchange', listener);
                         dom.className = 'cm-tooltip-cursor';
                         ReactDOM.render(
                             <InlineMenuComponent

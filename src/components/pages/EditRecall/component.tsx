@@ -4,7 +4,6 @@ import { MainContentTemplate } from '../../templates/MainContentTemplate';
 import { Header } from '../../molecules/Header';
 import { useNavigate, useParams } from 'react-router';
 import { RecallForm } from '../../organisms/RecallForm';
-import { useLaunchCreatingState } from '../../../states/launch-creating';
 import { useFormTagsState } from '../../../states/form-tags';
 import { useFormClassesState } from '../../../states/form-classes';
 import { Recall } from '../../../models';
@@ -18,7 +17,6 @@ export const EditRecall = () => {
     const navigate = useNavigate();
     const { recallId } = useParams();
     const { user } = useUserState();
-    const { answer } = useLaunchCreatingState();
     const { loadTagsByQuery, tags } = useFormTagsState();
     const { loadClassesByQuery, classes } = useFormClassesState();
     const [recall, setRecall] = useState<Recall>();
@@ -62,9 +60,6 @@ export const EditRecall = () => {
                         recall={recallId ? recall : null}
                         tagSearch={tags}
                         classesSearch={classes}
-                        partialRecall={
-                            answer ? { answer, answerMarkup: answer } : null
-                        }
                         onTagInput={loadTagsByQuery}
                         onClassesInput={loadClassesByQuery}
                         key='content'
