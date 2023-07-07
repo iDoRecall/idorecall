@@ -4,14 +4,9 @@ class T {
     all = {
         en: {
             styles: {
-                bold: 'Bold',
-                italics: 'Italics',
-                strikethrough: 'Strikethrough',
-                code: 'Code',
-                link: 'Web Link',
-                blocklink: 'Link to Note',
-                textColor: 'Text Color',
-                highlight: 'Highlight',
+                qNA: 'To question and answer',
+                toQuestion: 'To question',
+                toAnswer: 'To answer',
             },
         },
     };

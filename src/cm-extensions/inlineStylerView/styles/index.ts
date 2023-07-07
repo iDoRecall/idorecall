@@ -1,14 +1,12 @@
-import defaultStyles from './default'
+import defaultStyles from './default';
 
-export type InlineStyle = {
-    label: string
-    value: string
-    insertOffset: number
-    cursorOffset?: number
-    icon: string
-    mark?: string
+export interface InlineStyle {
+    label: string;
+    value: string;
+    icon: string;
+    mark?: string;
 }
 
 export function resolveStyles() {
-    return defaultStyles
+    return defaultStyles;
 }
