@@ -2,6 +2,8 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { environment } from '../environments/environment';
 import { usePluginState } from '../states/plugin';
 import { HttpResponse } from '../models';
+import { NoticeService } from '../services';
+import { getFragment } from '../utils/getFragment';
 
 export class RestService {
     private static _instance: RestService;
@@ -11,6 +13,15 @@ export class RestService {
             Authorization: usePluginState.getState().settings?.apiKey,
         },
     });
+
+    constructor() {
+        this.api.interceptors.response.use(null, async function (error: Error) {
+            NoticeService.instance.notice(
+                getFragment(`<b>${'Error'}</b>, ${error.message}.`),
+            );
+            return await Promise.reject(error);
+        });
+    }
 
     public static get instance(): RestService {
         if (!RestService._instance) {
