@@ -24,7 +24,7 @@ const getCursorTooltips =
     (plugin: IDRPlugin) =>
     (state: EditorState): readonly Tooltip[] => {
         return state.selection.ranges
-            .filter((range) => !range.empty)
+            .filter((range) => !range.empty && !!range.to)
             .map((range) => {
                 const expandedRange = expandRange(range, state);
                 // let line = state.doc.lineAt(range.head);

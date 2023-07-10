@@ -65,11 +65,8 @@ export const RecallForm: React.FC<RecallFormProps> = ({
 
     const handleSubmitWithValidation = (values: Recall) => {
         if (!errorQuestion && !errorAnswer) {
-            values.answer =
-                values.answer || getValueFromMarkup(values.answerMarkup);
-
-            values.question =
-                values.question || getValueFromMarkup(values.questionMarkup);
+            values.answer = getValueFromMarkup(values.answerMarkup);
+            values.question = getValueFromMarkup(values.questionMarkup);
 
             onSubmit(values);
         }

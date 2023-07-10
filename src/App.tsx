@@ -14,12 +14,14 @@ import { Loading } from './components/organisms/Loading';
 import { CreateRecall } from './components/pages/CreateRecall';
 import { usePluginState } from './states/plugin';
 import { EmptyList } from './components/organisms/EmptyList';
+import { setAppWrapperWithoutHeader } from './utils/setAppWrapperWithoutHeader';
 
 export const App = () => {
     const isUserLoading = useUserState((state) => state.isLoading);
     const isApiKeyExist = !!usePluginState((state) => state.settings?.apiKey);
 
     if (!isApiKeyExist) {
+        setAppWrapperWithoutHeader(true);
         return (
             <EmptyList
                 title={'Api key isn`t provided'}
@@ -31,9 +33,11 @@ export const App = () => {
     }
 
     if (isUserLoading) {
+        setAppWrapperWithoutHeader(true);
         return <Loading />;
     }
 
+    setAppWrapperWithoutHeader(false);
     return (
         <Router>
             <Routes>

@@ -15,6 +15,10 @@ div#idr-app {
   background: linear-gradient(to bottom, var(--idr-contrast-bg) 0, var(--idr-contrast-bg) 115px, var(--idr-medium-bg) 115px, var(--idr-medium-bg) 100%);
 }
 
+div#idr-app.no-header {
+  background: var(--idr-medium-bg);
+}
+
 div#idr-app > div {
   min-width: 400px;
   max-width: 600px;
@@ -35,4 +39,9 @@ div#idr-app > div {
 
   // Uncomment for 3D effect
   text-shadow: 1px 1px 1px var(--idr-box-shadow-color);
+}
+
+// just fun
+.is-flashing {
+  background-color: rgba(158, 198, 180, 0.4) !important;
 }
