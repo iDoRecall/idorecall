@@ -6,6 +6,8 @@ import { SettingsService } from './settings';
 import { ActiveEditorService } from './active-editor';
 import { LoadUserService } from './load-user';
 import { PluginService } from './plugin';
+import { ViewOpenService } from './view-open';
+import { RecallListService } from './recall-list';
 
 export { CreateRecallService };
 export { UnmountService };
@@ -15,3 +17,5 @@ export { SettingsService };
 export { ActiveEditorService };
 export { LoadUserService };
 export { PluginService };
+export { ViewOpenService };
+export { RecallListService };

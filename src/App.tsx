@@ -15,10 +15,20 @@ import { CreateRecall } from './components/pages/CreateRecall';
 import { usePluginState } from './states/plugin';
 import { EmptyList } from './components/organisms/EmptyList';
 import { setAppWrapperWithoutHeader } from './utils/setAppWrapperWithoutHeader';
+import { useEffect } from 'react';
+import { useViewOpenState } from './states/view-open-state';
 
 export const App = () => {
     const isUserLoading = useUserState((state) => state.isLoading);
     const isApiKeyExist = !!usePluginState((state) => state.settings?.apiKey);
+    const { setIsOpened } = useViewOpenState();
+
+    useEffect(() => {
+        setIsOpened(true);
+        return () => {
+            setIsOpened(false);
+        };
+    }, []);
 
     if (!isApiKeyExist) {
         setAppWrapperWithoutHeader(true);

@@ -13,10 +13,11 @@ import { setDarkTheme } from './utils/setDarkTheme';
 import {
     ActiveEditorService,
     PluginService,
+    RecallListService,
     SettingsService,
     UnmountService,
+    ViewOpenService,
 } from './services';
-import { useRecallListState } from './states/recall-list';
 import { IDRPluginSettings } from './models';
 
 export default class IDRPlugin extends Plugin {
@@ -69,10 +70,8 @@ export default class IDRPlugin extends Plugin {
 
         this.registerEvent(
             this.app.workspace.on('file-open', async (file) => {
-                if (file?.basename) {
-                    void useRecallListState
-                        .getState()
-                        .loadRecallList(file.basename);
+                if (file?.basename && ViewOpenService.instance.isOpened) {
+                    RecallListService.instance.loadRecallList(file.basename);
                 }
 
                 const editor = this.app.workspace.activeEditor?.editor;
