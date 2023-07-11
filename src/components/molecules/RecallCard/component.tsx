@@ -11,7 +11,7 @@ export const RecallCard: React.FC<RecallCardProps> = ({
     deleteRecall,
 }) => {
     const [isActionsDisabled, setIsActionsDisabled] = useState<boolean>(false);
-    const cardRef = useRef<HTMLDivElement>(null);
+    const cardRef = useRef<any>(null);
     const navigate = useNavigate();
 
     const handleDelete: MouseEventHandler<HTMLDivElement> = (event) => {
@@ -24,8 +24,9 @@ export const RecallCard: React.FC<RecallCardProps> = ({
     };
 
     return (
-        <div
+        <a
             ref={cardRef}
+            href={recall.source.link}
             onClick={() => {
                 changeActiveCard(recall.id, true);
             }}
@@ -127,6 +128,6 @@ export const RecallCard: React.FC<RecallCardProps> = ({
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
     );
 };
