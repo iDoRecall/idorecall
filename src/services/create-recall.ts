@@ -28,13 +28,15 @@ export class CreateRecallService {
             ...recall,
             source: {
                 type: 'simple_source',
-                link: `obsidian://idr-uri?vault=${usePluginState
-                    .getState()
-                    .plugin?.app.vault.getName()}&file=${
-                    usePluginState
+                link: encodeURI(
+                    `obsidian://idr-uri?vault=${usePluginState
                         .getState()
-                        .plugin?.app.workspace.getActiveFile()?.basename
-                }&block=${linkId}`,
+                        .plugin?.app.vault.getName()}&file=${
+                        usePluginState
+                            .getState()
+                            .plugin?.app.workspace.getActiveFile()?.basename
+                    }&block=${linkId}`,
+                ),
             },
             groupIds: recall.shareClasses?.map((group) => group.id),
         };

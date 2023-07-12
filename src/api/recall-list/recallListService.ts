@@ -14,7 +14,7 @@ export class RecallListService {
 
     public async getRecalls(basename: string): Promise<Recall[]> {
         return await this.rest.get<Recall[]>('obsidian/recalls', {
-            params: { file: basename },
+            params: { file: encodeURI(basename) },
         });
     }
 }
