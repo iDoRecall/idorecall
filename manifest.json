@@ -1,6 +1,6 @@
 {
-    "id": "obsidian-idr-plugin-md",
-    "name": "IDoRecall with MD",
+    "id": "obsidian-idr-plugin",
+    "name": "IDoRecall",
     "version": "1.0.0",
     "minAppVersion": "0.15.0",
     "description": "IDoRecall plugin allows you to create recalls from Obsidian notes",
