@@ -26,7 +26,9 @@ export default class IDRView extends ItemView {
             );
         }
 
-        LoadUserService.instance.loadUser();
+        if (!LoadUserService.instance.isUserExist) {
+            LoadUserService.instance.loadUser();
+        }
     }
 
     getDisplayText() {

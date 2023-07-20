@@ -13,9 +13,8 @@ import { setDarkTheme } from './utils/setDarkTheme';
 import {
     ActiveEditorService,
     PluginService,
-    RecallListService,
     SettingsService,
-    UnmountService,
+    RouterPathService,
     ViewOpenService,
 } from './services';
 import { IDRPluginSettings } from './models';
@@ -71,7 +70,8 @@ export default class IDRPlugin extends Plugin {
         this.registerEvent(
             this.app.workspace.on('file-open', async (file) => {
                 if (file?.basename && ViewOpenService.instance.isOpened) {
-                    RecallListService.instance.loadRecallList(file.basename);
+                    RouterPathService.instance.moveToRoot();
+                    await this.activateView();
                 }
 
                 const editor = this.app.workspace.activeEditor?.editor;
@@ -111,7 +111,7 @@ export default class IDRPlugin extends Plugin {
 
     onunload() {
         this.app.workspace.detachLeavesOfType('idr-view');
-        UnmountService.instance.unmount();
+        RouterPathService.instance.moveToRoot();
     }
 }
 

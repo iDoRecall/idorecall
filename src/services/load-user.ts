@@ -7,6 +7,10 @@ export class LoadUserService {
         void useUserState.getState().loadUser();
     }
 
+    public get isUserExist(): boolean {
+        return !!useUserState.getState().user;
+    }
+
     public static get instance(): LoadUserService {
         if (!LoadUserService._instance) {
             LoadUserService._instance = new LoadUserService();

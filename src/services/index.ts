@@ -1,5 +1,5 @@
 import { CreateRecallService } from './create-recall';
-import { UnmountService } from './unmount';
+import { RouterPathService } from './router-path';
 import { NoticeService } from './notice';
 import { DeleteRecallService } from './delete-recall';
 import { SettingsService } from './settings';
@@ -10,7 +10,7 @@ import { ViewOpenService } from './view-open';
 import { RecallListService } from './recall-list';
 
 export { CreateRecallService };
-export { UnmountService };
+export { RouterPathService };
 export { NoticeService };
 export { DeleteRecallService };
 export { SettingsService };

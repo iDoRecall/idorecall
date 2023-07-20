@@ -11,6 +11,7 @@ interface RecallListState {
 export const useRecallListState = create<RecallListState>((set) => ({
     recallList: [],
     isLoading: false,
+    // TODO: In recall list after loading validate activeEditor text to be equal with links in recall sources. Not equal links from editor must be deleted
     loadRecallList: async (basename) => {
         set({ isLoading: true });
         const response = await RecallListService.instance.getRecalls(basename);
