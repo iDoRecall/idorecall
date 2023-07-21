@@ -69,7 +69,13 @@ export default class IDRPlugin extends Plugin {
 
         this.registerEvent(
             this.app.workspace.on('file-open', async (file) => {
-                if (file?.basename && ViewOpenService.instance.isOpened) {
+                const isRoot = window.location.pathname === '/';
+                if (
+                    file?.basename &&
+                    ViewOpenService.instance.isOpened &&
+                    !isRoot
+                ) {
+                    console.log(window.location, window);
                     RouterPathService.instance.moveToRoot();
                     await this.activateView();
                 }
