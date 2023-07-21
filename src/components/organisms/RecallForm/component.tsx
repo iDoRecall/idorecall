@@ -317,13 +317,16 @@ export const RecallForm: React.FC<RecallFormProps> = ({
                                 type='submit'
                                 colorType='dark'
                                 isDisabled={
-                                    !!errorQuestion ??
-                                    !!errorAnswer ??
-                                    (!values.questionMarkup &&
-                                        !touched.questionMarkup) ??
-                                    (!values.answerMarkup &&
-                                        !touched.answerMarkup) ??
-                                    (!!values.id && checkIsValuesEqual(values))
+                                    !values.questionMarkup ||
+                                    !values.answerMarkup ||
+                                    (!!errorQuestion ??
+                                        !!errorAnswer ??
+                                        (!values.questionMarkup &&
+                                            !touched.questionMarkup) ??
+                                        (!values.answerMarkup &&
+                                            !touched.answerMarkup) ??
+                                        (!!values.id &&
+                                            checkIsValuesEqual(values)))
                                 }
                             >
                                 {values.id ? 'SAVE RECALL' : 'ADD RECALL'}
