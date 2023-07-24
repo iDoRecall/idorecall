@@ -16,6 +16,7 @@ import {
     SettingsService,
     RouterPathService,
     ViewOpenService,
+    RecallListService,
 } from './services';
 import { IDRPluginSettings } from './models';
 
@@ -77,6 +78,14 @@ export default class IDRPlugin extends Plugin {
                 ) {
                     RouterPathService.instance.moveToRoot();
                     await this.activateView();
+                }
+
+                if (
+                    file?.basename &&
+                    ViewOpenService.instance.isOpened &&
+                    isRoot
+                ) {
+                    RecallListService.instance.loadRecallList(file.basename);
                 }
 
                 const editor = this.app.workspace.activeEditor?.editor;

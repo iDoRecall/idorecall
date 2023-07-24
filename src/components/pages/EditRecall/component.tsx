@@ -63,6 +63,7 @@ export const EditRecall = () => {
                         onTagInput={loadTagsByQuery}
                         onClassesInput={loadClassesByQuery}
                         key='content'
+                        submitDisabledWithoutChanges={true}
                         onSubmit={editRecall}
                     />
                 )}

@@ -9,4 +9,5 @@ export interface RecallFormProps {
     onSubmit: (recall: Recall) => void;
     tagSearch: AutocompleteItem[];
     classesSearch: AutocompleteItem[];
+    submitDisabledWithoutChanges: boolean;
 }

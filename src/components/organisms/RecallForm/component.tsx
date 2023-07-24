@@ -36,6 +36,7 @@ export const RecallForm: React.FC<RecallFormProps> = ({
     onClassesInput,
     onSubmit,
     classesSearch = [],
+    submitDisabledWithoutChanges,
 }) => {
     const [formValue, setFormValue] = useState<Recall>(
         recall ?? { ...INITIAL_RECALL, ...partialRecall },
@@ -317,7 +318,8 @@ export const RecallForm: React.FC<RecallFormProps> = ({
                                 type='submit'
                                 colorType='dark'
                                 isDisabled={
-                                    checkIsValuesEqual(values) ||
+                                    (submitDisabledWithoutChanges &&
+                                        checkIsValuesEqual(values)) ||
                                     !values.questionMarkup ||
                                     !values.answerMarkup ||
                                     (!!errorQuestion ??
