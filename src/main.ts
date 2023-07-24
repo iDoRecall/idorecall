@@ -75,7 +75,6 @@ export default class IDRPlugin extends Plugin {
                     ViewOpenService.instance.isOpened &&
                     !isRoot
                 ) {
-                    console.log(window.location, window);
                     RouterPathService.instance.moveToRoot();
                     await this.activateView();
                 }
