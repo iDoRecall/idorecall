@@ -12,9 +12,9 @@ export class RecallListService {
         return RecallListService._instance;
     }
 
-    public async getRecalls(basename: string): Promise<Recall[]> {
+    public async getRecalls(ctime: number): Promise<Recall[]> {
         return await this.rest.get<Recall[]>('obsidian/recalls', {
-            params: { file: encodeURI(basename) },
+            params: { file: encodeURI(String(ctime)) },
         });
     }
 }

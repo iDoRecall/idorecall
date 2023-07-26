@@ -40,9 +40,9 @@ export class DeleteRecallService {
             if (block && activeEditor) {
                 removeSelectionLink(block, activeEditor);
             }
-            const basename = plugin?.app.workspace.getActiveFile()?.basename;
-            if (basename) {
-                void useRecallListState.getState().loadRecallList(basename);
+            const ctime = plugin?.app.workspace.getActiveFile()?.stat.ctime;
+            if (ctime) {
+                void useRecallListState.getState().loadRecallList(ctime);
             }
         } else {
             NoticeService.instance.notice(
