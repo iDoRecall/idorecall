@@ -57,8 +57,8 @@ export const RecallForm: React.FC<RecallFormProps> = ({
             setActiveAnswerMarkup(true);
             setFormValue({
                 ...values,
-                answerMarkup: `${questionMarkup} `,
-                questionMarkup: `${answerMarkup} `,
+                answerMarkup: questionMarkup ? `${questionMarkup} ` : '',
+                questionMarkup: answerMarkup ? `${answerMarkup} ` : '',
             });
         },
         [],
