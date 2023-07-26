@@ -34,7 +34,7 @@ export class CreateRecallService {
                         .plugin?.app.vault.getName()}&file=${
                         usePluginState
                             .getState()
-                            .plugin?.app.workspace.getActiveFile()?.basename
+                            .plugin?.app.workspace.getActiveFile()?.stat.ctime
                     }&block=${linkId}`,
                 ),
             },

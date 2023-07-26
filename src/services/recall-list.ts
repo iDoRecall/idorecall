@@ -3,8 +3,8 @@ import { useRecallListState } from '../states/recall-list';
 export class RecallListService {
     private static _instance: RecallListService;
 
-    public loadRecallList(basename: string): void {
-        void useRecallListState.getState().loadRecallList(basename);
+    public loadRecallList(ctime: number): void {
+        void useRecallListState.getState().loadRecallList(ctime);
     }
 
     public static get instance(): RecallListService {
