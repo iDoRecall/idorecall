@@ -11,7 +11,11 @@ import { useFormTagsState } from '../../../states/form-tags';
 import { useFormClassesState } from '../../../states/form-classes';
 import { useUserState } from '../../../states/user';
 import { useCreateRecallState } from '../../../states/create-recall';
-import { CreateRecallService, NoticeService } from '../../../services';
+import {
+    CreateRecallService,
+    NoticeService,
+    RewriteFormService,
+} from '../../../services';
 import { Recall } from '../../../models';
 
 export const CreateRecall = () => {
@@ -25,12 +29,14 @@ export const CreateRecall = () => {
 
     useEffect(() => {
         return () => {
-            if (refIsSubmitted.current) {
-                CreateRecallService.instance.resetCreatingData();
-            } else {
-                CreateRecallService.instance.unLaunchCreating();
+            if (!RewriteFormService.instance.isRewrite) {
+                if (refIsSubmitted.current) {
+                    CreateRecallService.instance.resetCreatingData();
+                } else {
+                    CreateRecallService.instance.unLaunchCreating();
+                }
+                reset();
             }
-            reset();
         };
     }, []);
 

@@ -4,6 +4,7 @@ import { useLaunchCreatingState } from '../states/launch-creating';
 import { Recall } from '../models';
 import { RecallService } from '../api/recall';
 import { getSelectionLink, removeSelectionLink } from '../utils/selectionLink';
+import { RewriteFormService } from './rewrite-form';
 
 export class CreateRecallService {
     private static _instance: CreateRecallService;
@@ -15,6 +16,15 @@ export class CreateRecallService {
         const history = createBrowserHistory();
         const { plugin } = usePluginState.getState();
         const { setFields, setLinkId } = useLaunchCreatingState.getState();
+        const { linkId } = useLaunchCreatingState.getState();
+
+        if (linkId) {
+            this.unLaunchCreating();
+            RewriteFormService.instance.setIsRewrite(true);
+        } else {
+            RewriteFormService.instance.setIsRewrite(false);
+        }
+
         setFields(fields);
         setLinkId(getSelectionLink());
         history.push('/create');

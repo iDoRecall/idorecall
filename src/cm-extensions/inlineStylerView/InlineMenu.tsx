@@ -15,9 +15,7 @@ export const InlineMenuComponent: React.FC<{
     const toggleMarkAction = (e: React.MouseEvent, s: InlineStyle) => {
         e.preventDefault();
         const cm = props.cm;
-        const isRoot = window.location.pathname === '/';
         if (!cm) return;
-        if (!isRoot) return;
         const selection = cm.state.selection.main;
         const selectedText = cm.state.sliceDoc(selection.from, selection.to);
 

@@ -8,6 +8,7 @@ import { LoadUserService } from './load-user';
 import { PluginService } from './plugin';
 import { ViewOpenService } from './view-open';
 import { RecallListService } from './recall-list';
+import { RewriteFormService } from './rewrite-form';
 
 export { CreateRecallService };
 export { RouterPathService };
@@ -19,3 +20,4 @@ export { LoadUserService };
 export { PluginService };
 export { ViewOpenService };
 export { RecallListService };
+export { RewriteFormService };
