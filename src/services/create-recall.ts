@@ -18,15 +18,15 @@ export class CreateRecallService {
         const { setFields, setLinkId } = useLaunchCreatingState.getState();
         const { linkId } = useLaunchCreatingState.getState();
 
+        setLinkId(getSelectionLink());
         if (linkId) {
-            this.unLaunchCreating();
+            this.unLaunchCreating(linkId);
             RewriteFormService.instance.setIsRewrite(true);
         } else {
             RewriteFormService.instance.setIsRewrite(false);
         }
 
         setFields(fields);
-        setLinkId(getSelectionLink());
         history.push('/create');
         void plugin?.activateView();
     }
@@ -59,8 +59,7 @@ export class CreateRecallService {
         });
     }
 
-    public unLaunchCreating(): void {
-        const { linkId } = useLaunchCreatingState.getState();
+    public unLaunchCreating(linkId: string): void {
         const { activeEditor } = usePluginState.getState();
         if (linkId && activeEditor) {
             removeSelectionLink(linkId, activeEditor);

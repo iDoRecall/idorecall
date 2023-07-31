@@ -20,7 +20,12 @@ import { Recall } from '../../../models';
 
 export const CreateRecall = () => {
     const { user } = useUserState();
-    const { answer = null, question = null, reset } = useLaunchCreatingState();
+    const {
+        answer = null,
+        question = null,
+        reset,
+        linkId,
+    } = useLaunchCreatingState();
     const { loadTagsByQuery, tags } = useFormTagsState();
     const { loadClassesByQuery, classes } = useFormClassesState();
     const { isLoading, saveRecall } = useCreateRecallState();
@@ -33,9 +38,11 @@ export const CreateRecall = () => {
                 if (refIsSubmitted.current) {
                     CreateRecallService.instance.resetCreatingData();
                 } else {
-                    CreateRecallService.instance.unLaunchCreating();
+                    CreateRecallService.instance.unLaunchCreating(linkId);
                 }
                 reset();
+            } else {
+                CreateRecallService.instance.unLaunchCreating(linkId);
             }
         };
     }, []);
