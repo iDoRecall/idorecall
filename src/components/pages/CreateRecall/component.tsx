@@ -41,7 +41,7 @@ export const CreateRecall = () => {
                     CreateRecallService.instance.unLaunchCreating(linkId);
                 }
                 reset();
-            } else {
+            } else if (!refIsSubmitted.current) {
                 CreateRecallService.instance.unLaunchCreating(linkId);
             }
         };
