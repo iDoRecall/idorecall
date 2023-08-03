@@ -4,6 +4,7 @@ import { RecallService } from '../api/recall';
 import { NoticeService } from './notice';
 import { removeSelectionLink } from '../utils/selectionLink';
 import { useRecallListState } from '../states/recall-list';
+import { isLinkIdUsed } from '../utils/is-link-id-used';
 
 export class DeleteRecallService {
     private static _instance: DeleteRecallService;
@@ -37,12 +38,16 @@ export class DeleteRecallService {
 
         if (isDeleted) {
             NoticeService.instance.notice('Recall deleted successfully');
-            if (block && activeEditor) {
-                removeSelectionLink(block, activeEditor);
-            }
             const ctime = plugin?.app.workspace.getActiveFile()?.stat.ctime;
             if (ctime) {
-                void useRecallListState.getState().loadRecallList(ctime);
+                void useRecallListState
+                    .getState()
+                    .loadRecallList(ctime)
+                    .then(() => {
+                        if (block && activeEditor && !isLinkIdUsed(block)) {
+                            removeSelectionLink(block, activeEditor);
+                        }
+                    });
             }
         } else {
             NoticeService.instance.notice(
