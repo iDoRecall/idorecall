@@ -5,6 +5,7 @@ import { Recall } from '../models';
 import { RecallService } from '../api/recall';
 import { getSelectionLink, removeSelectionLink } from '../utils/selectionLink';
 import { RewriteFormService } from './rewrite-form';
+import { isLinkIdUsed } from '../utils/is-link-id-used';
 
 export class CreateRecallService {
     private static _instance: CreateRecallService;
@@ -17,10 +18,15 @@ export class CreateRecallService {
         const { plugin } = usePluginState.getState();
         const { setFields, setLinkId } = useLaunchCreatingState.getState();
         const { linkId } = useLaunchCreatingState.getState();
+        const newLinkId = getSelectionLink();
+        setLinkId(newLinkId);
 
-        setLinkId(getSelectionLink());
+        const linkIdIsUsed = isLinkIdUsed(linkId);
+
         if (linkId) {
-            this.unLaunchCreating(linkId);
+            if (linkId !== newLinkId && !linkIdIsUsed) {
+                this.unLaunchCreating(linkId);
+            }
             RewriteFormService.instance.setIsRewrite(true);
         } else {
             RewriteFormService.instance.setIsRewrite(false);

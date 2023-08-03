@@ -17,6 +17,7 @@ import {
     RewriteFormService,
 } from '../../../services';
 import { Recall } from '../../../models';
+import { isLinkIdUsed } from '../../../utils/is-link-id-used';
 
 export const CreateRecall = () => {
     const { user } = useUserState();
@@ -41,7 +42,7 @@ export const CreateRecall = () => {
                     CreateRecallService.instance.unLaunchCreating(linkId);
                 }
                 reset();
-            } else if (!refIsSubmitted.current) {
+            } else if (!refIsSubmitted.current && !isLinkIdUsed(linkId)) {
                 CreateRecallService.instance.unLaunchCreating(linkId);
             }
         };
