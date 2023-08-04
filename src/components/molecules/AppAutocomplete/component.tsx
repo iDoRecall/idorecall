@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import './styles.scss';
 import { useClickOutside } from '../../../hooks/useClickOutside';
 import { uuid } from '../../../utils/guid';
-import { debounce } from 'obsidian';
 import { AutocompleteItem } from '../../../models';
 import { AppAutocompleteProps } from './AppAutocompleteProps';
 
@@ -94,16 +93,6 @@ const AppAutocomplete: React.FC<AppAutocompleteProps> = ({
             handleClickOutside();
         }
     }, [isComponentVisible]);
-
-    const debounceOnAdd = useCallback(
-        debounce(() => {
-            if (action) {
-                return;
-            }
-            setAction('add');
-        }, 150),
-        [action],
-    );
 
     const deleteSelectedOptions = (clickOption: AutocompleteItem) => {
         const newSelectedOptions = selectedOptions.filter(
@@ -235,7 +224,7 @@ const AppAutocomplete: React.FC<AppAutocompleteProps> = ({
                             onChangeInput(event);
                         }}
                         onBlur={() => {
-                            debounceOnAdd();
+                            onAdd(inputValue);
                         }}
                         placeholder={!selectedOptions.length ? placeholder : ''}
                         width={!selectedOptions.length ? 300 : 'auto'}
