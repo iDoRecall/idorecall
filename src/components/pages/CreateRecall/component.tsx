@@ -51,13 +51,11 @@ export const CreateRecall = () => {
     const createRecall = async (recall: Recall): Promise<void> => {
         const success = await saveRecall(recall);
         refIsSubmitted.current = true;
+
         if (success) {
             NoticeService.instance.notice('Recall created successfully');
-        } else {
-            NoticeService.instance.notice(
-                'Recall isn`t created, something wrong',
-            );
         }
+
         navigate('/');
     };
 

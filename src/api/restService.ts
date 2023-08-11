@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import { environment } from '../environments/environment';
 import { usePluginState } from '../states/plugin';
 import { HttpResponse } from '../models';
@@ -15,12 +15,24 @@ export class RestService {
     });
 
     constructor() {
-        this.api.interceptors.response.use(null, async function (error: Error) {
-            NoticeService.instance.notice(
-                getFragment(`<b>${'Error'}</b>, ${error.message}.`),
-            );
-            return await Promise.reject(error);
-        });
+        this.api.interceptors.response.use(
+            null,
+            async (error: AxiosError): Promise<void> => {
+                if (error.response.status === 402) {
+                    NoticeService.instance.notice(
+                        getFragment(
+                            `Your current subscription limit for this operation is over <a href="https://app.idorecall.com/profile/subscription?skipUserPosition=true">I Do Recall subscription</a>`,
+                        ),
+                    );
+                } else {
+                    NoticeService.instance.notice(
+                        getFragment(`<b>${'Error'}</b>, ${error.message}.`),
+                    );
+                }
+
+                throw error;
+            },
+        );
     }
 
     public static get instance(): RestService {
