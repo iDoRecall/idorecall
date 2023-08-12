@@ -5,6 +5,8 @@ import { uuid } from '../../../utils/guid';
 import { AutocompleteItem } from '../../../models';
 import { AppAutocompleteProps } from './AppAutocompleteProps';
 
+const MIN_CHARACTERS = 2;
+
 const AppAutocomplete: React.FC<AppAutocompleteProps> = ({
     initContent,
     placeholder,
@@ -18,7 +20,7 @@ const AppAutocomplete: React.FC<AppAutocompleteProps> = ({
     const [selectedOptions, setSelectedOptions] = useState<AutocompleteItem[]>(
         [],
     );
-    const [action, setAction] = useState(''); // ???
+
     const [inputValue, setInputValue] = useState('');
     const [tabsFilterList, setTabFilterList] = useState<AutocompleteItem[]>([]);
     const [filtersOptions, setFiltersOptions] = useState<AutocompleteItem[]>(
@@ -39,17 +41,6 @@ const AppAutocomplete: React.FC<AppAutocompleteProps> = ({
             setSelectedOptions(initContent);
         }
     }, []);
-
-    useEffect(() => {
-        if (!action || !inputValue) {
-            setTabFilterList([]);
-            setInputValue('');
-            return;
-        }
-        if (action === 'add' && inputValue.length >= 2) {
-            onAdd(inputValue);
-        }
-    }, [action]);
 
     useEffect(() => {
         setTabFilterList(itemsSearch);
@@ -82,13 +73,9 @@ const AppAutocomplete: React.FC<AppAutocompleteProps> = ({
 
     useEffect(() => {
         const handleClickOutside = () => {
-            if (inputRef?.current?.value) {
-                const enterEvent = new KeyboardEvent('keydown', {
-                    key: 'Enter',
-                });
-                inputRef.current.dispatchEvent(enterEvent);
-            }
+            onAdd(inputValue);
         };
+
         if (!isComponentVisible) {
             handleClickOutside();
         }
@@ -102,8 +89,10 @@ const AppAutocomplete: React.FC<AppAutocompleteProps> = ({
     };
 
     const onAdd = (value: string) => {
-        setAction('');
-        if (value.length < 2) return;
+        if (value.length < MIN_CHARACTERS) {
+            return;
+        }
+
         if (!value || selectedOptions.find(({ name }) => name === value)) {
             return;
         }
@@ -112,6 +101,7 @@ const AppAutocomplete: React.FC<AppAutocompleteProps> = ({
             ...selectedOptions,
             { name: value, id: uuid() },
         ];
+
         setSelectedOptions(newSelectedOptions);
         setTabFilterList([]); // ??
         setInputValue('');
@@ -131,27 +121,29 @@ const AppAutocomplete: React.FC<AppAutocompleteProps> = ({
                 if (value) {
                     return;
                 }
+
                 selectedOptions.pop();
                 setSelectedOptions([...selectedOptions]);
                 break;
         }
     };
 
-    const onChangeInput = (
-        event: React.ChangeEvent<HTMLInputElement>,
-    ): void => {
-        const val = event.target.value;
-        const isValue = event.target.value.trim();
+    const onChangeInput = ({
+        target,
+    }: React.ChangeEvent<HTMLInputElement>): void => {
+        const value = target.value.trim();
+
         setTabFilterList([]);
-        if (!isValue) {
+
+        if (!value) {
             setInputValue('');
             return;
         }
-        setInputValue(val);
+
+        setInputValue(value);
     };
 
     const clickFiltersOption = (clickOption: AutocompleteItem) => {
-        setAction('');
         const newSelectedOptions = [...selectedOptions, clickOption];
         setSelectedOptions(newSelectedOptions);
         setTabFilterList([]);
@@ -223,11 +215,8 @@ const AppAutocomplete: React.FC<AppAutocompleteProps> = ({
                         onChange={(event) => {
                             onChangeInput(event);
                         }}
-                        onBlur={() => {
-                            onAdd(inputValue);
-                        }}
-                        placeholder={!selectedOptions.length ? placeholder : ''}
-                        width={!selectedOptions.length ? 300 : 'auto'}
+                        placeholder={selectedOptions.length ? '' : placeholder}
+                        width={selectedOptions.length ? 'auto' : 300}
                     />
                 </ul>
             </div>
@@ -238,7 +227,6 @@ const AppAutocomplete: React.FC<AppAutocompleteProps> = ({
                             <li
                                 key={`${index}` + option.name}
                                 onClick={() => {
-                                    setAction('selected');
                                     clickFiltersOption(option);
                                 }}
                                 className={`${

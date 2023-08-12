@@ -36,6 +36,7 @@
 .selected-options {
     display: flex;
     padding: 10px;
+    background-color: var(--idr-item-bg);
 
     li {
         background-color: var(--idr-chip-color);
