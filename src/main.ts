@@ -2,7 +2,6 @@ import { cmExtensions } from 'cm-extensions/cmExtensions';
 import {
     addIcon,
     App,
-    Editor,
     Plugin,
     PluginSettingTab,
     Setting,
@@ -111,14 +110,6 @@ export default class IDRPlugin extends Plugin {
         await this.app.workspace.getRightLeaf(false).setViewState({
             type: 'idr-view',
             active: true,
-        });
-
-        /**
-         * IDR-275
-         * This code resets the previous selection text. Maybe I'll find a better solution in the future
-         */
-        this.app.workspace.on('editor-change', (editor: Editor) => {
-            editor.setSelection({ line: 0, ch: 0 });
         });
 
         this.app.workspace.revealLeaf(
