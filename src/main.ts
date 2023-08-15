@@ -74,6 +74,12 @@ export default class IDRPlugin extends Plugin {
         this.registerEvent(
             this.app.workspace.on('file-open', async (file) => {
                 const isRoot = window.location.pathname === '/';
+
+                if (!file) {
+                    RecallListService.instance.setRecallList([]);
+                    return;
+                }
+
                 if (
                     file?.basename &&
                     ViewOpenService.instance.isOpened &&

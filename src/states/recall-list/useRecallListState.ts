@@ -6,6 +6,7 @@ interface RecallListState {
     recallList: Recall[];
     isLoading: boolean;
     loadRecallList: (ctime: number) => Promise<void>;
+    setRecallList: (recallList: Recall[]) => void;
 }
 
 export const useRecallListState = create<RecallListState>((set) => ({
@@ -16,5 +17,8 @@ export const useRecallListState = create<RecallListState>((set) => ({
         set({ isLoading: true });
         const response = await RecallListService.instance.getRecalls(ctime);
         set({ recallList: response, isLoading: false });
+    },
+    setRecallList: (recallList) => {
+        set({ recallList });
     },
 }));

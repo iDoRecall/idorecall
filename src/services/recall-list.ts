@@ -12,6 +12,10 @@ export class RecallListService {
         return useRecallListState.getState().recallList;
     }
 
+    public setRecallList(recallList: Recall[]): void {
+        useRecallListState.getState().setRecallList(recallList);
+    }
+
     public static get instance(): RecallListService {
         if (!RecallListService._instance) {
             RecallListService._instance = new RecallListService();
