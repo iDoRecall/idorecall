@@ -127,7 +127,7 @@ export const RecallForm: React.FC<RecallFormProps> = ({
         const noChange =
             submitDisabledWithoutChanges &&
             checkIsValuesEqual(values) &&
-            inputValue.length === 0;
+            inputValue.length < 2;
 
         return (
             noChange ||
