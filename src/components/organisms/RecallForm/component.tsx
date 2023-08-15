@@ -98,14 +98,25 @@ export const RecallForm: React.FC<RecallFormProps> = ({
         };
 
         const current = {
-            questionMarkup: values.questionMarkup,
-            answerMarkup: values.answerMarkup,
+            questionMarkup: normalizeText(values.questionMarkup),
+            answerMarkup: normalizeText(values.answerMarkup),
             reversible: values.reversible,
             tags: values.tags,
             shareClasses: values.shareClasses,
         };
 
         return isEqual(initial, current);
+    };
+
+    const normalizeText = (inputValue: string): string => {
+        try {
+            const parser = new DOMParser();
+            return parser.parseFromString(inputValue, 'text/html').body
+                .textContent;
+        } catch (error) {
+            console.error('Error while normalizing text:', error);
+            return inputValue;
+        }
     };
 
     return (
