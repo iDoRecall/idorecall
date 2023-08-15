@@ -56,9 +56,6 @@ const AppAutocomplete: React.FC<AppAutocompleteProps> = ({
     };
 
     useEffect(() => {
-        if (!inputValue) {
-            return;
-        }
         onInput(inputValue);
     }, [inputValue]);
 

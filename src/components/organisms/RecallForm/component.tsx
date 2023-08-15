@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import './styles.scss';
 import { RecallFormProps } from './RecallFormProps';
 import { Recall } from '../../../models';
-import { Field, Form, Formik } from 'formik';
+import { Field, Form, Formik, FormikTouched } from 'formik';
 import { AppFroalaEditor } from '../../molecules/AppFroalaEditor';
 import { FroalaPlaceholder } from '../../atoms/FroalaPlaceholder';
 import { AppAutocomplete } from '../../molecules/AppAutocomplete';
@@ -48,6 +48,7 @@ export const RecallForm: React.FC<RecallFormProps> = ({
 
     const [errorQuestion, setErrorQuestion] = useState<string>('');
     const [errorAnswer, setErrorAnswer] = useState<string>('');
+    const [inputValue, setInputValue] = useState<string>('');
 
     const navigate = useNavigate();
 
@@ -117,6 +118,27 @@ export const RecallForm: React.FC<RecallFormProps> = ({
             console.error('Error while normalizing text:', error);
             return inputValue;
         }
+    };
+
+    const isDisabled = (
+        values: Recall,
+        touched: FormikTouched<Recall>,
+    ): boolean => {
+        const noChange =
+            submitDisabledWithoutChanges &&
+            checkIsValuesEqual(values) &&
+            inputValue.length === 0;
+
+        return (
+            noChange ||
+            !values.questionMarkup ||
+            !values.answerMarkup ||
+            (!!errorQuestion ??
+                !!errorAnswer ??
+                (!values.questionMarkup && !touched.questionMarkup) ??
+                (!values.answerMarkup && !touched.answerMarkup) ??
+                !!values.id)
+        );
     };
 
     return (
@@ -289,7 +311,13 @@ export const RecallForm: React.FC<RecallFormProps> = ({
                                     placeholder='Start typing here to add a tag'
                                     nameField='tags'
                                     initContent={recall ? recall.tags : []}
-                                    onInput={onTagInput}
+                                    onInput={(value: string) => {
+                                        if (value) {
+                                            onTagInput(value);
+                                        }
+
+                                        setInputValue(value);
+                                    }}
                                     itemsSearch={tagSearch}
                                 />
                             </li>
@@ -328,19 +356,7 @@ export const RecallForm: React.FC<RecallFormProps> = ({
                             <ActionButton
                                 type='submit'
                                 colorType='dark'
-                                isDisabled={
-                                    (submitDisabledWithoutChanges &&
-                                        checkIsValuesEqual(values)) ||
-                                    !values.questionMarkup ||
-                                    !values.answerMarkup ||
-                                    (!!errorQuestion ??
-                                        !!errorAnswer ??
-                                        (!values.questionMarkup &&
-                                            !touched.questionMarkup) ??
-                                        (!values.answerMarkup &&
-                                            !touched.answerMarkup) ??
-                                        !!values.id)
-                                }
+                                isDisabled={isDisabled(values, touched)}
                             >
                                 {values.id ? 'SAVE RECALL' : 'ADD RECALL'}
                             </ActionButton>
