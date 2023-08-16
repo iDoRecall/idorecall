@@ -43,7 +43,7 @@
     }
 
     .option-item {
-        max-width: 260px;
+        max-width: 200px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -82,10 +82,11 @@
 .filters-options li {
     background-color: var(--idr-filter-options-color);
     margin: 10px;
+    overflow: hidden;
     cursor: pointer;
 
     .option-item {
-        max-width: 260px;
+        max-width: 200px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
