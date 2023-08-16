@@ -14,10 +14,10 @@ import { setDarkTheme } from './utils/setDarkTheme';
 import {
     ActiveEditorService,
     PluginService,
-    SettingsService,
-    RouterPathService,
-    ViewOpenService,
     RecallListService,
+    RouterPathService,
+    SettingsService,
+    ViewOpenService,
 } from './services';
 import { IDRPluginSettings } from './models';
 
@@ -108,7 +108,10 @@ export default class IDRPlugin extends Plugin {
         PluginService.instance.setPlugin(this);
 
         this.registerEditorExtension(cmExtensions(this));
-        await this.activateView();
+
+        try {
+            await this.activateView();
+        } catch (e) {}
     }
 
     async activateView() {

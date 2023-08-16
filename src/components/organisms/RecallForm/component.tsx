@@ -78,9 +78,9 @@ export const RecallForm: React.FC<RecallFormProps> = ({
         const div = document.createElement('div');
         div.innerHTML = markup;
         handleFormula(div);
-        const { innerText } = div;
+        const { innerText, textContent } = div;
         div.remove();
-        return innerText;
+        return innerText || textContent;
     };
 
     const handleKeyDown = (keyEvent: React.KeyboardEvent) => {
@@ -99,25 +99,14 @@ export const RecallForm: React.FC<RecallFormProps> = ({
         };
 
         const current = {
-            questionMarkup: normalizeText(values.questionMarkup),
-            answerMarkup: normalizeText(values.answerMarkup),
+            questionMarkup: getValueFromMarkup(values.questionMarkup),
+            answerMarkup: getValueFromMarkup(values.answerMarkup),
             reversible: values.reversible,
             tags: values.tags,
             shareClasses: values.shareClasses,
         };
 
         return isEqual(initial, current);
-    };
-
-    const normalizeText = (inputValue: string): string => {
-        try {
-            const parser = new DOMParser();
-            return parser.parseFromString(inputValue, 'text/html').body
-                .textContent;
-        } catch (error) {
-            console.error('Error while normalizing text:', error);
-            return inputValue;
-        }
     };
 
     const isDisabled = (
@@ -141,14 +130,20 @@ export const RecallForm: React.FC<RecallFormProps> = ({
         );
     };
 
+    const onInputValue = (value: string): void => {
+        if (value) {
+            onTagInput(value);
+        }
+
+        setInputValue(value);
+    };
+
     return (
         <div className='editing-recall'>
             <Formik
                 enableReinitialize={true}
                 initialValues={formValue}
-                onSubmit={(values: Recall) => {
-                    handleSubmitWithValidation(values);
-                }}
+                onSubmit={handleSubmitWithValidation}
             >
                 {({ values, touched }) => (
                     <Form onKeyDown={handleKeyDown}>
@@ -311,13 +306,7 @@ export const RecallForm: React.FC<RecallFormProps> = ({
                                     placeholder='Start typing here to add a tag'
                                     nameField='tags'
                                     initContent={recall ? recall.tags : []}
-                                    onInput={(value: string) => {
-                                        if (value) {
-                                            onTagInput(value);
-                                        }
-
-                                        setInputValue(value);
-                                    }}
+                                    onInput={onInputValue}
                                     itemsSearch={tagSearch}
                                 />
                             </li>
