@@ -10,6 +10,7 @@ import ActionButton from '../../atoms/ActionButton/component';
 import { useNavigate } from 'react-router';
 import { isEqual } from '../../../utils/is-equal';
 import { handleFormula } from '../../../utils/handleFormula';
+import { useCloseRecallForm } from '../../../hooks/useCloseRecallForm';
 
 const INITIAL_RECALL: Recall = {
     questionMarkup: '',
@@ -51,6 +52,11 @@ export const RecallForm: React.FC<RecallFormProps> = ({
     const [inputValue, setInputValue] = useState<string>('');
 
     const navigate = useNavigate();
+
+    /**
+     * When the User opens an empty file - this feature closes the recall form
+     */
+    useCloseRecallForm();
 
     const swap = useCallback(
         ({ answerMarkup, questionMarkup, ...values }: Recall) => {

@@ -14,6 +14,7 @@ import { setDarkTheme } from './utils/setDarkTheme';
 import {
     ActiveEditorService,
     PluginService,
+    RecallFromState,
     RecallListService,
     RouterPathService,
     SettingsService,
@@ -77,6 +78,8 @@ export default class IDRPlugin extends Plugin {
 
                 if (!file) {
                     RecallListService.instance.setRecallList([]);
+                    RecallFromState.instance.setFormClosed();
+
                     return;
                 }
 

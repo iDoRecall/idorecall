@@ -9,6 +9,7 @@ import { PluginService } from './plugin';
 import { ViewOpenService } from './view-open';
 import { RecallListService } from './recall-list';
 import { RewriteFormService } from './rewrite-form';
+import { RecallFromState } from './recall-form-state';
 
 export { CreateRecallService };
 export { RouterPathService };
@@ -21,3 +22,4 @@ export { PluginService };
 export { ViewOpenService };
 export { RecallListService };
 export { RewriteFormService };
+export { RecallFromState };
