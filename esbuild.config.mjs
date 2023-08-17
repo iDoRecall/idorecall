@@ -20,20 +20,12 @@ let renamePlugin = {
             const outCss = outfile.replace(/\.js$/, '.css')
             const fixCss = outfile.replace(/main\.js$/, 'styles.css')
             if (fs.existsSync(outCss)) {
-                console.log('Compiled successfully.')
+                console.log('Renaming', outCss, 'to', fixCss)
                 fs.renameSync(outCss, fixCss)
             }
         })
     },
 }
-
-const outputPath = 'dist';
-
-if (!fs.existsSync(outputPath)) {
-    fs.mkdirSync(outputPath);
-}
-
-fs.copyFileSync('manifest.json', `${outputPath}/manifest.json`);
 
 const context = await esbuild.context({
     banner: {
@@ -62,7 +54,7 @@ const context = await esbuild.context({
     logLevel: 'info',
     sourcemap: prod ? false : 'inline',
     treeShaking: true,
-    outfile: `${outputPath}/main.js`,
+    outfile: 'main.js',
     plugins: [renamePlugin, sassPlugin()],
 })
 
