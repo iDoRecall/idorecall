@@ -25,7 +25,8 @@ To activate the plugin, primarily you need to generate an API key. To do this, f
 3. Navigate to the Integrations section.
 4. Find the Obsidian widget and click on "Click to generate key."
 5. Once generated, copy the API key.
-![[src/assets/readme/screencast_candidate_obsidian_integration_idorecall_com.mp4]]
+
+![](src/assets/readme/obsidian-integration.idorecall.com.gif)
 
   
 Then, you need to activate the plugin in Obsidian. To do this, follow these steps:
@@ -39,9 +40,9 @@ Then, you need to activate the plugin in Obsidian. To do this, follow these step
 This will activate the IDoRecall plugin within Obsidian and allow you to use its features.
 
 
-![[simplescreenrecorder-2023-08-16_04.44.36.mp4]]
+![](src/assets/readme/add-plugin-in-obsidian.gif)
 
-==Please note==: If you have multiple accounts within the IDoRecall application and you want to use them with the plugin, you need to generate a separate API key for each of these accounts.
+**Please note**: If you have multiple accounts within the IDoRecall application and you want to use them with the plugin, you need to generate a separate API key for each of these accounts.
 
 The API key is used for synchronizing created flashcards (Recalls) between the plugin and the IDoRecall web application.
 
@@ -52,61 +53,68 @@ The API key is used for synchronizing created flashcards (Recalls) between the p
 - We support various text editing tools, including formatting options such as text size, styles, and more.
 
 
-- You can create reversible recalls ==PLEASE INSERT LINK ON THE VIDEO==
+- You can create reversible recalls ** DAVID, PLEASE INSERT LINK ON THE VIDEO**
 - Additionally, you can add tags to your flashcards (recalls) for more precise thematic classification of the material.
 
-==Please note==: that practicing the recalls you've created (using the spaced repetition algorithm) is only possible in the web version of the IDoRecall application.
+**Please note**: that practicing the recalls you've created (using the spaced repetition algorithm) is only possible in the web version of the IDoRecall application.
 
-For more detailed information about how the "Practice" mode works, you can refer to the provided link. ==PLEASE INSERT THE LINK ON VIDEO==
+For more detailed information about how the "Practice" mode works, you can refer to the provided link. **DAVID, PLEASE INSERT THE LINK ON VIDEO**
 
 
 ## how does it work ?
 
 To start using the plugin, simply highlight the text and determine which field you want to place it in: Question, Answer, or both (Question and Answer).
 
-![[2023-08-16_06-03.png]]
+![](src/assets/readme/exp1.jpg)
 
   
 Then, fill in the empty field (in our example, Answer) and click the "ADD RECALL" button.
 
-![[2023-08-16_06-04.png]]
+![](src/assets/readme/exp2.jpg)
 
 The recall you've created will be saved and accessible both within the plugin itself and in the IDoRecall application.
-![[2023-08-16_06-06.png]]
+
+![](src/assets/readme/exp3.jpg)
 
 
 Now you have the opportunity to practice the recall you've created in the web application.
-![[2023-08-16_06-25.png]]
 
-![[2023-08-16_06-26.png]]
+![](src/assets/readme/exp4.jpg)
+
+![](src/assets/readme/exp5.jpg)
 
 As we described earlier, API keys are used for synchronization between the web application and the plugin. To facilitate interaction, each recall created in Obsidian has a back link. Clicking on this link will allow you to return to Obsidian and view the section of text where the recall was created.
 
-![[2023-08-16_06-43.png]]
-![[2023-08-16_06-44.png]]
+![](src/assets/readme/exp7.jpg)
+
+![](src/assets/readme/exp8.jpg)
 
 
-==Please note==: To enable the use of backlinks, we create a highlight ID next to each text block where a recall is created. Please do not delete this ID, as doing so will prevent you from being able to navigate to the created recall.
-![[2023-08-16_06-49.png]]
+**Please note**: To enable the use of backlinks, we create a highlight ID next to each text block where a recall is created. Please do not delete this ID, as doing so will prevent you from being able to navigate to the created recall.
+
+![](src/assets/readme/exp9.jpg)
   
 As mentioned earlier, you can use our tools to modify styles, sizes, and other parameters of the highlighted text.
-![[2023-08-16_07-01.png]]
+
+![](src/assets/readme/exp10.jpg)
 
 
 You can also add tags to a recall during its creation process. You can select an existing tag that was created in IDoRecall or create a new one. Tags assist in categorizing the recalls you create.
-![[2023-08-16_07-07.png]]
+
+![](src/assets/readme/exp11.jpg)
 
 The IDR plugin also allows you to edit previously created recalls. To do this, click on the "Edit" button on the recall card. You can edit all fields, add or replace text, and the recall will retain its highlight and position on the note.
 
 To save the changes, you need to click the "Add Recall" button again.
-![[2023-08-16_09-46.png]]
+
+![](src/assets/readme/exp12.jpg)
 
 To delete a recall, you need to click the "Delete" button on the recall form. This will remove the recall from both Obsidian and the IDoRecall web application. However, the text that was highlighted will not be deleted from your Obsidian note.
 
-![[2023-08-16_09-48.png]]
+![](src/assets/readme/exp13.jpg)
 
-## Have ideas\Requests\Bugs ?
+## Have ideas/Requests/Bugs ?
 
 
 
-If you have ideas, suggestions, or encountered any issues, please don't hesitate to contact us using the following method: ==PLEASE INSERT LINK==
+If you have ideas, suggestions, or encountered any issues, please don't hesitate to contact us using the following method: **DAVID, PLEASE INSERT LINK**
