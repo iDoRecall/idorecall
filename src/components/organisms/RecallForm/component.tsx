@@ -97,8 +97,8 @@ export const RecallForm: React.FC<RecallFormProps> = ({
 
     const checkIsValuesEqual = (values: Recall): boolean => {
         const initial = {
-            questionMarkup: formValue.questionMarkup,
-            answerMarkup: formValue.answerMarkup,
+            questionMarkup: getValueFromMarkup(formValue.questionMarkup),
+            answerMarkup: getValueFromMarkup(formValue.answerMarkup),
             reversible: formValue.reversible,
             tags: formValue.tags,
             shareClasses: formValue.shareClasses,
