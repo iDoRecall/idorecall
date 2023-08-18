@@ -77,8 +77,11 @@ export default class IDRPlugin extends Plugin {
                 const isRoot = window.location.pathname === '/';
 
                 if (!file) {
+                    if (!isRoot) {
+                        RecallFromState.instance.setFormClosed();
+                    }
+
                     RecallListService.instance.setRecallList([]);
-                    RecallFromState.instance.setFormClosed();
 
                     return;
                 }
