@@ -3,22 +3,25 @@ The iDoRecall Obsidian plugin is a companion plugin for the iDoRecall web-applic
 
 iDoRecall is a spaced-repetition flashcard app that enables you to create flashcards that we call RECALLS that are linked to the exact location in your learning materials where you learned that thing. This linking makes it easy to refresh your memory in the context where something should you ever forget it.
 
-Use the plugin to create recalls that are linked to text in your Obsidian notes. In the future, we plan to add the capability tolink to, videos, and audio materials, as well as PDF files in your Obsidian notes.
+Use the plugin to create recalls that are linked to text in your Obsidian notes. In the future, we plan to add the capability to link to, videos, and audio materials, as well as PDF files in your Obsidian notes.
 
-## How to install
+## Installation
 You can install this plugin from the community section in Obsidian. Or install plugin from the integration page within your IDoRecall application profile. Alternatively, you can download the latest release from Github and place the files it into your vault's plugins folder at: your-vault/.obsidian/plugins
 
 ## Requirements
 In order to use the plugin, you need to create an account on iDoRecall or log in to your existing account. If you don't have an an iDoRecall account, [go create one](https://app.idorecall.com/auth/sign-up). It's completely free and enables you to have up to 200 recalls.
 
-### To activate the plugin, you need to generate an API key so that the plugin will be linked to your account. To do this, follow these steps:
+### Activation
+To activate the plugin, you need to generate an API key so that the plugin will be linked to your account. To do this, follow these steps:
 
 1. Log in to your iDoRecall account.
 2. Navigate to the [Integrations section in your profile](https://app.idorecall.com/profile/integrations).
 3. Find the Obsidian widget and click on "Click to generate key." Once generated, copy the API key.
 
+![obsidian-integration idorecall com|200](https://github.com/iDoRecall/idr-obsidian-plugin/assets/1734740/6d91028f-1ced-4cdb-8d26-82b88713f9fe)
 
-### Then, you need to activate the plugin in Obsidian. To do this, follow these steps:
+
+Then, you need to activate the plugin in Obsidian. To do this, follow these steps:
 
 1. Open your Obsidian application.
 2. Go to the Settings of your vault.
@@ -32,8 +35,17 @@ Please note: If you have multiple accounts within the iDoRecall application and 
 
 ## Features
 
+Create flashcards that we call RECALLS that are linkeed to text in your Obsidian notes. Actiivate the iDoRecall plugin inside any note by 
+- clicking the iDoRecall plugin icon on the Obsidian ribbon <img width="64" alt="image" src="https://github.com/iDoRecall/idr-obsidian-plugin/assets/1734740/a58f079e-7551-4b30-b268-1ebc7d586df0">
 
-Create flashcards. You can manually determine which field to send the content to. To do this, simply select the text and choose which field you'd like to send it to: Q (Question), A (Answer), or QA (Question and Answer).
+- or by ZZZZZZZZ
+
+
+
+
+Then select some text in your note that you want to linked to.
+
+You can manually determine which field to send the content to. To do this, simply select the text and choose which field you'd like to send it to: Q (Question), A (Answer), or QA (Question and Answer).
 
 
 We support various text editing tools, including formatting options such as text size, styles, and more.
