@@ -17,6 +17,12 @@ To activate the plugin, you need to generate an API key so that the plugin will 
 2. Navigate to the [Integrations section in your profile](https://app.idorecall.com/profile/integrations).
 3. Find the Obsidian widget and click on "Click to generate key." Once generated, copy the API key.
 
+
+
+https://github.com/iDoRecall/iDoRecall-Obsidian-plugin/assets/1734740/71c54f12-fd6e-491e-b9b7-68c4daa5133e
+
+
+
 ![obsidian-integration idorecall com|200](https://github.com/iDoRecall/idr-obsidian-plugin/assets/1734740/6d91028f-1ced-4cdb-8d26-82b88713f9fe)
 
 
