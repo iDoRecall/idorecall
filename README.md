@@ -22,10 +22,6 @@ To activate the plugin, you need to generate an API key so that the plugin will 
 https://github.com/iDoRecall/iDoRecall-Obsidian-plugin/assets/1734740/71c54f12-fd6e-491e-b9b7-68c4daa5133e
 
 
-
-![obsidian-integration idorecall com|200](https://github.com/iDoRecall/idr-obsidian-plugin/assets/1734740/6d91028f-1ced-4cdb-8d26-82b88713f9fe)
-
-
 Then, you need to activate the plugin in Obsidian. To do this, follow these steps:
 
 1. Open your Obsidian application.
@@ -40,7 +36,7 @@ Please note: If you have multiple accounts within the iDoRecall application and 
 
 ## Features
 
-Create flashcards that we call RECALLS that are linkeed to text in your Obsidian notes. Actiivate the iDoRecall plugin inside any note by 
+Create flashcards that we call RECALLS which are linked to text in your Obsidian notes. Activate the iDoRecall plugin inside any note by 
 - clicking the iDoRecall plugin icon on the Obsidian ribbon <img width="64" alt="image" src="https://github.com/iDoRecall/idr-obsidian-plugin/assets/1734740/a58f079e-7551-4b30-b268-1ebc7d586df0">
 
 - or by ZZZZZZZZ
@@ -48,12 +44,15 @@ Create flashcards that we call RECALLS that are linkeed to text in your Obsidian
 
 
 
-Then select some text in your note that you want to linked to.
+Once the plugin is activated, you can select some text in your note that you want to create a linked recall. A small popup will appear.
 
-You can manually determine which field to send the content to. To do this, simply select the text and choose which field you'd like to send it to: Q (Question), A (Answer), or QA (Question and Answer).
+<img width="1554" alt="image" src="https://github.com/iDoRecall/iDoRecall-Obsidian-plugin/assets/1734740/18054cd0-29b5-43b9-959d-e8dea3cf9301">
 
 
-We support various text editing tools, including formatting options such as text size, styles, and more.
+Click the popup to determine which field to send the selected to:  QA (Question and Answer), Q (Question), A (Answer).
+
+
+Within the Q and A fields in the recall creation form, we support various text editing tools, including formatting options such as text size, styles, and more.
 
 
 You can create reversible recalls ** DAVID, PLEASE INSERT LINK ON THE VIDEO**
