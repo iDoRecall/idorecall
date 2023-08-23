@@ -50,6 +50,8 @@ Once the plugin is activated, you can select some text in your note that you wan
 
 
 Click the popup to determine which field to send the selected to:  QA (Question and Answer), Q (Question), A (Answer).
+In the example above, I clicked QA and the selected text was pasted into both the question and answer fields of the recall creation form.
+<img width="480" alt="image" src="https://github.com/iDoRecall/iDoRecall-Obsidian-plugin/assets/1734740/d0f819f7-9f30-4132-a4be-187f07c9eedf">
 
 
 Within the Q and A fields in the recall creation form, we support various text editing tools, including formatting options such as text size, styles, and more.
