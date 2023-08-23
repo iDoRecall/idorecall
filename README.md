@@ -62,26 +62,15 @@ Other options on the recall creation for include adding tags and making the reca
 
 # Please note: that practicing the recalls you've created (using the spaced repetition algorithm) is only possible in the web version of the iDoRecall application.
 
-how does it work ?
-To start using the plugin, simply highlight the text and determine which field you want to place it in: Question, Answer, or both (Question and Answer).
 
-Then, fill in the empty field (in our example, Answer) and 
+Please note: To enable the use of source links, we create a highlight ID next to each text block where a recall is created. Please do not delete this ID, as doing so will prevent you from being able to navigate to the created recall.
 
 
-As we described earlier, API keys are used for synchronization between the web application and the plugin. To facilitate interaction, each recall created in Obsidian has a back link. Clicking on this link will allow you to return to Obsidian and view the section of text where the recall was created.
-
-
-Please note: To enable the use of backlinks, we create a highlight ID next to each text block where a recall is created. Please do not delete this ID, as doing so will prevent you from being able to navigate to the created recall.
-
-As mentioned earlier, you can use our tools to modify styles, sizes, and other parameters of the highlighted text.
-
-You can also add tags to a recall during its creation process. You can select an existing tag that was created in IDoRecall or create a new one. Tags assist in categorizing the recalls you create.
-
-The IDR plugin also allows you to edit previously created recalls. To do this, click on the "Edit" button on the recall card. You can edit all fields, add or replace text, and the recall will retain its highlight and position on the note.
-To save the changes, you need to click the "Add Recall" button again.
+The iDoRecall plugin also allows you to edit previously created recalls. To do this, click on the "Edit" button on the recall card. You can edit all fields, add or replace text, and the recall will retain its highlight and position on the note.
+<img width="1552" alt="image" src="https://github.com/iDoRecall/iDoRecall-Obsidian-plugin/assets/1734740/54cafbe2-8585-44ee-a211-c476a628f316">
 
 To delete a recall, you need to click the "Delete" button on the recall form. This will remove the recall from both Obsidian and the IDoRecall web application. However, the text that was highlighted will not be deleted from your Obsidian note.
 
 
-Have ideas/Requests/Bugs ?
-If you have ideas, suggestions, or encountered any issues, please don't hesitate to contact us using the following method: DAVID, PLEASE INSERT LINK
+Have ideas/Requests/Bugs?
+If you have ideas, suggestions, or encountered any issues, please don't hesitate to contact us. Please write to david@idorecall.com.
