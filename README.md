@@ -54,26 +54,18 @@ In the example above, I clicked QA and the selected text was pasted into both th
 <img width="480" alt="image" src="https://github.com/iDoRecall/iDoRecall-Obsidian-plugin/assets/1734740/d0f819f7-9f30-4132-a4be-187f07c9eedf">
 
 
-Within the Q and A fields in the recall creation form, we support various text editing tools, including formatting options such as text size, styles, and more.
+Within the Q and A fields in the recall creation form, we support various text editing tools, including formatting options such as text size, styles, and more. Feel free edit and even completely replace the text in these fields. Regardless of any changes you make, the recall will be linked to the block that contains the text that you selected.
 
 
-You can create reversible recalls ** DAVID, PLEASE INSERT LINK ON THE VIDEO**
+Other options on the recall creation for include adding tags and making the recall reversible. Reversible recalls are sometimes shown to you where you are presented the contents in the A field and have to recall the contents in the Q field. After you have made all of your changes, click the "ADD RECALL" button. The recall you've created will be saved and accessible both within the plugin itself and in the iDoRecall application. Now you have the opportunity to practice the recall you've created in the web application.
 
 
-Additionally, you can add tags to your flashcards (recalls) for more precise thematic classification of the material.
-
-
-Please note: that practicing the recalls you've created (using the spaced repetition algorithm) is only possible in the web version of the IDoRecall application.
-For more detailed information about how the "Practice" mode works, you can refer to the provided link. DAVID, PLEASE INSERT THE LINK ON VIDEO
+# Please note: that practicing the recalls you've created (using the spaced repetition algorithm) is only possible in the web version of the iDoRecall application.
 
 how does it work ?
 To start using the plugin, simply highlight the text and determine which field you want to place it in: Question, Answer, or both (Question and Answer).
 
-Then, fill in the empty field (in our example, Answer) and click the "ADD RECALL" button.
-
-The recall you've created will be saved and accessible both within the plugin itself and in the IDoRecall application.
-
-Now you have the opportunity to practice the recall you've created in the web application.
+Then, fill in the empty field (in our example, Answer) and 
 
 
 As we described earlier, API keys are used for synchronization between the web application and the plugin. To facilitate interaction, each recall created in Obsidian has a back link. Clicking on this link will allow you to return to Obsidian and view the section of text where the recall was created.
