@@ -2,10 +2,10 @@
 
 iDoRecall is a spaced-repetition flashcard app that enables you to create **flashcards that we call RECALLS** that are linked to the exact location in your learning materials where you learned that thing. This linking makes it easy to refresh your memory in the context where something should you ever forget it.
 
-The iDoRecall Obsidian plugin is a companion plugin for the iDoRecall web-application. Use the plugin to create recalls that are linked to text in your Obsidian notes. When you practice memory retrieval with these recalls, if you struggle to recall the answer, just click the source button. Obsidian will immediately open the source note with the linked text highlighted.
+The iDoRecall Obsidian plugin is a companion plugin for the iDoRecall web application. Use the plugin to create recalls that are linked to text in your Obsidian notes. When you practice memory retrieval with these recalls, if you struggle to recall the answer, just click the source button. Obsidian will immediately open the source note with the linked text highlighted.
 
 ## Installation
-You can install this plugin from the community section in Obsidian. Or install plugin from the integration page within your IDoRecall application profile. Alternatively, you can download the latest release from Github and place the files it into your vault's plugins folder at: your-vault/.obsidian/plugins
+You can install this plugin from the community plugins section in Obsidian. Or install plugin from the [integrations page](https://app.idorecall.com/profile/integrations) within your iDoRecall application profile. Alternatively, you can download the latest release from Github and place the files it into your vault's plugins folder at: your-vault/.obsidian/plugins
 
 ## Requirements
 In order to use the plugin, you need to create an account on iDoRecall or log in to your existing account. If you don't have an an iDoRecall account, [go create one](https://app.idorecall.com/auth/sign-up). It's completely free and enables you to have up to 200 recalls.
