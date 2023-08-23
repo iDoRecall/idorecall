@@ -1,9 +1,8 @@
 # What is it?
-The iDoRecall Obsidian plugin is a companion plugin for the iDoRecall web-application.
 
-iDoRecall is a spaced-repetition flashcard app that enables you to create flashcards that we call RECALLS that are linked to the exact location in your learning materials where you learned that thing. This linking makes it easy to refresh your memory in the context where something should you ever forget it.
+iDoRecall is a spaced-repetition flashcard app that enables you to create *flashcards that we call RECALLS* that are linked to the exact location in your learning materials where you learned that thing. This linking makes it easy to refresh your memory in the context where something should you ever forget it.
 
-Use the plugin to create recalls that are linked to text in your Obsidian notes. In the future, we plan to add the capability to link to, videos, and audio materials, as well as PDF files in your Obsidian notes.
+The iDoRecall Obsidian plugin is a companion plugin for the iDoRecall web-application. Use the plugin to create recalls that are linked to text in your Obsidian notes. When you 
 
 ## Installation
 You can install this plugin from the community section in Obsidian. Or install plugin from the integration page within your IDoRecall application profile. Alternatively, you can download the latest release from Github and place the files it into your vault's plugins folder at: your-vault/.obsidian/plugins
