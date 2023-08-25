@@ -1,6 +1,8 @@
 # What is it?
 
-iDoRecall is a spaced-repetition flashcard app that enables you to create **flashcards that we call RECALLS** that are linked to the exact location in your learning materials where you learned that thing. This linking makes it easy to refresh your memory in the context where something should you ever forget it.
+iDoRecall is a spaced-repetition flashcard app that enables you to create **flashcards that we call RECALLS**. 
+
+> __Recalls are linked to the exact location in your learning materials where you learned that thing. This linking makes it easy to refresh your memory in the context where something should you ever forget it.__
 
 The iDoRecall Obsidian plugin is a companion plugin for the iDoRecall web application. Use the plugin to create recalls that are linked to text in your Obsidian notes. When you practice memory retrieval with these recalls, if you struggle to recall the answer, just click the source button. Obsidian will immediately open the source note with the linked text highlighted.
 
@@ -72,8 +74,8 @@ The iDoRecall plugin also allows you to edit previously created recalls. To do t
 To delete a recall, you need to click the "Delete" button on the recall form. This will remove the recall from both Obsidian and the IDoRecall web application. However, the text that was highlighted will not be deleted from your Obsidian note.
 
 ## Known issues
-- You can't created recalls linked to text on Obsidian canvases or text in files on a canvas. You must open up those files if you wan to create linked recalls.
-- You can't created recalls linked to text on Excalidraw canvases or text in files on a canvas. You must open up those files if you wan to create linked recalls.
+- You can't created recalls linked to text on Obsidian canvases or text in files on a canvas. You must open up those files if you want to create linked recalls.
+- You can't created recalls linked to text on Excalidraw canvases or text in files on a canvas. You must open up those files if you want to create linked recalls.
 
 Have ideas/Requests/Bugs?
 If you have ideas, suggestions, or encountered any issues, please don't hesitate to contact us. Please write to david@idorecall.com.
