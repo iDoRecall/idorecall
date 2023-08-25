@@ -10,7 +10,7 @@ You can install this plugin from the community plugins section in Obsidian. Or i
 ## Requirements
 In order to use the plugin, you need to create an account on iDoRecall or log in to your existing account. If you don't have an an iDoRecall account, [go create one](https://app.idorecall.com/auth/sign-up). It's completely free and enables you to have up to 200 recalls.
 
-### Activation
+## Activation
 To activate the plugin, you need to generate an API key so that the plugin will be linked to your account. To do this, follow these steps:
 
 1. Log in to your iDoRecall account.
@@ -71,6 +71,9 @@ The iDoRecall plugin also allows you to edit previously created recalls. To do t
 
 To delete a recall, you need to click the "Delete" button on the recall form. This will remove the recall from both Obsidian and the IDoRecall web application. However, the text that was highlighted will not be deleted from your Obsidian note.
 
+## Known issues
+- You can't created recalls linked to text on Obsidian canvases or text in files on a canvas. You must open up those files if you wan to create linked recalls.
+- You can't created recalls linked to text on Excalidraw canvases or text in files on a canvas. You must open up those files if you wan to create linked recalls.
 
 Have ideas/Requests/Bugs?
 If you have ideas, suggestions, or encountered any issues, please don't hesitate to contact us. Please write to david@idorecall.com.
