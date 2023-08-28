@@ -1,6 +1,7 @@
 import { NoticeService } from './notice';
 import { COMMAND_ID } from '../constants/command-list';
 import { CreateRecallService } from './create-recall';
+import { usePluginState } from '../states/plugin';
 
 export class CommandService {
     private static _instance: CommandService;
@@ -14,12 +15,16 @@ export class CommandService {
     }
 
     public createRecall(commandId: string, selection: string): void {
-        if (!selection) {
+        if (!selection && commandId !== COMMAND_ID.OPEN_PLUGIN) {
             NoticeService.instance.notice('Please, select the text');
             return;
         }
 
         switch (commandId) {
+            case COMMAND_ID.OPEN_PLUGIN:
+                void usePluginState.getState().plugin.activateView();
+                break;
+
             case COMMAND_ID.CREATE_RECALL_ANSWER:
                 CreateRecallService.instance.launchCreating({
                     answer: selection,
