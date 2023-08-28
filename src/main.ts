@@ -1,28 +1,18 @@
 import { cmExtensions } from 'cm-extensions/cmExtensions';
-import {
-    addIcon,
-    App,
-    Editor,
-    Plugin,
-    PluginSettingTab,
-    Setting,
-    ViewState,
-    WorkspaceLeaf,
-} from 'obsidian';
+import { addIcon, Editor, Plugin, ViewState, WorkspaceLeaf } from 'obsidian';
 import IDRView from './view';
-import { setDarkTheme } from './utils/setDarkTheme';
 import {
     ActiveEditorService,
     PluginService,
     RecallFromState,
     RecallListService,
     RouterPathService,
-    SettingsService,
     ViewOpenService,
 } from './services';
 import { IDRPluginSettings } from './models';
 import { COMMAND_LIST } from './constants/command-list';
 import { CommandService } from './services/command';
+import { IDRSettingTab } from './utils/settings';
 
 export default class IDRPlugin extends Plugin {
     settings: IDRPluginSettings;
@@ -167,53 +157,5 @@ export default class IDRPlugin extends Plugin {
     onunload() {
         this.app.workspace.detachLeavesOfType('idr-view');
         RouterPathService.instance.moveToRoot();
-    }
-}
-
-class IDRSettingTab extends PluginSettingTab {
-    plugin: IDRPlugin;
-
-    constructor(app: App, plugin: IDRPlugin) {
-        super(app, plugin);
-        this.plugin = plugin;
-    }
-
-    display(): void {
-        const { containerEl } = this;
-
-        containerEl.empty();
-
-        containerEl.createEl('h2', { text: 'Settings for IDR plugin.' });
-
-        new Setting(containerEl)
-            .setName('IDR api key')
-            .setDesc('Use IDR api key for obsidian on profile page')
-            .addText((text) =>
-                text
-                    .setPlaceholder('Enter your IDR api key')
-                    .setValue(this.plugin.settings.apiKey)
-                    .onChange(async (value) => {
-                        this.plugin.settings.apiKey = value;
-                        await this.plugin.saveSettings();
-                        SettingsService.instance.setSettings(
-                            this.plugin.settings,
-                        );
-                    }),
-            );
-        new Setting(containerEl)
-            .setName('IDR dark theme')
-            .setDesc('Use dark theme if you prefer')
-            .addToggle((toggle) =>
-                toggle
-                    .setValue(this.plugin.settings.isDarkTheme)
-                    .onChange(async (checked) => {
-                        this.plugin.settings.isDarkTheme = checked;
-                        setDarkTheme(checked);
-                        await this.plugin.saveSettings();
-                        SettingsService.instance.setSettings(
-                            this.plugin.settings,
-                        );
-                    }),
-            );
     }
 }
