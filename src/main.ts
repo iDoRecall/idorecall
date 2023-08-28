@@ -21,6 +21,8 @@ import {
     ViewOpenService,
 } from './services';
 import { IDRPluginSettings } from './models';
+import { COMMAND_LIST } from './constants/command-list';
+import { CommandService } from './services/command';
 
 export default class IDRPlugin extends Plugin {
     settings: IDRPluginSettings;
@@ -110,6 +112,18 @@ export default class IDRPlugin extends Plugin {
                 }
             }),
         );
+
+        for (const { id, name, hotkeys } of COMMAND_LIST) {
+            this.addCommand({
+                id,
+                name,
+                hotkeys,
+                editorCallback: (editor: Editor) => {
+                    const selection = editor.getSelection();
+                    CommandService.instance.createRecall(id, selection);
+                },
+            });
+        }
 
         PluginService.instance.setPlugin(this);
 
