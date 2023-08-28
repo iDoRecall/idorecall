@@ -11,6 +11,7 @@ import {
 } from './services';
 import { IDRPluginSettings } from './models';
 import { COMMAND_LIST } from './constants/command-list';
+import { API_KEY_LENGTH } from './constants/api-key-length';
 import { CommandService } from './services/command';
 import { IDRSettingTab } from './utils/settings';
 
@@ -125,25 +126,29 @@ export default class IDRPlugin extends Plugin {
     }
 
     async activateView() {
-        this.app.workspace.detachLeavesOfType('idr-view');
+        const apiKey = this.settings.apiKey;
 
-        await this.app.workspace.getRightLeaf(false).setViewState({
-            type: 'idr-view',
-            active: true,
-        });
+        if (apiKey.startsWith('idr') && apiKey.length === API_KEY_LENGTH) {
+            this.app.workspace.detachLeavesOfType('idr-view');
 
-        /**
-         * IDR-275
-         * This code resets the previous selection text. Maybe I'll find a better solution in the future
-         */
-        this.app.workspace.on('editor-change', (editor: Editor) => {
-            const currentPositionCursor = editor.getCursor();
-            editor.setCursor(currentPositionCursor);
-        });
+            await this.app.workspace.getRightLeaf(false).setViewState({
+                type: 'idr-view',
+                active: true,
+            });
 
-        this.app.workspace.revealLeaf(
-            this.app.workspace.getLeavesOfType('idr-view')[0],
-        );
+            /**
+             * IDR-275
+             * This code resets the previous selection text. Maybe I'll find a better solution in the future
+             */
+            this.app.workspace.on('editor-change', (editor: Editor) => {
+                const currentPositionCursor = editor.getCursor();
+                editor.setCursor(currentPositionCursor);
+            });
+
+            this.app.workspace.revealLeaf(
+                this.app.workspace.getLeavesOfType('idr-view')[0],
+            );
+        }
     }
 
     async loadSettings() {
@@ -152,6 +157,7 @@ export default class IDRPlugin extends Plugin {
 
     async saveSettings() {
         await this.saveData(this.settings);
+        await this.activateView();
     }
 
     onunload() {
