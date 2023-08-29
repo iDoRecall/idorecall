@@ -41,10 +41,8 @@ Please note: If you have multiple accounts within the iDoRecall application and 
 Create flashcards that we call RECALLS which are linked to text in your Obsidian notes. Activate the iDoRecall plugin inside any note by 
 - clicking the iDoRecall plugin icon on the Obsidian ribbon <img width="64" alt="image" src="https://github.com/iDoRecall/idr-obsidian-plugin/assets/1734740/a58f079e-7551-4b30-b268-1ebc7d586df0">
 
-- or by ZZZZZZZZ
-
-
-
+- or by using the Obsidian command palette and your chosen hotkeys.
+<img width="972" alt="image" src="https://github.com/iDoRecall/iDoRecall-Obsidian-plugin/assets/1734740/e6152ba7-6c80-4cbb-8475-3f1489916297">
 
 Once the plugin is activated, you can select some text in your note that you want to create a linked recall. A small popup will appear.
 
@@ -54,7 +52,6 @@ Once the plugin is activated, you can select some text in your note that you wan
 Click the popup to determine which field to send the selected to:  QA (Question and Answer), Q (Question), A (Answer).
 In the example above, I clicked QA and the selected text was pasted into both the question and answer fields of the recall creation form.
 <img width="480" alt="image" src="https://github.com/iDoRecall/iDoRecall-Obsidian-plugin/assets/1734740/d0f819f7-9f30-4132-a4be-187f07c9eedf">
-
 
 Within the Q and A fields in the recall creation form, we support various text editing tools, including formatting options such as text size, styles, and more. Feel free edit and even completely replace the text in these fields. Regardless of any changes you make, the recall will be linked to the block that contains the text that you selected.
 
