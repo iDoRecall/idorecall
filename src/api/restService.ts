@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosRequestConfig } from 'axios';
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios';
 import { environment } from '../environments/environment';
 import { usePluginState } from '../states/plugin';
 import { HttpResponse } from '../models';
@@ -7,12 +7,6 @@ import { getFragment } from '../utils/getFragment';
 
 export class RestService {
     private static _instance: RestService;
-    private readonly api = axios.create({
-        baseURL: `${environment.serverURL}${environment.apiUrl}`,
-        headers: {
-            Authorization: usePluginState.getState().settings?.apiKey,
-        },
-    });
 
     constructor() {
         this.api.interceptors.response.use(
@@ -82,5 +76,14 @@ export class RestService {
             .delete(url, config)
             .then(({ data }) => data)
             .then(({ data }) => data.payload);
+    }
+
+    private get api(): AxiosInstance {
+        return axios.create({
+            baseURL: `${environment.serverURL}${environment.apiUrl}`,
+            headers: {
+                Authorization: usePluginState.getState().settings?.apiKey,
+            },
+        });
     }
 }

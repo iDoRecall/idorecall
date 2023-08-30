@@ -1,21 +1,24 @@
 import { IDRPluginSettings } from '../models';
 import { usePluginState } from '../states/plugin';
 import { useUserState } from '../states/user';
+import { isValidApiKey } from '../utils/is-valid-api-key';
+import { NoticeService } from './notice';
 
 export class SettingsService {
     private static _instance: SettingsService;
 
     public setSettings(settings: IDRPluginSettings): void {
-        const oldApiKey = usePluginState.getState().settings?.apiKey;
-
-        if (oldApiKey !== settings.apiKey && settings.apiKey && !!oldApiKey) {
-            void useUserState.getState().loadUser();
+        if (isValidApiKey(settings.apiKey)) {
+            usePluginState.getState().setPluginSettings(settings);
+            useUserState.getState().loadUser();
         }
 
-        if (!!oldApiKey && !settings.apiKey) {
+        if (!isValidApiKey(settings.apiKey) && !!settings.apiKey) {
+            usePluginState.getState().setPluginSettings(settings);
             useUserState.getState().resetUser();
+
+            NoticeService.instance.notice('Key is not valid');
         }
-        usePluginState.getState().setPluginSettings(settings);
     }
 
     public static get instance(): SettingsService {

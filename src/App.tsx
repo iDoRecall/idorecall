@@ -1,11 +1,12 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import './styles/variables.scss';
 import './styles/global.scss';
 import {
     BrowserRouter as Router,
-    Routes,
-    Route,
     Navigate,
+    Route,
+    Routes,
 } from 'react-router-dom';
 import { Home } from './components/pages/Home';
 import { EditRecall } from './components/pages/EditRecall';
@@ -15,12 +16,12 @@ import { CreateRecall } from './components/pages/CreateRecall';
 import { usePluginState } from './states/plugin';
 import { EmptyList } from './components/organisms/EmptyList';
 import { setAppWrapperWithoutHeader } from './utils/setAppWrapperWithoutHeader';
-import { useEffect } from 'react';
 import { useViewOpenState } from './states/view-open-state';
+import { isValidApiKey } from './utils/is-valid-api-key';
 
 export const App = () => {
     const isUserLoading = useUserState((state) => state.isLoading);
-    const isApiKeyExist = !!usePluginState((state) => state.settings?.apiKey);
+    const apiKey = usePluginState((state) => state.settings?.apiKey);
     const { setIsOpened } = useViewOpenState();
 
     useEffect(() => {
@@ -30,7 +31,7 @@ export const App = () => {
         };
     }, []);
 
-    if (!isApiKeyExist) {
+    if (!isValidApiKey(apiKey)) {
         setAppWrapperWithoutHeader(true);
         return (
             <EmptyList
