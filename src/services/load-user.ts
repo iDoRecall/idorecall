@@ -7,7 +7,7 @@ export class LoadUserService {
 
     public loadUser(): void {
         if (!this.isUserExist && this.isValidApiKey) {
-            useUserState.getState().loadUser();
+            void useUserState.getState().loadUser();
         }
     }
 

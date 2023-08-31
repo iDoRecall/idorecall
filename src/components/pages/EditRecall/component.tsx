@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect, useState } from 'react';
 import './styles.scss';
 import { MainContentTemplate } from '../../templates/MainContentTemplate';
 import { Header } from '../../molecules/Header';
@@ -9,9 +10,9 @@ import { useFormClassesState } from '../../../states/form-classes';
 import { Recall } from '../../../models';
 import { RecallService } from '../../../api/recall';
 import { useUserState } from '../../../states/user';
-import { useEffect, useState } from 'react';
 import { NoticeService } from '../../../services';
 import { Loading } from '../../organisms/Loading';
+import { useInvalidApiKey } from '../../../hooks/useInvalidApiKey';
 
 export const EditRecall = () => {
     const navigate = useNavigate();
@@ -21,6 +22,8 @@ export const EditRecall = () => {
     const { loadClassesByQuery, classes } = useFormClassesState();
     const [recall, setRecall] = useState<Recall>();
     const [isRecallLoading, setIsRecallLoading] = useState<boolean>(false);
+
+    useInvalidApiKey();
 
     useEffect(() => {
         void loadRecall();

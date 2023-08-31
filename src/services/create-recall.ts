@@ -27,9 +27,9 @@ export class CreateRecallService {
             if (linkId !== newLinkId && !linkIdIsUsed) {
                 this.unLaunchCreating(linkId);
             }
-            RewriteFormService.instance.setIsRewrite(true);
+            RewriteFormService.instance.isRewrite = true;
         } else {
-            RewriteFormService.instance.setIsRewrite(false);
+            RewriteFormService.instance.isRewrite = false;
         }
 
         setFields(fields);

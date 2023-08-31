@@ -1,18 +1,39 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios';
-import { environment } from '../environments/environment';
-import { usePluginState } from '../states/plugin';
 import { HttpResponse } from '../models';
 import { NoticeService } from '../services';
 import { getFragment } from '../utils/getFragment';
+import { environment } from '../environments/environment.dev';
+import { usePluginState } from '../states/plugin';
+import { useUserState } from '../states/user';
+import { useRecallListState } from '../states/recall-list';
 
 export class RestService {
     private static _instance: RestService;
 
+    private readonly api: AxiosInstance = axios.create({
+        baseURL: `${environment.serverURL}${environment.apiUrl}`,
+    });
+
     constructor() {
+        this.api.interceptors.request.use((config) => {
+            config.headers.Authorization =
+                usePluginState.getState().settings?.apiKey;
+            return config;
+        });
+
         this.api.interceptors.response.use(
             null,
             async (error: AxiosError): Promise<void> => {
-                if (error.response.status === 402) {
+                const status = error.response.status;
+
+                if (status === 401) {
+                    NoticeService.instance.notice(
+                        'Please add the valid API key',
+                    );
+
+                    useUserState.getState().resetUser();
+                    useRecallListState.getState().setRecallList([]);
+                } else if (status === 402) {
                     NoticeService.instance.notice(
                         getFragment(
                             `Your current subscription limit for this operation is over <a href="https://app.idorecall.com/profile/subscription?skipUserPosition=true">I Do Recall subscription</a>`,
@@ -76,14 +97,5 @@ export class RestService {
             .delete(url, config)
             .then(({ data }) => data)
             .then(({ data }) => data.payload);
-    }
-
-    private get api(): AxiosInstance {
-        return axios.create({
-            baseURL: `${environment.serverURL}${environment.apiUrl}`,
-            headers: {
-                Authorization: usePluginState.getState().settings?.apiKey,
-            },
-        });
     }
 }

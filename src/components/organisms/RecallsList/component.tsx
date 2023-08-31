@@ -1,16 +1,19 @@
 import * as React from 'react';
+import { useState } from 'react';
 import './styles.scss';
 import { RecallsListProps } from './RecallsListProps';
 import { Recall } from '../../../models';
 import { RecallCard } from '../../molecules/RecallCard';
-import { useState } from 'react';
 import { EmptyList } from '../EmptyList';
 import { DeleteRecallService } from '../../../services';
 import { Loading } from '../Loading';
+import { useInvalidApiKey } from '../../../hooks/useInvalidApiKey';
 
 export const RecallsList: React.FC<RecallsListProps> = ({ recalls }) => {
     const [activeCard, setActiveCard] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    useInvalidApiKey();
 
     const changeActiveCard = (id: string, shouldBecomeActive = true): void => {
         const newActiveCard = recalls.find(

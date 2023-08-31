@@ -10,7 +10,7 @@ export class SettingsService {
     public setSettings(settings: IDRPluginSettings): void {
         if (isValidApiKey(settings.apiKey)) {
             usePluginState.getState().setPluginSettings(settings);
-            useUserState.getState().loadUser();
+            void useUserState.getState().loadUser();
         }
 
         if (!isValidApiKey(settings.apiKey) && !!settings.apiKey) {

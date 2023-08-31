@@ -6,7 +6,7 @@ export class RewriteFormService {
         return this.rewriteStatus;
     }
 
-    public setIsRewrite(isRewrite: boolean): void {
+    public set isRewrite(isRewrite: boolean) {
         this.rewriteStatus = isRewrite;
     }
 

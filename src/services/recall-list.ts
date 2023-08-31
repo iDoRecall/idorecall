@@ -1,11 +1,16 @@
 import { useRecallListState } from '../states/recall-list';
 import { Recall } from '../models';
+import { useUserState } from '../states/user';
 
 export class RecallListService {
     private static _instance: RecallListService;
 
     public loadRecallList(ctime: number): void {
-        void useRecallListState.getState().loadRecallList(ctime);
+        const { user } = useUserState();
+
+        if (user && ctime) {
+            void useRecallListState.getState().loadRecallList(ctime);
+        }
     }
 
     public get recallList(): Recall[] {
