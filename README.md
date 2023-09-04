@@ -67,6 +67,7 @@ popup will appear.
 Click the popup to determine which field to send the selected to:  QA (Question and Answer), Q (Question), A (Answer).
 In the example above, I clicked QA and the selected text was pasted into both the question and answer fields of the
 recall creation form.
+
 <img width="480" alt="image" src="https://github.com/iDoRecall/iDoRecall-Obsidian-plugin/assets/1734740/d0f819f7-9f30-4132-a4be-187f07c9eedf">
 
 Within the Q and A fields in the recall creation form, we support various text editing tools, including formatting
@@ -88,6 +89,7 @@ created. Please do not delete this ID, as doing so will prevent you from being a
 The iDoRecall plugin also allows you to edit previously created recalls. To do this, click on the "Edit" button on the
 recall card. You can edit all fields, add or replace text, and the recall will retain its highlight and position on the
 note.
+
 <img width="1552" alt="image" src="https://github.com/iDoRecall/iDoRecall-Obsidian-plugin/assets/1734740/54cafbe2-8585-44ee-a211-c476a628f316">
 
 To delete a recall, you need to click the "Delete" button on the recall form. This will remove the recall from both
