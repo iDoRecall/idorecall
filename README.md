@@ -93,7 +93,7 @@ note.
 <img width="1552" alt="image" src="https://github.com/iDoRecall/iDoRecall-Obsidian-plugin/assets/1734740/54cafbe2-8585-44ee-a211-c476a628f316">
 
 To delete a recall, you need to click the "Delete" button on the recall form. This will remove the recall from both
-Obsidian and the IDoRecall web application. However, the text that was highlighted will not be deleted from your
+Obsidian and the iDoRecall web application. However, the text that was highlighted will not be deleted from your
 Obsidian note.
 
 ## Known issues
