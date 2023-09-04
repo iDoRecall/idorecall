@@ -18,7 +18,6 @@ import {
 } from '../../../services';
 import { Recall } from '../../../models';
 import { isLinkIdUsed } from '../../../utils/is-link-id-used';
-import { useInvalidApiKey } from '../../../hooks/useInvalidApiKey';
 
 export const CreateRecall = () => {
     const { user } = useUserState();
@@ -33,8 +32,6 @@ export const CreateRecall = () => {
     const { isLoading, saveRecall } = useCreateRecallState();
     const navigate = useNavigate();
     const refIsSubmitted = useRef(false);
-
-    useInvalidApiKey();
 
     useEffect(() => {
         return () => {

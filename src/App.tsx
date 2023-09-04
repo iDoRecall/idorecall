@@ -20,7 +20,7 @@ import { useViewOpenState } from './states/view-open-state';
 import { isValidApiKey } from './utils/is-valid-api-key';
 
 export const App = () => {
-    const isUserLoading = useUserState((state) => state.isLoading);
+    const { isLoading, user } = useUserState();
     const apiKey = usePluginState((state) => state.settings?.apiKey);
     const { setIsOpened } = useViewOpenState();
 
@@ -31,7 +31,7 @@ export const App = () => {
         };
     }, []);
 
-    if (!isValidApiKey(apiKey)) {
+    if (!isValidApiKey(apiKey) || !user) {
         setAppWrapperWithoutHeader(true);
         return (
             <EmptyList
@@ -43,7 +43,7 @@ export const App = () => {
         );
     }
 
-    if (isUserLoading) {
+    if (isLoading) {
         setAppWrapperWithoutHeader(true);
         return <Loading />;
     }

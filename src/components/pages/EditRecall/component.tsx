@@ -12,7 +12,6 @@ import { RecallService } from '../../../api/recall';
 import { useUserState } from '../../../states/user';
 import { NoticeService } from '../../../services';
 import { Loading } from '../../organisms/Loading';
-import { useInvalidApiKey } from '../../../hooks/useInvalidApiKey';
 
 export const EditRecall = () => {
     const navigate = useNavigate();
@@ -22,8 +21,6 @@ export const EditRecall = () => {
     const { loadClassesByQuery, classes } = useFormClassesState();
     const [recall, setRecall] = useState<Recall>();
     const [isRecallLoading, setIsRecallLoading] = useState<boolean>(false);
-
-    useInvalidApiKey();
 
     useEffect(() => {
         void loadRecall();
