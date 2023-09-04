@@ -1,5 +1,5 @@
 {
-    "name": "obsidian-idr-plugin",
+    "name": "obsidian-idorecall-plugin",
     "version": "1.0.0",
     "description": "IDR plugin allow you to create recalls from Obsidian notes",
     "main": "main.js",
