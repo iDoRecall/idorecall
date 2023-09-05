@@ -31,7 +31,7 @@ follow these steps:
 2. Navigate to the [Integrations section in your profile](https://app.idorecall.com/profile/integrations).
 3. Find the Obsidian widget and click on "Click to generate key." Once generated, copy the API key.
 
-https://github.com/iDoRecall/obsidian-idorecall-plugin/assets/1734740/71c54f12-fd6e-491e-b9b7-68c4daa5133e
+https://github.com/iDoRecall/idorecall/assets/1734740/3c6971ab-27bc-4251-98f8-e1eba6980ace
 
 Then, you need to activate the plugin in Obsidian. To do this, follow these steps:
 
@@ -53,22 +53,23 @@ Create flashcards that we call RECALLS which are linked to text in your Obsidian
 inside any note by
 
 - clicking the iDoRecall plugin icon on the Obsidian
-  ribbon <img width="64" alt="image" src="https://github.com/iDoRecall/idr-obsidian-plugin/assets/1734740/a58f079e-7551-4b30-b268-1ebc7d586df0">
+  ribbon <img width="35" alt="image" src="https://github.com/iDoRecall/idorecall/assets/1734740/d2980c14-d9e1-4359-ad51-eea479610e15">
+
 
 - or by using the Obsidian command palette and your chosen hotkeys.
-  ![image](https://github.com/iDoRecall/obsidian-idorecall-plugin/assets/1734740/ac7c268f-31f3-49e9-b6ff-c0b37e3f04ad)
+![image](https://github.com/iDoRecall/idorecall/assets/1734740/5458561f-4bf0-4f4d-b3b6-0dacb76fa669)
+
 
 Once the plugin is activated, you can select some text in your note that you want to create a linked recall. A small
 popup will appear.
-
-<img width="1554" alt="image" src="https://github.com/iDoRecall/obsidian-idorecall-plugin/assets/1734740/18054cd0-29b5-43b9-959d-e8dea3cf9301">
+<img width="152" alt="image" src="https://github.com/iDoRecall/idorecall/assets/1734740/acff6468-6995-450f-9e28-befc06bd3295">
 
 
 Click the popup to determine which field to send the selected to:  QA (Question and Answer), Q (Question), A (Answer).
 In the example above, I clicked QA and the selected text was pasted into both the question and answer fields of the
 recall creation form.
+<img width="480" alt="image" src="https://github.com/iDoRecall/idorecall/assets/1734740/2cf7b886-7cc4-44ba-876a-1b40aac0322a">
 
-<img width="480" alt="image" src="https://github.com/iDoRecall/obsidian-idorecall-plugin/assets/1734740/d0f819f7-9f30-4132-a4be-187f07c9eedf">
 
 Within the Q and A fields in the recall creation form, we support various text editing tools, including formatting
 options such as text size, styles, and more. Feel free edit and even completely replace the text in these fields.
@@ -86,11 +87,10 @@ recall you've created in the web application.
 Please note: To enable the use of source links, we create a highlight ID next to each text block where a recall is
 created. Please do not delete this ID, as doing so will prevent you from being able to navigate to the created recall.
 
-The iDoRecall plugin also allows you to edit previously created recalls. To do this, click on the "Edit" button on the
+The iDoRecall plugin also allows you to edit previously created recalls. To do this, click on the "Editing" button on the
 recall card. You can edit all fields, add or replace text, and the recall will retain its highlight and position on the
 note.
-
-<img width="1552" alt="image" src="https://github.com/iDoRecall/obsidian-idorecall-plugin/assets/1734740/54cafbe2-8585-44ee-a211-c476a628f316">
+<img width="427" alt="image" src="https://github.com/iDoRecall/idorecall/assets/1734740/132c1ad2-afa3-4054-80ef-1fc9176b5565">
 
 To delete a recall, you need to click the "Delete" button on the recall form. This will remove the recall from both
 Obsidian and the iDoRecall web application. However, the text that was highlighted will not be deleted from your
