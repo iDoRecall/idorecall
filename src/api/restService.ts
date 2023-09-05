@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios';
 import { HttpResponse } from '../models';
 import { NoticeService } from '../services';
 import { getFragment } from '../utils/getFragment';
-import { environment } from '../environments/environment.dev';
+import { environment } from '../environments/environment';
 import { usePluginState } from '../states/plugin';
 import { useUserState } from '../states/user';
 import { useRecallListState } from '../states/recall-list';
