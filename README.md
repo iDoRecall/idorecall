@@ -31,7 +31,7 @@ follow these steps:
 2. Navigate to the [Integrations section in your profile](https://app.idorecall.com/profile/integrations).
 3. Find the Obsidian widget and click on "Click to generate key." Once generated, copy the API key.
 
-https://github.com/iDoRecall/obsidian-idorecall-plugin/assets/1734740/71c54f12-fd6e-491e-b9b7-68c4daa5133e
+https://github.com/iDoRecall/idorecall/assets/1734740/3c6971ab-27bc-4251-98f8-e1eba6980ace
 
 Then, you need to activate the plugin in Obsidian. To do this, follow these steps:
 
