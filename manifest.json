@@ -4,7 +4,7 @@
     "version": "1.0.0",
     "minAppVersion": "0.15.0",
     "description": "iDoRecall plugin allows you to create recalls from Obsidian notes",
-    "author": "iDoRecall",
+    "author": "David Handel",
     "authorUrl": "https://idorecall.com",
     "isDesktopOnly": true
 }
