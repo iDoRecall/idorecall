@@ -57,12 +57,15 @@ inside any note by
 
 
 - or by using the Obsidian command palette and your chosen hotkeys.
-![image](https://github.com/iDoRecall/idorecall/assets/1734740/5458561f-4bf0-4f4d-b3b6-0dacb76fa669)
+<img width="704" alt="image" src="https://github.com/iDoRecall/idorecall/assets/1734740/3adb7a94-05ad-49ba-ad19-827fb5a6dc3d">
+
 
 
 Once the plugin is activated, you can select some text in your note that you want to create a linked recall. A small
 popup will appear.
 <img width="152" alt="image" src="https://github.com/iDoRecall/idorecall/assets/1734740/acff6468-6995-450f-9e28-befc06bd3295">
+
+## NOTE: You must be in editing mode in your Obsidian note in order to select text. <img width="192" alt="image" src="https://github.com/iDoRecall/idorecall/assets/1734740/05357ba9-85bd-4542-9fbf-c6fc65a9f2b9">
 
 
 Click the popup to determine which field to send the selected to:  QA (Question and Answer), Q (Question), A (Answer).
