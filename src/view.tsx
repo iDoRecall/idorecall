@@ -30,7 +30,7 @@ export default class IDRView extends ItemView {
     }
 
     getDisplayText() {
-        return 'IDoRecall';
+        return 'iDoRecall';
     }
 
     getIcon() {

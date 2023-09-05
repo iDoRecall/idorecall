@@ -7,13 +7,10 @@ import { RecallCard } from '../../molecules/RecallCard';
 import { EmptyList } from '../EmptyList';
 import { DeleteRecallService } from '../../../services';
 import { Loading } from '../Loading';
-import { useInvalidApiKey } from '../../../hooks/useInvalidApiKey';
 
 export const RecallsList: React.FC<RecallsListProps> = ({ recalls }) => {
     const [activeCard, setActiveCard] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(false);
-
-    useInvalidApiKey();
 
     const changeActiveCard = (id: string, shouldBecomeActive = true): void => {
         const newActiveCard = recalls.find(
