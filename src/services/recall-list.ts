@@ -4,9 +4,9 @@ import { Recall } from '../models';
 export class RecallListService {
     private static _instance: RecallListService;
 
-    public loadRecallList(ctime: number): void {
-        if (ctime) {
-            void useRecallListState.getState().loadRecallList(ctime);
+    public loadRecallList(path: string): void {
+        if (path) {
+            void useRecallListState.getState().loadRecallList(path);
         }
     }
 

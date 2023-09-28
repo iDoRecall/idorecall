@@ -15,10 +15,10 @@ export const Home = () => {
     const { plugin } = usePluginState();
 
     useEffect(() => {
-        const ctime = plugin?.app.workspace.getActiveFile()?.stat.ctime;
+        const path = plugin?.app.workspace.getActiveFile()?.path;
 
-        if (ctime && user) {
-            void useRecallListState.getState().loadRecallList(ctime);
+        if (path && user) {
+            void useRecallListState.getState().loadRecallList(path);
         }
     }, []);
 

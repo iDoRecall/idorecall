@@ -43,9 +43,9 @@ export default class IDRPlugin extends Plugin {
 
         this.registerObsidianProtocolHandler('idr-uri', async (e) => {
             const file = this.app.vault.getFiles().find((file) => {
-                return file.stat.ctime === Number(e.file);
+                return file.path === String(e.file);
             });
-            const filePath = file.basename + '#' + e.block;
+            const filePath = file?.path + '#' + e.block;
             const state: ViewState = {
                 type: 'markdown',
                 state: {
@@ -92,7 +92,7 @@ export default class IDRPlugin extends Plugin {
                     ViewOpenService.instance.isOpened &&
                     isRoot
                 ) {
-                    RecallListService.instance.loadRecallList(file.stat.ctime);
+                    RecallListService.instance.loadRecallList(file.path);
                 }
 
                 const editor = this.app.workspace.activeEditor?.editor;
