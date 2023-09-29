@@ -38,11 +38,11 @@ export class DeleteRecallService {
 
         if (isDeleted) {
             NoticeService.instance.notice('Recall deleted successfully');
-            const ctime = plugin?.app.workspace.getActiveFile()?.stat.ctime;
-            if (ctime) {
+            const path = plugin?.app.workspace.getActiveFile()?.path;
+            if (path) {
                 void useRecallListState
                     .getState()
-                    .loadRecallList(ctime)
+                    .loadRecallList(path)
                     .then(() => {
                         if (block && activeEditor && !isLinkIdUsed(block)) {
                             removeSelectionLink(block, activeEditor);

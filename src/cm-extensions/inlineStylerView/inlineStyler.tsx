@@ -1,7 +1,6 @@
 import { EditorState, StateField } from '@codemirror/state';
-import { EditorView } from '@codemirror/view';
+import { EditorView, showTooltip, Tooltip } from '@codemirror/view';
 import { oMarks } from 'cm-extensions/markSans/obsidianSyntax';
-import { showTooltip, Tooltip } from 'cm-extensions/tooltip';
 import IDRPlugin from 'main';
 import React from 'react';
 import { expandRange, rangeIsMark } from './marks';

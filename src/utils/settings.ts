@@ -16,7 +16,7 @@ export class IDRSettingTab extends PluginSettingTab {
 
         containerEl.empty();
 
-        containerEl.createEl('h2', { text: 'Settings for IDR plugin' });
+        containerEl.createEl('h2', { text: 'Settings' });
 
         this.apiKeySettings(containerEl);
 
