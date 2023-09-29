@@ -34,6 +34,7 @@ export class CreateRecallService {
 
         setFields(fields);
         history.push('/create');
+        plugin.app.workspace.detachLeavesOfType('idr-view');
         void plugin?.activateView();
     }
 

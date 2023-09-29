@@ -124,27 +124,24 @@ export default class IDRPlugin extends Plugin {
         } catch (e) {}
     }
 
-    async activateView() {
-        this.app.workspace.detachLeavesOfType('idr-view');
+    async activateView(): Promise<void> {
+        const leavesOfType = this.app.workspace.getLeavesOfType('idr-view');
 
-        await this.app.workspace.getRightLeaf(false).setViewState({
-            type: 'idr-view',
-            active: true,
-        });
+        if (leavesOfType.length > 0) {
+            this.app.workspace.revealLeaf(leavesOfType[0]);
 
-        /**
-         * IDR-275
-         * This code resets the previous selection text. Maybe I'll find a better solution in the future
-         */
+            return;
+        }
+
+        await this.app.workspace
+            .getRightLeaf(false)
+            .setViewState({ type: 'idr-view', active: true });
+
         this.registerEvent(
             this.app.workspace.on('editor-change', (editor: Editor) => {
                 const currentPositionCursor = editor.getCursor();
                 editor.setCursor(currentPositionCursor);
             }),
-        );
-
-        this.app.workspace.revealLeaf(
-            this.app.workspace.getLeavesOfType('idr-view')[0],
         );
     }
 
