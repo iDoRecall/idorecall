@@ -136,10 +136,12 @@ export default class IDRPlugin extends Plugin {
          * IDR-275
          * This code resets the previous selection text. Maybe I'll find a better solution in the future
          */
-        this.app.workspace.on('editor-change', (editor: Editor) => {
-            const currentPositionCursor = editor.getCursor();
-            editor.setCursor(currentPositionCursor);
-        });
+        this.registerEvent(
+            this.app.workspace.on('editor-change', (editor: Editor) => {
+                const currentPositionCursor = editor.getCursor();
+                editor.setCursor(currentPositionCursor);
+            }),
+        );
 
         this.app.workspace.revealLeaf(
             this.app.workspace.getLeavesOfType('idr-view')[0],
