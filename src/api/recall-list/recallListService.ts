@@ -13,8 +13,11 @@ export class RecallListService {
     }
 
     public async getRecalls(path: string): Promise<Recall[]> {
-        return await this.rest.get<Recall[]>('obsidian/recalls', {
-            params: { file: encodeURI(String(path)) },
-        });
+        const encodedPath = encodeURIComponent(path);
+
+        return this.rest.requestWrapper<Recall[]>(
+            `obsidian/recalls?file=${encodedPath}`,
+            'GET',
+        );
     }
 }

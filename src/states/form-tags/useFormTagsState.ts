@@ -13,10 +13,12 @@ export const useFormTagsState = create<FormTagsState>((set) => ({
     isLoading: false,
     loadTagsByQuery: async (query) => {
         set({ isLoading: true });
-        const response = await RestService.instance.get<Tag[]>(
-            'obsidian/tags',
-            { params: { query } },
+
+        const response = await RestService.instance.requestWrapper<Tag[]>(
+            `obsidian/tags?query=${query}`,
+            'GET',
         );
+
         set({ tags: response, isLoading: false });
     },
 }));

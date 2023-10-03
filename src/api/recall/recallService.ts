@@ -13,21 +13,32 @@ export class RecallService {
     }
 
     public async createRecall(recall: Recall): Promise<boolean> {
-        return await this.rest.post<boolean>('obsidian/recalls', recall);
+        return this.rest.requestWrapper<boolean>(
+            'obsidian/recalls',
+            'POST',
+            recall,
+        );
     }
 
     public async editRecall(recall: Recall): Promise<Recall> {
-        return await this.rest.patch<Recall>(
+        return this.rest.requestWrapper<Recall>(
             `obsidian/recalls/${recall.id}`,
+            'PATCH',
             recall,
         );
     }
 
     public async deleteRecall(recall: Recall): Promise<boolean> {
-        return await this.rest.delete<boolean>(`obsidian/recalls/${recall.id}`);
+        return this.rest.requestWrapper<boolean>(
+            `obsidian/recalls/${recall.id}`,
+            'DELETE',
+        );
     }
 
     public async getRecallById(id: string): Promise<Recall> {
-        return await this.rest.get<Recall>(`obsidian/recalls/${id}`);
+        return this.rest.requestWrapper<Recall>(
+            `obsidian/recalls/${id}`,
+            'GET',
+        );
     }
 }

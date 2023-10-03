@@ -1,54 +1,16 @@
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios';
-import { HttpResponse } from '../models';
+import { requestUrl } from 'obsidian';
+
+import { useUserState } from '../states/user';
+import { usePluginState } from '../states/plugin';
+import { useRecallListState } from '../states/recall-list';
+
+import { BASE_URL } from './constants';
 import { NoticeService } from '../services';
 import { getFragment } from '../utils/getFragment';
-import { environment } from '../environments/environment';
-import { usePluginState } from '../states/plugin';
-import { useUserState } from '../states/user';
-import { useRecallListState } from '../states/recall-list';
+import { ErrorWithStatus, HttpMethodType } from './models';
 
 export class RestService {
     private static _instance: RestService;
-
-    private readonly api: AxiosInstance = axios.create({
-        baseURL: `${environment.serverURL}${environment.apiUrl}`,
-    });
-
-    constructor() {
-        this.api.interceptors.request.use((config) => {
-            config.headers.Authorization =
-                usePluginState.getState().settings?.apiKey;
-            return config;
-        });
-
-        this.api.interceptors.response.use(
-            null,
-            async (error: AxiosError): Promise<void> => {
-                const status = error.response.status;
-
-                if (status === 401) {
-                    NoticeService.instance.notice(
-                        'Please add the valid API key',
-                    );
-
-                    useUserState.getState().resetUser();
-                    useRecallListState.getState().setRecallList([]);
-                } else if (status === 402) {
-                    NoticeService.instance.notice(
-                        getFragment(
-                            `Your current subscription limit for this operation is over <a href="https://app.idorecall.com/profile/subscription?skipUserPosition=true">I Do Recall subscription</a>`,
-                        ),
-                    );
-                } else {
-                    NoticeService.instance.notice(
-                        getFragment(`<b>${'Error'}</b>, ${error.message}.`),
-                    );
-                }
-
-                throw error;
-            },
-        );
-    }
 
     public static get instance(): RestService {
         if (!RestService._instance) {
@@ -57,45 +19,55 @@ export class RestService {
         return RestService._instance;
     }
 
-    public async get<T>(
+    public async requestWrapper<T>(
         url: string,
-        config?: AxiosRequestConfig<any> | undefined,
+        method: HttpMethodType,
+        payload?: object,
     ): Promise<T> {
-        return await this.api
-            .get<HttpResponse<T>>(url, config)
-            .then(({ data }) => data)
-            .then(({ data }) => data.payload);
+        const headers: Record<string, string> = {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+            Authorization: usePluginState.getState().settings?.apiKey,
+        };
+
+        try {
+            const httpResponse = await requestUrl({
+                url: `${BASE_URL}/${url}`,
+                method,
+                headers,
+                body: JSON.stringify(payload),
+            });
+
+            const response = httpResponse.json;
+
+            return response.data.payload;
+        } catch (error) {
+            this.handleError(error);
+        }
     }
 
-    public async post<T>(
-        url: string,
-        payload?: any,
-        config?: AxiosRequestConfig<any> | undefined,
-    ): Promise<T> {
-        return await this.api
-            .post<HttpResponse<T>>(url, payload, config)
-            .then(({ data }) => data)
-            .then(({ data }) => data.payload);
-    }
+    private handleError(error: ErrorWithStatus): void {
+        const status = error.status;
 
-    public async patch<T>(
-        url: string,
-        payload?: any,
-        config?: AxiosRequestConfig<any> | undefined,
-    ): Promise<T> {
-        return await this.api
-            .patch<HttpResponse<T>>(url, payload, config)
-            .then(({ data }) => data)
-            .then(({ data }) => data.payload);
-    }
+        switch (status) {
+            case 401:
+                NoticeService.instance.notice('Please add the valid API key');
 
-    public async delete<T>(
-        url: string,
-        config?: AxiosRequestConfig<any> | undefined,
-    ): Promise<T> {
-        return await this.api
-            .delete(url, config)
-            .then(({ data }) => data)
-            .then(({ data }) => data.payload);
+                useUserState.getState().resetUser();
+                useRecallListState.getState().setRecallList([]);
+                break;
+            case 402:
+                NoticeService.instance.notice(
+                    getFragment(
+                        `Your current subscription limit for this operation is over <a href="https://app.idorecall.com/profile/subscription?skipUserPosition=true">I Do Recall subscription</a>`,
+                    ),
+                );
+                break;
+            default:
+                NoticeService.instance.notice(
+                    getFragment(`<b>${'Error'}</b>, ${error.message}.`),
+                );
+                break;
+        }
     }
 }

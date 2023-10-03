@@ -14,7 +14,12 @@ export const useUserState = create<UserState>((set) => ({
     isLoading: false,
     loadUser: async () => {
         set({ isLoading: true });
-        const user = await RestService.instance.get<User>('obsidian/me');
+
+        const user = await RestService.instance.requestWrapper<User>(
+            'obsidian/me',
+            'GET',
+        );
+
         set({ user, isLoading: false });
     },
     resetUser: () => {

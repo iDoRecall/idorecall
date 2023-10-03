@@ -13,10 +13,11 @@ export const useFormClassesState = create<FormClassesState>((set) => ({
     isLoading: false,
     loadClassesByQuery: async (query) => {
         set({ isLoading: true });
-        const response = await RestService.instance.get<ShareClasses[]>(
-            'obsidian/sharing-list',
-            { params: { query } },
-        );
+
+        const response = await RestService.instance.requestWrapper<
+            ShareClasses[]
+        >(`obsidian/sharing-list?query=${query}`, 'GET');
+
         set({ classes: response, isLoading: false });
     },
 }));

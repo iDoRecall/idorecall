@@ -26,7 +26,9 @@
         "no-new": "off",
         "no-void": "off",
         "@typescript-eslint/dot-notation": "off",
-        "@typescript-eslint/prefer-nullish-coalescing": "off"
+        "@typescript-eslint/prefer-nullish-coalescing": "off",
+        "no-return-await": "off",
+        "@typescript-eslint/return-await": "warn"
     },
     "settings": {
         "react": {
