@@ -1,8 +1,16 @@
 import { cmExtensions } from 'cm-extensions/cmExtensions';
-import { addIcon, Editor, Plugin, ViewState, WorkspaceLeaf } from 'obsidian';
+import {
+    addIcon,
+    Editor,
+    Plugin,
+    TAbstractFile,
+    ViewState,
+    WorkspaceLeaf,
+} from 'obsidian';
 import IDRView from './view';
 import {
     ActiveEditorService,
+    NoticeService,
     PluginService,
     RecallFromState,
     RecallListService,
@@ -100,6 +108,15 @@ export default class IDRPlugin extends Plugin {
                 if (editor) {
                     ActiveEditorService.instance.setActiveEditor(editor);
                 }
+            }),
+        );
+
+        this.registerEvent(
+            this.app.vault.on('rename', (file: TAbstractFile) => {
+                NoticeService.instance.notice(
+                    'After changing the title, iDoRecall was reload',
+                );
+                RecallListService.instance.loadRecallList(file.path);
             }),
         );
 
