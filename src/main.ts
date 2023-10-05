@@ -22,6 +22,8 @@ import { COMMAND_LIST } from './constants/command-list';
 import { CommandService } from './services/command';
 import { IDRSettingTab } from './utils/settings';
 
+const VIEW_TYPE = 'idr-view';
+
 export default class IDRPlugin extends Plugin {
     settings: IDRPluginSettings;
     queue: Promise<void>;
@@ -43,7 +45,7 @@ export default class IDRPlugin extends Plugin {
         });
 
         this.registerView(
-            'idr-view',
+            VIEW_TYPE,
             (leaf: WorkspaceLeaf) => (this.view = new IDRView(leaf, this)),
         );
 
@@ -92,6 +94,7 @@ export default class IDRPlugin extends Plugin {
                     !isRoot
                 ) {
                     RouterPathService.instance.moveToRoot();
+                    this.app.workspace.detachLeavesOfType(VIEW_TYPE);
                     await this.activateView();
                 }
 
@@ -142,7 +145,7 @@ export default class IDRPlugin extends Plugin {
     }
 
     async activateView(): Promise<void> {
-        const leavesOfType = this.app.workspace.getLeavesOfType('idr-view');
+        const leavesOfType = this.app.workspace.getLeavesOfType(VIEW_TYPE);
 
         if (leavesOfType.length > 0) {
             this.app.workspace.revealLeaf(leavesOfType[0]);
@@ -152,7 +155,7 @@ export default class IDRPlugin extends Plugin {
 
         await this.app.workspace
             .getRightLeaf(false)
-            .setViewState({ type: 'idr-view', active: true });
+            .setViewState({ type: VIEW_TYPE, active: true });
 
         this.registerEvent(
             this.app.workspace.on('editor-change', (editor: Editor) => {
