@@ -97,16 +97,16 @@ export const RecallForm: React.FC<RecallFormProps> = ({
 
     const checkIsValuesEqual = (values: Recall): boolean => {
         const initial = {
-            questionMarkup: getValueFromMarkup(formValue.questionMarkup),
-            answerMarkup: getValueFromMarkup(formValue.answerMarkup),
+            questionMarkup: formValue.questionMarkup,
+            answerMarkup: formValue.answerMarkup,
             reversible: formValue.reversible,
             tags: formValue.tags,
             shareClasses: formValue.shareClasses,
         };
 
         const current = {
-            questionMarkup: getValueFromMarkup(values.questionMarkup),
-            answerMarkup: getValueFromMarkup(values.answerMarkup),
+            questionMarkup: values.questionMarkup,
+            answerMarkup: values.answerMarkup,
             reversible: values.reversible,
             tags: values.tags,
             shareClasses: values.shareClasses,
@@ -317,26 +317,26 @@ export const RecallForm: React.FC<RecallFormProps> = ({
                                 />
                             </li>
                             {/* David sayed that we don't need it now */}
-                            {/*<li>*/}
-                            {/*    <svg*/}
-                            {/*        className='idr-icons'*/}
-                            {/*        id='Layer_4'*/}
-                            {/*        data-name='Layer 4'*/}
-                            {/*        xmlns='http://www.w3.org/2000/svg'*/}
-                            {/*        viewBox='0 0 100 100'*/}
-                            {/*    >*/}
-                            {/*        <path d='M27.78,34.4a6.7,6.7,0,1,0-6.69-6.7,6.68,6.68,0,0,0,6.69,6.7Zm44.44,0a6.7,6.7,0,1,0-6.69-6.7,6.69,6.69,0,0,0,6.69,6.7ZM49.65,44.81a10,10,0,1,0-10-10,10,10,0,0,0,10,10ZM68.87,78.73A1.93,1.93,0,0,1,67,81H32.34a1.93,1.93,0,0,1-1.9-2.27l3.51-20a12.27,12.27,0,0,1,6.29-9.49,21.42,21.42,0,0,1,9.41-2,21.47,21.47,0,0,1,9.42,2,12.29,12.29,0,0,1,6.28,9.49ZM61.11,47.11l.59-3.37a8.24,8.24,0,0,1,4.21-6.36,15.32,15.32,0,0,1,12.62,0,8.2,8.2,0,0,1,4.21,6.36L85,56.38a1.94,1.94,0,0,1-1.9,2.28H68.28l-.07-.38A15.12,15.12,0,0,0,61.11,47.11ZM35.63,53.76c-.18.31-.35.62-.5.94C35.28,54.38,35.45,54.07,35.63,53.76Zm-1.1,2.49a16.48,16.48,0,0,0-.56,2.4A16.48,16.48,0,0,1,34.53,56.25Zm1.23-2.72c.19-.32.4-.62.62-.92C36.16,52.91,36,53.21,35.76,53.53ZM35,55c-.14.32-.27.64-.39,1C34.74,55.63,34.87,55.31,35,55Zm-4,3.67H16.93A1.94,1.94,0,0,1,15,56.38l2.23-12.64a8.2,8.2,0,0,1,4.21-6.36A14.28,14.28,0,0,1,27.78,36a14.31,14.31,0,0,1,6.31,1.36,8.24,8.24,0,0,1,4.21,6.36l.52,3a15.1,15.1,0,0,0-7.73,11.56Zm5.47-6.21a8.94,8.94,0,0,1,.75-.88A8.94,8.94,0,0,0,36.5,52.45Zm1.81-1.87a10.2,10.2,0,0,1,1-.78A10.2,10.2,0,0,0,38.31,50.58Zm-.06.05a9,9,0,0,0-.9.84A9,9,0,0,1,38.25,50.63Z' />*/}
-                            {/*    </svg>*/}
+                            {/* <li> */}
+                            {/*    <svg* /}
+                            {/*        className='idr-icons' */}
+                            {/*        id='Layer_4' */}
+                            {/*        data-name='Layer 4' */}
+                            {/*        xmlns='http://www.w3.org/2000/svg' */}
+                            {/*        viewBox='0 0 100 100' */}
+                            {/*    > */}
+                            {/*        <path d='M27.78,34.4a6.7,6.7,0,1,0-6.69-6.7,6.68,6.68,0,0,0,6.69,6.7Zm44.44,0a6.7,6.7,0,1,0-6.69-6.7,6.69,6.69,0,0,0,6.69,6.7ZM49.65,44.81a10,10,0,1,0-10-10,10,10,0,0,0,10,10ZM68.87,78.73A1.93,1.93,0,0,1,67,81H32.34a1.93,1.93,0,0,1-1.9-2.27l3.51-20a12.27,12.27,0,0,1,6.29-9.49,21.42,21.42,0,0,1,9.41-2,21.47,21.47,0,0,1,9.42,2,12.29,12.29,0,0,1,6.28,9.49ZM61.11,47.11l.59-3.37a8.24,8.24,0,0,1,4.21-6.36,15.32,15.32,0,0,1,12.62,0,8.2,8.2,0,0,1,4.21,6.36L85,56.38a1.94,1.94,0,0,1-1.9,2.28H68.28l-.07-.38A15.12,15.12,0,0,0,61.11,47.11ZM35.63,53.76c-.18.31-.35.62-.5.94C35.28,54.38,35.45,54.07,35.63,53.76Zm-1.1,2.49a16.48,16.48,0,0,0-.56,2.4A16.48,16.48,0,0,1,34.53,56.25Zm1.23-2.72c.19-.32.4-.62.62-.92C36.16,52.91,36,53.21,35.76,53.53ZM35,55c-.14.32-.27.64-.39,1C34.74,55.63,34.87,55.31,35,55Zm-4,3.67H16.93A1.94,1.94,0,0,1,15,56.38l2.23-12.64a8.2,8.2,0,0,1,4.21-6.36A14.28,14.28,0,0,1,27.78,36a14.31,14.31,0,0,1,6.31,1.36,8.24,8.24,0,0,1,4.21,6.36l.52,3a15.1,15.1,0,0,0-7.73,11.56Zm5.47-6.21a8.94,8.94,0,0,1,.75-.88A8.94,8.94,0,0,0,36.5,52.45Zm1.81-1.87a10.2,10.2,0,0,1,1-.78A10.2,10.2,0,0,0,38.31,50.58Zm-.06.05a9,9,0,0,0-.9.84A9,9,0,0,1,38.25,50.63Z' /> */}
+                            {/*    </svg> */}
 
-                            {/*    <Field*/}
-                            {/*        name='shareClasses'*/}
-                            {/*        component={AppAutocomplete}*/}
-                            {/*        placeholder='Share with classes you belong to'*/}
-                            {/*        nameField='shareClasses'*/}
-                            {/*        onInput={onClassesInput}*/}
-                            {/*        itemsSearch={classesSearch}*/}
-                            {/*    />*/}
-                            {/*</li>*/}
+                            {/*    <Field */}
+                            {/*        name='shareClasses' */}
+                            {/*        component={AppAutocomplete} */}
+                            {/*        placeholder='Share with classes you belong to' */}
+                            {/*        nameField='shareClasses' */}
+                            {/*        onInput={onClassesInput} */}
+                            {/*        itemsSearch={classesSearch} */}
+                            {/*    /> */}
+                            {/* </li> */}
                         </ul>
                         <footer>
                             <ActionButton
