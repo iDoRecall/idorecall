@@ -93,7 +93,12 @@ export default class IDRPlugin extends Plugin {
                     ViewOpenService.instance.isOpened &&
                     !isRoot
                 ) {
-                    this.app.workspace.detachLeavesOfType(VIEW_TYPE);
+                    const formState = RecallFromState.instance.formState;
+
+                    if (formState) {
+                        RecallFromState.instance.setFormClosed();
+                    }
+
                     RouterPathService.instance.moveToRoot();
                     await this.activateView();
                 }
