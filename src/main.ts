@@ -128,6 +128,13 @@ export default class IDRPlugin extends Plugin {
             }),
         );
 
+        this.registerEvent(
+            this.app.workspace.on('editor-change', (editor: Editor) => {
+                const currentPositionCursor = editor.getCursor();
+                editor.setCursor(currentPositionCursor);
+            }),
+        );
+
         for (const { id, name, hotkeys } of COMMAND_LIST) {
             this.addCommand({
                 id,
@@ -161,13 +168,6 @@ export default class IDRPlugin extends Plugin {
         await this.app.workspace
             .getRightLeaf(false)
             .setViewState({ type: VIEW_TYPE, active: true });
-
-        this.registerEvent(
-            this.app.workspace.on('editor-change', (editor: Editor) => {
-                const currentPositionCursor = editor.getCursor();
-                editor.setCursor(currentPositionCursor);
-            }),
-        );
     }
 
     async loadSettings() {
