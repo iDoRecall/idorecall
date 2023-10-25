@@ -151,9 +151,7 @@ export default class IDRPlugin extends Plugin {
 
         this.registerEditorExtension(cmExtensions(this));
 
-        try {
-            await this.activateView();
-        } catch (e) {}
+        await this.activateView();
     }
 
     async activateView(): Promise<void> {
